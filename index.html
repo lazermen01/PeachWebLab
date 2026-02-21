@@ -93,20 +93,18 @@
         }
         @keyframes textGlow { 0% { filter: drop-shadow(0 0 5px rgba(255, 90, 95, 0.2)); } 100% { filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.5)); } }
 
-        /* --- "WOW" ЕФЕКТ ЗА ЗАГЛАВИЯТА --- */
+        /* --- ИЗЧИСТЕН "WOW" ЕФЕКТ ЗА ЗАГЛАВИЯТА (БЕЗ ЛИНИЯ) --- */
         .section-header { 
             text-align: center; 
             margin-bottom: 70px; 
-            position: relative;
         }
         
         .section-title { 
             font-size: 3.8rem; /* Огромни заглавия */
             font-weight: 800;
-            margin-bottom: 25px; 
+            margin-bottom: 15px; 
             letter-spacing: -1.5px; 
             display: inline-block;
-            position: relative;
             /* Анимиран Shine (блясък) ефект на текста */
             background: linear-gradient(90deg, #FFFFFF 0%, var(--peach-primary) 50%, #FFFFFF 100%);
             background-size: 200% auto;
@@ -115,26 +113,6 @@
             -webkit-text-fill-color: transparent;
             animation: shineText 4s linear infinite;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
-        }
-
-        /* Светеща линия под заглавието */
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 5px;
-            background: linear-gradient(90deg, transparent, var(--peach-primary), transparent);
-            border-radius: 10px;
-            box-shadow: 0 0 20px var(--peach-primary);
-            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Линията се разширява при посочване */
-        .section-header:hover .section-title::after {
-            width: 160px;
         }
 
         @keyframes shineText {
@@ -238,18 +216,27 @@
         .stat-item h3 { font-size: 3.5rem; margin-bottom: 5px; font-weight: 800; line-height: 1; }
         .stat-item p { color: var(--text-gray); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- УСЛУГИ (ТВЪРДО 5 КУТИИ НА 1 РЕД) --- */
+        /* --- УСЛУГИ (МАСИВНИ КУТИИ В МРЕЖА) --- */
         #features { padding: 60px 0 var(--section-spacing); position: relative; z-index: 2; }
         
         .features-grid { 
             display: grid; 
-            /* ТВЪРДО 5 КОЛОНИ ЗА ГОЛЕМИ ЕКРАНИ */
-            grid-template-columns: repeat(5, 1fr); 
-            gap: 20px; 
+            grid-template-columns: repeat(6, 1fr); /* Използваме 6 колони като базова решетка */
+            gap: 30px; 
         }
         
+        /* Първите 3 кутии заемат по 2 колони (общо 6) - стават 3 на ред */
+        .feature-card-1, .feature-card-2, .feature-card-3 {
+            grid-column: span 2;
+        }
+
+        /* Последните 2 кутии заемат по 3 колони (общо 6) - стават 2 ШИРОКИ на ред */
+        .feature-card-4, .feature-card-5 {
+            grid-column: span 3;
+        }
+
         #features .glass-card { 
-            padding: 40px 20px; /* Оптимален размер за 5 на ред */
+            padding: 50px 40px; /* Много по-големи кутии */
             text-align: center; 
             display: flex;
             flex-direction: column;
@@ -257,25 +244,25 @@
             justify-content: flex-start;
         }
         
-        #features .glass-card > *:not(.js-tilt-glare) { transform: translateZ(20px); } 
+        #features .glass-card > *:not(.js-tilt-glare) { transform: translateZ(30px); } 
         
         .feature-icon { 
-            font-size: 2.5rem; 
+            font-size: 4rem; /* По-голяма икона */
             color: var(--peach-primary); 
-            margin-bottom: 20px; 
+            margin-bottom: 25px; 
             filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.4)); 
         }
         
         #features h3 { 
-            font-size: 1.2rem; 
+            font-size: 1.8rem; /* Големи заглавия вътре в кутиите */
             margin-bottom: 15px; 
             line-height: 1.3; 
         }
         
         #features p { 
-            font-size: 0.9rem; 
+            font-size: 1.1rem; /* По-голям текст */
             color: var(--text-gray); 
-            line-height: 1.5; 
+            line-height: 1.6; 
         }
 
         /* --- ПРОЕКТИ --- */
@@ -349,8 +336,9 @@
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); }
 
         /* --- РЕСПОНСИВ --- */
-        @media (max-width: 1200px) {
-            .features-grid { grid-template-columns: repeat(3, 1fr); gap: 30px;} /* За лаптопи стават 3 горе, 2 долу */
+        @media (max-width: 1100px) {
+            .features-grid { grid-template-columns: 1fr 1fr; } /* За таблети: по 2 на ред */
+            .feature-card-1, .feature-card-2, .feature-card-3, .feature-card-4, .feature-card-5 { grid-column: span 1; }
         }
         @media (max-width: 968px) { 
             .hero-container { grid-template-columns: 1fr; text-align: center; }
@@ -369,7 +357,7 @@
             .nav-buttons { display: none; }
             .hero-title { font-size: 2.8rem; }
             .section-title { font-size: 2.8rem; } 
-            .features-grid { grid-template-columns: 1fr; } /* За телефони стават една под друга */
+            .features-grid { grid-template-columns: 1fr; } /* За телефони стават 1 под друга */
             .stats-grid { flex-direction: column; gap: 40px; }
             .contact-grid, .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .cta-content h2 { font-size: 2.5rem; }
@@ -511,31 +499,31 @@
                 </div>
                 <div class="features-grid">
                     
-                    <div class="glass-card reveal interactive-element" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="glass-card feature-card-1 reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2">
                         <div class="feature-icon"><i class="fa-solid fa-pen-nib"></i></div>
                         <h3>UI/UX & Брандинг</h3>
                         <p>Изграждаме запомняща се идентичност и интерфейси, които водят плавно към целта.</p>
                     </div>
                     
-                    <div class="glass-card reveal interactive-element" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.1s;">
+                    <div class="glass-card feature-card-2 reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.1s;">
                         <div class="feature-icon"><i class="fa-solid fa-code"></i></div>
                         <h3>Custom Разработка</h3>
                         <p>Пишем чист и бърз код без тежки платформи, издържащ на голям трафик.</p>
                     </div>
 
-                    <div class="glass-card reveal interactive-element" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.2s;">
+                    <div class="glass-card feature-card-3 reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.2s;">
                         <div class="feature-icon"><i class="fa-solid fa-store"></i></div>
                         <h3>E-commerce</h3>
                         <p>Мощни онлайн магазини, оптимизирани за високи продажби и лесен чекаут.</p>
                     </div>
                     
-                    <div class="glass-card reveal interactive-element" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.3s;">
+                    <div class="glass-card feature-card-4 reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.3s;">
                         <div class="feature-icon"><i class="fa-solid fa-rocket"></i></div>
                         <h3>SEO & Маркетинг</h3>
                         <p>Структурираме проектите така, че Google да ги обикне и да ви носят клиенти.</p>
                     </div>
 
-                    <div class="glass-card reveal interactive-element" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.4s;">
+                    <div class="glass-card feature-card-5 reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.4s;">
                         <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
                         <h3>Поддръжка</h3>
                         <p>Грижим се сайтът ви да бъде защитен, актуален и работещ 24/7 без прекъсване.</p>
