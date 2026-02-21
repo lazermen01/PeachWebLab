@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="PeachWebLab - Лаборатория за иновативен уеб дизайн и разработка. Създаваме бързи, красиви и функционални уебсайтове.">
-    <meta name="keywords" content="уеб дизайн, изработка на сайтове, SEO оптимизация, уеб разработка, PeachWebLab">
+    <meta name="description" content="PeachWebLab - Лаборатория за иновативен уеб дизайн и разработка. Създаваме бързи, красиви и функционални уебсайтове и онлайн магазини.">
+    <meta name="keywords" content="изработка на сайтове, уеб дизайн, онлайн магазини, SEO оптимизация, уеб разработка, дигитална агенция, PeachWebLab">
     <meta name="author" content="PeachWebLab">
     
-    <title>PeachWebLab - Дигитални иновации</title>
+    <title>Изработка на сайтове и уеб дизайн | PeachWebLab</title>
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
@@ -27,6 +27,7 @@
             --section-spacing: 120px;
         }
 
+        /* Премахваме стандартната мишка */
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
 
         body {
@@ -51,16 +52,30 @@
             pointer-events: none; z-index: 100000; transform: translate(-50%, -50%);
             transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
         }
-        .cursor-outline.hovering { width: 70px; height: 70px; background-color: rgba(255, 90, 95, 0.1); border-color: rgba(255, 90, 95, 0.5); }
+        .cursor-outline.hovering {
+            width: 70px; height: 70px; background-color: rgba(255, 90, 95, 0.1); border-color: rgba(255, 90, 95, 0.5);
+        }
 
         /* --- PRELOADER --- */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-darker); z-index: 999999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
-        .loader-text { font-size: 3rem; font-weight: 800; letter-spacing: -1px; color: var(--text-light); animation: pulseLoader 1.5s infinite alternate; }
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--bg-darker); z-index: 999999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .loader-text {
+            font-size: 3rem; font-weight: 800; letter-spacing: -1px;
+            color: var(--text-light); animation: pulseLoader 1.5s infinite alternate;
+        }
         .loader-text span { color: var(--peach-primary); }
         @keyframes pulseLoader { 0% { opacity: 0.3; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
 
         /* --- PROGRESS BAR --- */
-        #scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary)); z-index: 100002; box-shadow: 0 0 15px var(--peach-primary); }
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary));
+            z-index: 100002; box-shadow: 0 0 15px var(--peach-primary);
+        }
 
         /* --- СКРОЛБАР --- */
         ::-webkit-scrollbar { width: 8px; }
@@ -72,17 +87,27 @@
         .container { width: 90%; max-width: 1300px; margin: 0 auto; }
         h1, h2, h3 { font-weight: 700; }
 
-        .peach-text-gradient { background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; animation: textGlow 3s ease-in-out infinite alternate; }
+        .peach-text-gradient {
+            background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
         @keyframes textGlow { 0% { filter: drop-shadow(0 0 5px rgba(255, 90, 95, 0.2)); } 100% { filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.5)); } }
 
         .section-header { text-align: center; margin-bottom: 60px; }
         .section-title { font-size: 2.8rem; margin-bottom: 15px; letter-spacing: -1px; }
         .section-subtitle { color: var(--text-gray); font-size: 1.1rem; }
+
         .reveal { opacity: 0; transform: translateY(60px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* --- БУТОНИ --- */
-        .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 35px; border-radius: 50px; font-weight: 600; border: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: transform 0.1s linear, box-shadow 0.3s ease; }
+        .btn {
+            display: inline-flex; justify-content: center; align-items: center; gap: 10px;
+            padding: 14px 35px; border-radius: 50px; font-weight: 600; border: none;
+            text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
+            transition: transform 0.1s linear, box-shadow 0.3s ease;
+        }
         .btn * { pointer-events: none; }
         .btn-primary { background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; box-shadow: 0 10px 25px -5px rgba(255, 90, 95, 0.4); position: relative; overflow: hidden; }
         .btn-primary::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: all 0.6s ease; }
@@ -91,9 +116,17 @@
         .btn-outline { background: rgba(255, 90, 95, 0.05); border: 2px solid var(--peach-primary); color: var(--peach-primary); }
         .btn-outline:hover { background-color: var(--peach-primary); color: white; }
 
-        #back-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4); }
+        /* --- BACK TO TOP BUTTON --- */
+        #back-to-top {
+            position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px;
+            border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary));
+            color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center;
+            z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4);
+        }
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 90, 95, 0.7); }
+        #back-to-top i { pointer-events: none; }
 
         /* --- ГОРЕН ХЕДЪР --- */
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
@@ -116,16 +149,33 @@
         .blob-2 { bottom: -10%; right: -5%; width: 600px; height: 600px; background: #6a040f; animation: moveBlob2 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
         @keyframes moveBlob1 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(150px, 100px) scale(1.2) rotate(45deg); } }
         @keyframes moveBlob2 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(-150px, -100px) scale(1.3) rotate(-45deg); } }
-        .hero-scroll-container { width: 100%; } 
-        .hero-content { max-width: 800px; z-index: 1; transform-style: preserve-3d; }
-        .hero-title { font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); letter-spacing: -2px; }
-        .hero-subtitle { font-size: 1.25rem; color: #cfcfd6; margin-bottom: 45px; max-width: 600px; }
+        
+        .hero-container { width: 100%; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 60px; } 
+        .hero-content { z-index: 1; transform-style: preserve-3d; }
+        .hero-title { font-size: 4.2rem; line-height: 1.15; margin-bottom: 25px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); letter-spacing: -2px; }
+        .hero-subtitle { font-size: 1.2rem; color: #cfcfd6; margin-bottom: 40px; max-width: 90%; }
         .hero-buttons { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        
+        /* ПЛАВАЩИ ЕЛЕМЕНТИ ОТДЯСНО В HERO СЕКЦИЯТА */
+        .hero-visuals { position: relative; height: 450px; display: flex; justify-content: center; align-items: center; z-index: 1; }
+        .floating-card { position: absolute; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-top: 1px solid rgba(255, 255, 255, 0.15); border-left: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 25px; box-shadow: 0 25px 40px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 20px; }
+        .floating-card i { font-size: 2rem; color: var(--peach-primary); filter: drop-shadow(0 0 10px rgba(255, 90, 95, 0.5)); }
+        .floating-card h4 { font-size: 1.2rem; margin: 0; line-height: 1.2; }
+        .floating-card p { font-size: 0.9rem; color: var(--text-gray); margin: 0; }
+        
+        .float-1 { top: 10%; right: 5%; animation: floatObj 6s ease-in-out infinite; }
+        .float-2 { bottom: 15%; left: 0%; animation: floatObj 8s ease-in-out infinite reverse; }
+        .abstract-circle { position: absolute; width: 250px; height: 250px; border-radius: 50%; border: 1px dashed rgba(255, 90, 95, 0.3); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: spin 20s linear infinite; }
+        .abstract-circle::before { content: ''; position: absolute; top: -5px; left: 50%; width: 10px; height: 10px; background: var(--peach-primary); border-radius: 50%; box-shadow: 0 0 15px var(--peach-primary); }
+
+        @keyframes floatObj { 0% { transform: translateY(0px); } 50% { transform: translateY(-25px); } 100% { transform: translateY(0px); } }
+        @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
         .fade-in-up { opacity: 0; transform: translateY(40px); animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         .delay-1 { animation-delay: 0.2s; } .delay-2 { animation-delay: 0.4s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- MARQUEE ЛЕНТА --- */
+        /* --- MARQUEE ЛЕНТА (ЗАКЛЮЧЕНА НА 1 РЕД) --- */
         .marquee-section { background-color: var(--peach-primary); color: var(--bg-dark); padding: 18px 0; overflow: hidden; display: flex; position: relative; z-index: 10; font-weight: 800; font-size: 1.3rem; text-transform: uppercase; box-shadow: 0 0 40px rgba(255, 90, 95, 0.3); white-space: nowrap; flex-wrap: nowrap; }
         .marquee-content { display: flex; flex-wrap: nowrap; width: max-content; animation: marqueeScroll 35s linear infinite; }
         .marquee-track { display: flex; flex-wrap: nowrap; align-items: center; gap: 40px; padding-right: 40px; flex-shrink: 0;}
@@ -133,9 +183,11 @@
         @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- GLASS CARDS --- */
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.1); border-left: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 40px; transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.1); border-left: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 40px; transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); transform-style: preserve-3d; }
         .glass-card:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15), inset 0 0 20px rgba(255, 90, 95, 0.05); }
+        .glass-card > * { transform: translateZ(30px); }
 
+        /* --- STATS, FEATURES --- */
         #stats { margin-top: 80px; margin-bottom: 80px; position: relative; z-index: 10; }
         .stats-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; text-align: center; }
         .stat-item h3 { font-size: 3.5rem; margin-bottom: 5px; font-weight: 800; line-height: 1; }
@@ -148,71 +200,28 @@
         /* --- ПРОЕКТИ (ШИРОКИ ПАНОРАМНИ КУТИИ) --- */
         #projects { padding: var(--section-spacing) 0; background-color: rgba(5,5,7,0.8); }
         
-        .projects-list { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 60px; /* Разстояние между отделните проекти */
-        }
+        .projects-list { display: flex; flex-direction: column; gap: 60px; }
         
         .project-card-wide { 
-            display: flex; 
-            background: rgba(255, 255, 255, 0.02); 
-            backdrop-filter: blur(16px); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            border-radius: 24px; 
-            overflow: hidden; /* За да не излиза снимката от заоблените ъгли */
-            transition: all 0.4s ease; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+            display: flex; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; overflow: hidden; 
+            transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
         }
+        .project-card-wide:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15); }
 
-        .project-card-wide:hover { 
-            border-color: rgba(255, 90, 95, 0.3); 
-            box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15); 
-        }
-
-        .project-image-wrapper {
-            flex: 0 0 55%; /* Снимката заема 55% от ширината */
-            overflow: hidden;
-            position: relative;
-        }
-
-        .project-image { 
-            width: 100%; 
-            height: 100%;
-            min-height: 350px; /* Минимална височина на снимката */
-            background-color: #15151e; 
-            background-size: cover; 
-            background-position: top center; 
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
-        }
-        
-        .project-image::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(11, 11, 14, 0.5); transition: background 0.5s ease; z-index: 1;
-        }
+        .project-image-wrapper { flex: 0 0 55%; overflow: hidden; position: relative; }
+        .project-image { width: 100%; height: 100%; min-height: 350px; background-color: #15151e; background-size: cover; background-position: top center; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project-image::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 14, 0.5); transition: background 0.5s ease; z-index: 1; }
 
         .project-card-wide:hover .project-image { transform: scale(1.05); }
         .project-card-wide:hover .project-image::before { background: rgba(11, 11, 14, 0.1); }
 
-        .project-info { 
-            flex: 1; /* Текстът заема останалите 45% */
-            padding: 50px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center;
-        }
-        
+        .project-info { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
         .project-info h3 { font-size: 2.2rem; margin-bottom: 15px; }
         .project-info p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.8; }
         
-        .project-link { 
-            color: var(--peach-primary); font-weight: 600; font-size: 1rem; text-transform: uppercase; 
-            display: inline-flex; align-items: center; gap: 8px; margin-top: auto; align-self: flex-start;
-            padding: 10px 0;
-        }
+        .project-link { color: var(--peach-primary); font-weight: 600; font-size: 1rem; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; margin-top: auto; align-self: flex-start; padding: 10px 0; }
         .project-link:hover { gap: 15px; text-shadow: 0 0 10px rgba(255, 90, 95, 0.5); }
-
-        /* Обръщане на подредбата (снимка отдясно) за четните проекти */
         .project-card-wide.reverse { flex-direction: row-reverse; }
 
         /* --- ОТЗИВИ И FAQ --- */
@@ -242,7 +251,7 @@
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
         .cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 90, 95, 0.3); letter-spacing: -1px; }
         .cta-content p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; }
-        .contact-form { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .contact-form { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-gray); }
         .form-control { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s ease; cursor: none; }
@@ -260,6 +269,8 @@
 
         /* --- РЕСПОНСИВ --- */
         @media (max-width: 968px) { 
+            .hero-container { grid-template-columns: 1fr; }
+            .hero-visuals { display: none; } /* Скриваме плаващите елементи на телефон */
             .project-card-wide, .project-card-wide.reverse { flex-direction: column; }
             .project-image-wrapper { flex: auto; height: 250px; }
             .project-info { padding: 30px; }
@@ -270,7 +281,7 @@
             .header-wrapper { flex-direction: column; gap: 15px; }
             .nav-menu-container { padding: 10px 20px; width: 100%; justify-content: center; }
             .nav-buttons { display: none; }
-            .hero-title { font-size: 3rem; }
+            .hero-title { font-size: 2.8rem; }
             .hero-buttons { justify-content: center; }
             .stats-grid { flex-direction: column; gap: 40px; }
             .contact-grid, .footer-grid { grid-template-columns: 1fr; text-align: center; }
@@ -322,14 +333,15 @@
                 </div>
             </div>
             
-            <div class="container hero-scroll-container">
-                <div class="hero-content" id="hero-text-content" data-tilt data-tilt-max="2" data-tilt-speed="400" data-tilt-perspective="1000">
+            <div class="container hero-container" id="hero-text-content" data-tilt data-tilt-max="1" data-tilt-speed="400" data-tilt-perspective="1000">
+                
+                <div class="hero-content">
                     <h1 class="hero-title fade-in-up">
-                        Ние създаваме <br>
-                        <span class="peach-text-gradient">дигитални преживявания</span>, които вдъхновяват.
+                        Изработка на <br>
+                        <span class="peach-text-gradient">успешни уебсайтове</span> <br>и онлайн магазини.
                     </h1>
                     <p class="hero-subtitle fade-in-up delay-1">
-                        PeachWebLab е вашата лаборатория за иновативен уеб дизайн. Превръщаме идеите в невероятни визуални решения с безкомпромисна скорост.
+                        PeachWebLab е дигитално студио за изработка на бързи, сигурни и SEO оптимизирани сайтове, които превръщат посетителите в реални клиенти.
                     </p>
                     <div class="hero-buttons fade-in-up delay-2">
                         <a href="#projects" class="btn btn-primary magnetic interactive-element">
@@ -340,6 +352,27 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="hero-visuals fade-in-up delay-2">
+                    <div class="abstract-circle"></div>
+                    
+                    <div class="floating-card float-1">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <div>
+                            <h4>Светкавични</h4>
+                            <p>100/100 Google Score</p>
+                        </div>
+                    </div>
+
+                    <div class="floating-card float-2">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        <div>
+                            <h4>SEO Оптимизирани</h4>
+                            <p>За първи позиции</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -672,10 +705,12 @@
         lenis.on('scroll', (e) => {
             let currentScrollY = window.scrollY;
             
+            // Progress Bar
             let scrollHeight = document.body.scrollHeight - window.innerHeight;
             let progress = (currentScrollY / scrollHeight) * 100;
             scrollProgress.style.width = progress + "%";
 
+            // Header Hide/Show
             if (currentScrollY > 150) {
                 if (currentScrollY > lastScrollY) {
                     header.classList.add('hide-header');
@@ -687,11 +722,13 @@
             }
             lastScrollY = currentScrollY;
 
+            // Hero Parallax Fade
             if(currentScrollY < 800) {
                 let opacityValue = 1 - (currentScrollY / 500);
                 heroText.style.opacity = Math.max(0, opacityValue);
             }
 
+            // Back to top бутон показване
             if(currentScrollY > 600) {
                 backToTopBtn.classList.add('show');
             } else {
@@ -699,6 +736,7 @@
             }
         });
 
+        // Клик на бутона Back to Top
         backToTopBtn.addEventListener('click', () => {
             lenis.scrollTo(0, { duration: 1.5 });
         });
