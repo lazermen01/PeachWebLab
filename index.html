@@ -19,7 +19,7 @@
             --section-spacing: 120px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Скриваме стандартния курсор */ }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -37,12 +37,12 @@
             position: fixed; top: 0; left: 0; width: 30px; height: 30px;
             border: 2px solid var(--peach-primary); border-radius: 50%;
             pointer-events: none; z-index: 9999;
-            transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background-color 0.2s;
-            backdrop-filter: blur(2px);
+            transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+            backdrop-filter: blur(2px); mix-blend-mode: difference;
         }
         .custom-cursor.hovering {
-            width: 50px; height: 50px; background-color: rgba(255, 90, 95, 0.1);
-            border-color: transparent;
+            width: 60px; height: 60px; background-color: var(--text-light);
+            border-color: transparent; mix-blend-mode: difference;
         }
 
         ::-webkit-scrollbar { width: 8px; }
@@ -54,11 +54,18 @@
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         h1, h2, h3 { font-weight: 700; }
 
+        /* --- GLOW TEXT ЕФЕКТ --- */
         .peach-text-gradient {
             background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { filter: drop-shadow(0 0 5px rgba(255, 90, 95, 0.2)); }
+            100% { filter: drop-shadow(0 0 20px rgba(255, 90, 95, 0.6)); }
         }
 
         .section-header { text-align: center; margin-bottom: 60px; }
@@ -68,11 +75,13 @@
         .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+        /* --- БУТОНИ (Подготвени за Магнитен ефект) --- */
         .btn {
             display: inline-flex; justify-content: center; align-items: center; gap: 10px;
             padding: 14px 35px; border-radius: 50px;
-            font-weight: 600; transition: all 0.3s ease; border: none;
+            font-weight: 600; cursor: none; border: none;
             text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s;
         }
 
         .btn-primary {
@@ -84,10 +93,10 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: all 0.5s ease;
         }
         .btn-primary:hover::after { left: 100%; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 35px -10px rgba(255, 90, 95, 0.8); }
+        .btn-primary:hover { box-shadow: 0 15px 35px -10px rgba(255, 90, 95, 0.8); }
 
         .btn-outline { background: rgba(255, 90, 95, 0.05); border: 2px solid var(--peach-primary); color: var(--peach-primary); }
-        .btn-outline:hover { background-color: var(--peach-primary); color: white; transform: translateY(-3px); }
+        .btn-outline:hover { background-color: var(--peach-primary); color: white; }
 
         /* --- ПЛАВАЩ ХЕДЪР --- */
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; }
@@ -106,12 +115,18 @@
 
         /* --- HERO СЕКЦИЯ --- */
         #hero { height: 100vh; min-height: 750px; display: flex; align-items: center; position: relative; overflow: hidden; perspective: 1000px; }
-        .hero-blobs { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        
+        /* Добавен контейнер за паралакс ефекта */
+        .parallax-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; transition: transform 0.2s ease-out; }
+        
+        .hero-blobs { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.4; mix-blend-mode: screen; }
         .blob-1 { top: 5%; left: -5%; width: 500px; height: 500px; background: var(--peach-primary); animation: moveBlob1 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
         .blob-2 { bottom: -10%; right: -5%; width: 600px; height: 600px; background: #6a040f; animation: moveBlob2 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
+        
         @keyframes moveBlob1 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(150px, 100px) scale(1.2) rotate(45deg); } }
         @keyframes moveBlob2 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(-150px, -100px) scale(1.3) rotate(-45deg); } }
+        
         .hero-content { max-width: 800px; z-index: 1; transform-style: preserve-3d; }
         .hero-title { font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); letter-spacing: -2px; }
         .hero-subtitle { font-size: 1.25rem; color: #cfcfd6; margin-bottom: 45px; max-width: 600px; }
@@ -120,6 +135,21 @@
         .fade-in-up { opacity: 0; transform: translateY(40px); animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         .delay-1 { animation-delay: 0.2s; } .delay-2 { animation-delay: 0.4s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* --- БЕЗКРАЙНА БЯГАЩА ПЪТЕКА (INFINITE MARQUEE) --- */
+        .marquee-section {
+            background-color: var(--peach-primary); color: var(--bg-dark);
+            padding: 15px 0; overflow: hidden; display: flex; white-space: nowrap;
+            border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: relative; z-index: 10; font-weight: 700; font-size: 1.2rem; text-transform: uppercase;
+            box-shadow: 0 0 30px rgba(255, 90, 95, 0.2);
+        }
+        .marquee-content {
+            display: flex; gap: 40px; animation: marqueeScroll 20s linear infinite;
+        }
+        .marquee-content span { display: flex; align-items: center; gap: 40px; }
+        .marquee-content i { font-size: 0.8rem; }
+        @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- GLASSMORPHISM КАРТИ --- */
         .glass-card {
@@ -131,19 +161,18 @@
         .glass-card > * { transform: translateZ(30px); }
 
         /* --- СТАТИСТИКА --- */
-        #stats { margin-top: -60px; margin-bottom: 80px; position: relative; z-index: 10; }
+        #stats { margin-top: 80px; margin-bottom: 80px; position: relative; z-index: 10; }
         .stats-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; text-align: center; }
         .stat-item h3 { font-size: 3.5rem; margin-bottom: 5px; font-weight: 800; line-height: 1; }
         .stat-item p { color: var(--text-gray); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- УСЛУГИ --- */
+        /* ОСТАНАЛИЯТ CSS ОТ ПРЕДИ... */
         #features { padding: 60px 0 var(--section-spacing); position: relative; z-index: 2; }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .feature-icon { font-size: 3.5rem; color: var(--peach-primary); margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.4)); }
         .glass-card h3 { font-size: 1.6rem; margin-bottom: 15px; }
         .glass-card p { color: var(--text-gray); }
 
-        /* --- ПРОЕКТИ --- */
         #projects { padding: var(--section-spacing) 0; background-color: rgba(5,5,7,0.8); }
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
         .project-card { padding: 0; overflow: hidden; display: flex; flex-direction: column;}
@@ -154,7 +183,6 @@
         .project-link { color: var(--peach-primary); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;}
         .project-link:hover { gap: 15px; text-shadow: 0 0 10px rgba(255, 90, 95, 0.5); }
 
-        /* --- НОВА СЕКЦИЯ: ОТЗИВИ --- */
         #testimonials { padding: var(--section-spacing) 0; position: relative; overflow: hidden; }
         .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .testimonial-card { position: relative; }
@@ -165,7 +193,6 @@
         .client-details h4 { font-size: 1.1rem; margin-bottom: 2px; }
         .client-details p { font-size: 0.9rem; color: var(--peach-primary); }
 
-        /* --- FAQ --- */
         #faq { padding: var(--section-spacing) 0; background-color: rgba(5,5,7,0.8); }
         .faq-container { max-width: 800px; margin: 0 auto; }
         .faq-item { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; }
@@ -177,12 +204,10 @@
         .faq-answer { padding: 0 30px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-gray); }
         .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; }
 
-        /* --- CTA --- */
         #cta { padding: 120px 0; text-align: center; position: relative; background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02)); border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15); }
         .cta-content { position: relative; z-index: 2; }
         .cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 90, 95, 0.3); letter-spacing: -1px; }
 
-        /* --- ФУТЪР --- */
         footer { padding: 80px 0 30px; background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
         .footer-about p { color: var(--text-gray); margin-top: 20px; max-width: 300px; }
@@ -191,9 +216,8 @@
         .footer-col ul li a:hover { color: var(--peach-primary); padding-left: 5px; }
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); }
 
-        /* --- МОБИЛНА ВЕРСИЯ --- */
         @media (max-width: 768px) {
-            * { cursor: auto; } /* Изключваме custom cursor на мобилни */
+            * { cursor: auto; }
             .custom-cursor { display: none; }
             .header-wrapper { flex-direction: column; gap: 15px; }
             .nav-menu-container { padding: 10px 20px; width: 100%; justify-content: center; }
@@ -205,6 +229,7 @@
             .cta-content h2 { font-size: 2.5rem; }
             .glass-card { padding: 30px; }
             .faq-question { font-size: 1.1rem; padding: 20px; }
+            .marquee-section { font-size: 1rem; }
         }
     </style>
 </head>
@@ -214,29 +239,32 @@
 
     <header id="main-header">
         <div class="header-wrapper">
-            <a href="#" class="logo">Peach<span>WebLab</span>.</a>
+            <a href="#" class="logo interactive-element">Peach<span>WebLab</span>.</a>
             <div class="nav-menu-container">
                 <nav>
                     <ul class="nav-links">
-                        <li><a href="#features">Услуги <i class="fa-solid fa-chevron-down"></i></a></li>
-                        <li><a href="#projects">Проекти <i class="fa-solid fa-chevron-down"></i></a></li>
-                        <li><a href="#testimonials">Отзиви</a></li>
-                        <li><a href="#cta">Контакти</a></li>
+                        <li><a href="#features" class="interactive-element">Услуги <i class="fa-solid fa-chevron-down"></i></a></li>
+                        <li><a href="#projects" class="interactive-element">Проекти <i class="fa-solid fa-chevron-down"></i></a></li>
+                        <li><a href="#testimonials" class="interactive-element">Отзиви</a></li>
+                        <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="nav-buttons">
-                 <a href="#cta" class="btn btn-primary">Започни проект</a>
+                 <a href="#cta" class="btn btn-primary magnetic interactive-element">Започни проект</a>
             </div>
         </div>
     </header>
 
     <main>
         <section id="hero">
-            <div class="hero-blobs">
-                <div class="blob blob-1"></div>
-                <div class="blob blob-2"></div>
+            <div class="parallax-wrapper" id="parallax-bg">
+                <div class="hero-blobs">
+                    <div class="blob blob-1"></div>
+                    <div class="blob blob-2"></div>
+                </div>
             </div>
+            
             <div class="container">
                 <div class="hero-content" data-tilt data-tilt-max="2" data-tilt-speed="400" data-tilt-perspective="1000">
                     <h1 class="hero-title fade-in-up">
@@ -247,16 +275,31 @@
                         PeachWebLab е вашата лаборатория за иновативен уеб дизайн. Превръщаме идеите в невероятни визуални решения с безкомпромисна скорост.
                     </p>
                     <div class="hero-buttons fade-in-up delay-2">
-                        <a href="#projects" class="btn btn-primary interactive-element">
+                        <a href="#projects" class="btn btn-primary magnetic interactive-element">
                             Разгледай проектите <i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <a href="#features" class="btn btn-outline hide-mobile interactive-element">
+                        <a href="#features" class="btn btn-outline magnetic hide-mobile interactive-element">
                             Какво предлагаме
                         </a>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div class="marquee-section interactive-element">
+            <div class="marquee-content">
+                <span>UI/UX Дизайн <i class="fa-solid fa-star-of-life"></i></span>
+                <span>Web Development <i class="fa-solid fa-star-of-life"></i></span>
+                <span>SEO Оптимизация <i class="fa-solid fa-star-of-life"></i></span>
+                <span>E-commerce <i class="fa-solid fa-star-of-life"></i></span>
+                <span>Бързина <i class="fa-solid fa-star-of-life"></i></span>
+                <span>UI/UX Дизайн <i class="fa-solid fa-star-of-life"></i></span>
+                <span>Web Development <i class="fa-solid fa-star-of-life"></i></span>
+                <span>SEO Оптимизация <i class="fa-solid fa-star-of-life"></i></span>
+                <span>E-commerce <i class="fa-solid fa-star-of-life"></i></span>
+                <span>Бързина <i class="fa-solid fa-star-of-life"></i></span>
+            </div>
+        </div>
 
         <section id="stats" class="container reveal">
             <div class="glass-card" style="padding: 40px 20px;">
@@ -315,7 +358,7 @@
                         <div class="project-info">
                             <h3>E-commerce Платформа</h3>
                             <p>Пълен редизайн за премиум моден бранд. Изчистен код, плавни анимации и 40% ръст в продажбите.</p>
-                            <a href="#" class="project-link">Разгледай проекта <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="#" class="project-link interactive-element">Разгледай проекта <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="glass-card project-card reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.1" style="transition-delay: 0.2s;">
@@ -323,7 +366,7 @@
                         <div class="project-info">
                             <h3>Финтех Стартъп</h3>
                             <p>Модерно дигитално присъствие, базирано на бързина, стъклени 3D ефекти и максимална сигурност.</p>
-                            <a href="#" class="project-link">Разгледай проекта <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="#" class="project-link interactive-element">Разгледай проекта <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -331,9 +374,6 @@
         </section>
 
         <section id="testimonials">
-            <div class="hero-blobs">
-                <div class="blob blob-2" style="width: 400px; height: 400px; top: 10%; right: -10%;"></div>
-            </div>
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="section-title">Какво казват за нас</h2>
@@ -396,16 +436,13 @@
         </section>
 
         <section id="cta">
-            <div class="hero-blobs">
-                <div class="blob blob-1" style="width: 300px; height: 300px; top: -50%; left: 30%; animation-duration: 10s;"></div>
-            </div>
             <div class="container reveal">
                 <div class="cta-content">
                     <h2>Готови ли сте да създадем нещо красиво?</h2>
                     <p style="color: var(--text-gray); font-size: 1.2rem; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
                         Нека обсъдим вашата идея и да я превърнем в следващия успешен дигитален продукт.
                     </p>
-                    <a href="#" class="btn btn-primary interactive-element">Запази безплатна консултация <i class="fa-regular fa-calendar-check"></i></a>
+                    <a href="#" class="btn btn-primary magnetic interactive-element">Запази безплатна консултация <i class="fa-regular fa-calendar-check"></i></a>
                 </div>
             </div>
         </section>
@@ -458,19 +495,42 @@
         const cursor = document.getElementById('cursor');
         const interactiveElements = document.querySelectorAll('a, .btn, .interactive-element, .faq-question');
 
-        // Движение на курсора
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Ефект при посочване (hover)
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
         });
 
-        // --- 2. Анимации при скролиране (Reveal) ---
+        // --- 2. МАГНИТНИ БУТОНИ (Magnetic Effect) ---
+        const magneticButtons = document.querySelectorAll('.magnetic');
+        magneticButtons.forEach((btn) => {
+            btn.addEventListener('mousemove', function(e) {
+                const position = btn.getBoundingClientRect();
+                const x = e.pageX - position.left - position.width / 2;
+                const y = e.pageY - position.top - position.height / 2;
+                
+                // Премества бутона леко към мишката
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+            });
+            btn.addEventListener('mouseout', function(e) {
+                // Връща бутона в центъра
+                btn.style.transform = `translate(0px, 0px)`;
+            });
+        });
+
+        // --- 3. ПАРАЛАКС ЕФЕКТ НА ФОНА ---
+        const parallaxBg = document.getElementById('parallax-bg');
+        document.addEventListener('mousemove', function(e) {
+            const x = (window.innerWidth - e.pageX * 2) / 90;
+            const y = (window.innerHeight - e.pageY * 2) / 90;
+            parallaxBg.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // --- 4. Анимации при скролиране (Reveal) ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -482,7 +542,7 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-        // --- 3. Анимирани броячи за статистиката ---
+        // --- 5. Анимирани броячи за статистиката ---
         const counters = document.querySelectorAll('.counter');
         let hasCounted = false;
         window.addEventListener('scroll', () => {
@@ -509,7 +569,7 @@
             }
         });
 
-        // --- 4. Често Задавани Въпроси (FAQ Акордеон) ---
+        // --- 6. Често Задавани Въпроси (FAQ Акордеон) ---
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
