@@ -32,11 +32,25 @@
             scroll-behavior: smooth;
         }
 
+        /* --- PRELOADER (ЗАРЕЖДАЩ ЕКРАН) --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--bg-darker); z-index: 99999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .loader-text {
+            font-size: 3rem; font-weight: 800; letter-spacing: -1px;
+            color: var(--text-light); animation: pulseLoader 1.5s infinite alternate;
+        }
+        .loader-text span { color: var(--peach-primary); }
+        @keyframes pulseLoader { 0% { opacity: 0.5; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
+
         /* --- ПЕРСОНАЛИЗИРАН КУРСОР --- */
         .custom-cursor {
             position: fixed; top: 0; left: 0; width: 30px; height: 30px;
             border: 2px solid var(--peach-primary); border-radius: 50%;
-            pointer-events: none; z-index: 9999;
+            pointer-events: none; z-index: 99998;
             transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
             backdrop-filter: blur(2px); mix-blend-mode: difference;
         }
@@ -54,19 +68,12 @@
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         h1, h2, h3 { font-weight: 700; }
 
-        /* --- GLOW TEXT ЕФЕКТ --- */
         .peach-text-gradient {
             background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
             animation: textGlow 3s ease-in-out infinite alternate;
         }
-
-        @keyframes textGlow {
-            0% { filter: drop-shadow(0 0 5px rgba(255, 90, 95, 0.2)); }
-            100% { filter: drop-shadow(0 0 20px rgba(255, 90, 95, 0.6)); }
-        }
+        @keyframes textGlow { 0% { filter: drop-shadow(0 0 5px rgba(255, 90, 95, 0.2)); } 100% { filter: drop-shadow(0 0 20px rgba(255, 90, 95, 0.6)); } }
 
         .section-header { text-align: center; margin-bottom: 60px; }
         .section-title { font-size: 2.8rem; margin-bottom: 15px; letter-spacing: -1px; }
@@ -75,14 +82,15 @@
         .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- БУТОНИ (Подготвени за Магнитен ефект) --- */
+        /* --- БУТОНИ (ФИКСИРАН МАГНИТЕН ЕФЕКТ) --- */
         .btn {
             display: inline-flex; justify-content: center; align-items: center; gap: 10px;
-            padding: 14px 35px; border-radius: 50px;
-            font-weight: 600; cursor: none; border: none;
+            padding: 14px 35px; border-radius: 50px; font-weight: 600; cursor: none; border: none;
             text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
-            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s;
+            /* Добавена транзиция за по-гладко връщане и движение */
+            transition: transform 0.1s linear, box-shadow 0.3s ease, background-color 0.3s ease;
         }
+        .btn * { pointer-events: none; /* Забраняваме мишката да хваща иконите вътре */ }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white;
@@ -110,23 +118,18 @@
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 6px; transition: color 0.3s ease; }
         .nav-links a:hover { color: var(--peach-primary); }
-        .nav-links i { font-size: 0.7rem; opacity: 0.7; transition: transform 0.3s ease; }
+        .nav-links i { font-size: 0.7rem; opacity: 0.7; transition: transform 0.3s ease; pointer-events: none;}
         .nav-links a:hover i { transform: rotate(180deg); }
 
         /* --- HERO СЕКЦИЯ --- */
         #hero { height: 100vh; min-height: 750px; display: flex; align-items: center; position: relative; overflow: hidden; perspective: 1000px; }
-        
-        /* Добавен контейнер за паралакс ефекта */
         .parallax-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; transition: transform 0.2s ease-out; }
-        
         .hero-blobs { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.4; mix-blend-mode: screen; }
         .blob-1 { top: 5%; left: -5%; width: 500px; height: 500px; background: var(--peach-primary); animation: moveBlob1 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
         .blob-2 { bottom: -10%; right: -5%; width: 600px; height: 600px; background: #6a040f; animation: moveBlob2 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
-        
         @keyframes moveBlob1 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(150px, 100px) scale(1.2) rotate(45deg); } }
         @keyframes moveBlob2 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(-150px, -100px) scale(1.3) rotate(-45deg); } }
-        
         .hero-content { max-width: 800px; z-index: 1; transform-style: preserve-3d; }
         .hero-title { font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); letter-spacing: -2px; }
         .hero-subtitle { font-size: 1.25rem; color: #cfcfd6; margin-bottom: 45px; max-width: 600px; }
@@ -138,15 +141,11 @@
 
         /* --- БЕЗКРАЙНА БЯГАЩА ПЪТЕКА (INFINITE MARQUEE) --- */
         .marquee-section {
-            background-color: var(--peach-primary); color: var(--bg-dark);
-            padding: 15px 0; overflow: hidden; display: flex; white-space: nowrap;
+            background-color: var(--peach-primary); color: var(--bg-dark); padding: 15px 0; overflow: hidden; display: flex; white-space: nowrap;
             border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);
-            position: relative; z-index: 10; font-weight: 700; font-size: 1.2rem; text-transform: uppercase;
-            box-shadow: 0 0 30px rgba(255, 90, 95, 0.2);
+            position: relative; z-index: 10; font-weight: 700; font-size: 1.2rem; text-transform: uppercase; box-shadow: 0 0 30px rgba(255, 90, 95, 0.2);
         }
-        .marquee-content {
-            display: flex; gap: 40px; animation: marqueeScroll 20s linear infinite;
-        }
+        .marquee-content { display: flex; gap: 40px; animation: marqueeScroll 20s linear infinite; }
         .marquee-content span { display: flex; align-items: center; gap: 40px; }
         .marquee-content i { font-size: 0.8rem; }
         @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -166,7 +165,7 @@
         .stat-item h3 { font-size: 3.5rem; margin-bottom: 5px; font-weight: 800; line-height: 1; }
         .stat-item p { color: var(--text-gray); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* ОСТАНАЛИЯТ CSS ОТ ПРЕДИ... */
+        /* --- УСЛУГИ И ПРОЕКТИ --- */
         #features { padding: 60px 0 var(--section-spacing); position: relative; z-index: 2; }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .feature-icon { font-size: 3.5rem; color: var(--peach-primary); margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.4)); }
@@ -183,6 +182,7 @@
         .project-link { color: var(--peach-primary); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;}
         .project-link:hover { gap: 15px; text-shadow: 0 0 10px rgba(255, 90, 95, 0.5); }
 
+        /* --- ОТЗИВИ И FAQ --- */
         #testimonials { padding: var(--section-spacing) 0; position: relative; overflow: hidden; }
         .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .testimonial-card { position: relative; }
@@ -197,17 +197,28 @@
         .faq-container { max-width: 800px; margin: 0 auto; }
         .faq-item { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; }
         .faq-item.active { border-color: rgba(255, 90, 95, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .faq-question { padding: 25px 30px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.2rem; transition: color 0.3s ease; }
+        .faq-question { padding: 25px 30px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.2rem; transition: color 0.3s ease; pointer-events: auto; }
         .faq-question:hover { color: var(--peach-primary); }
-        .faq-question i { color: var(--peach-primary); transition: transform 0.3s ease; }
+        .faq-question i { color: var(--peach-primary); transition: transform 0.3s ease; pointer-events: none; }
         .faq-item.active .faq-question i { transform: rotate(180deg); }
         .faq-answer { padding: 0 30px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-gray); }
         .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; }
 
-        #cta { padding: 120px 0; text-align: center; position: relative; background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02)); border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15); }
-        .cta-content { position: relative; z-index: 2; }
+        /* --- НОВ CTA + ФОРМА ЗА КОНТАКТИ --- */
+        #cta { padding: 100px 0; position: relative; background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02)); border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15); overflow: hidden; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
         .cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 90, 95, 0.3); letter-spacing: -1px; }
+        .cta-content p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; }
+        
+        /* Стилизиране на формата */
+        .contact-form { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-gray); }
+        .form-control { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s ease; cursor: none; }
+        .form-control:focus { outline: none; border-color: var(--peach-primary); background: rgba(0,0,0,0.5); box-shadow: 0 0 15px rgba(255, 90, 95, 0.2); }
+        textarea.form-control { resize: none; height: 120px; }
 
+        /* --- ФУТЪР --- */
         footer { padding: 80px 0 30px; background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
         .footer-about p { color: var(--text-gray); margin-top: 20px; max-width: 300px; }
@@ -215,6 +226,10 @@
         .footer-col ul li { margin-bottom: 15px; }
         .footer-col ul li a:hover { color: var(--peach-primary); padding-left: 5px; }
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); }
+
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+        }
 
         @media (max-width: 768px) {
             * { cursor: auto; }
@@ -235,6 +250,10 @@
 </head>
 <body>
 
+    <div id="preloader">
+        <div class="loader-text">PeachWebLab<span>.</span></div>
+    </div>
+
     <div class="custom-cursor" id="cursor"></div>
 
     <header id="main-header">
@@ -243,8 +262,8 @@
             <div class="nav-menu-container">
                 <nav>
                     <ul class="nav-links">
-                        <li><a href="#features" class="interactive-element">Услуги <i class="fa-solid fa-chevron-down"></i></a></li>
-                        <li><a href="#projects" class="interactive-element">Проекти <i class="fa-solid fa-chevron-down"></i></a></li>
+                        <li><a href="#features" class="interactive-element">Услуги</a></li>
+                        <li><a href="#projects" class="interactive-element">Проекти</a></li>
                         <li><a href="#testimonials" class="interactive-element">Отзиви</a></li>
                         <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
@@ -436,13 +455,39 @@
         </section>
 
         <section id="cta">
+            <div class="hero-blobs">
+                <div class="blob blob-1" style="width: 400px; height: 400px; top: -20%; left: -10%;"></div>
+            </div>
             <div class="container reveal">
-                <div class="cta-content">
-                    <h2>Готови ли сте да създадем нещо красиво?</h2>
-                    <p style="color: var(--text-gray); font-size: 1.2rem; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        Нека обсъдим вашата идея и да я превърнем в следващия успешен дигитален продукт.
-                    </p>
-                    <a href="#" class="btn btn-primary magnetic interactive-element">Запази безплатна консултация <i class="fa-regular fa-calendar-check"></i></a>
+                <div class="contact-grid">
+                    <div class="cta-content">
+                        <h2>Готови ли сте да започнем?</h2>
+                        <p>Нека обсъдим вашата идея и да я превърнем в следващия успешен дигитален продукт. Изпратете ни съобщение и ще се свържем с вас до 24 часа.</p>
+                        <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px;">
+                            <a href="mailto:hello@peachweblab.com" class="interactive-element" style="display: flex; align-items: center; gap: 10px; color: var(--text-light);"><i class="fa-solid fa-envelope" style="color: var(--peach-primary);"></i> hello@peachweblab.com</a>
+                            <a href="tel:+359888123456" class="interactive-element" style="display: flex; align-items: center; gap: 10px; color: var(--text-light);"><i class="fa-solid fa-phone" style="color: var(--peach-primary);"></i> +359 888 123 456</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <label for="name">Вашето Име</label>
+                                <input type="text" id="name" class="form-control interactive-element" placeholder="Иван Иванов" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Имейл Адрес</label>
+                                <input type="email" id="email" class="form-control interactive-element" placeholder="ivan@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Съобщение</label>
+                                <textarea id="message" class="form-control interactive-element" placeholder="Разкажете ни за вашия проект..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary magnetic interactive-element" style="width: 100%;">
+                                Изпрати Запитване <i class="fa-regular fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -462,19 +507,11 @@
                         <li><a href="#" class="interactive-element">Начало</a></li>
                         <li><a href="#features" class="interactive-element">Услуги</a></li>
                         <li><a href="#projects" class="interactive-element">Проекти</a></li>
-                        <li><a href="#testimonials" class="interactive-element">Отзиви</a></li>
+                        <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Контакти</h4>
-                    <ul>
-                        <li><a href="mailto:hello@peachweblab.com" class="interactive-element">hello@peachweblab.com</a></li>
-                        <li><a href="tel:+359888123456" class="interactive-element">+359 888 123 456</a></li>
-                        <li><a href="#">София, България</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Последвайте ни</h4>
+                    <h4>Социални мрежи</h4>
                     <ul>
                         <li><a href="#" class="interactive-element"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
                         <li><a href="#" class="interactive-element"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
@@ -491,9 +528,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     
     <script>
+        // --- 0. PRELOADER ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+                setTimeout(() => preloader.remove(), 600);
+            }, 800); // Показва се за малко под 1 секунда
+        });
+
         // --- 1. ПЕРСОНАЛИЗИРАН КУРСОР ---
         const cursor = document.getElementById('cursor');
-        const interactiveElements = document.querySelectorAll('a, .btn, .interactive-element, .faq-question');
+        const interactiveElements = document.querySelectorAll('a, .btn, .interactive-element, .faq-question, input, textarea');
 
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -505,19 +552,20 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
         });
 
-        // --- 2. МАГНИТНИ БУТОНИ (Magnetic Effect) ---
+        // --- 2. МАГНИТНИ БУТОНИ (ФИКСИРАНИ И ПЛАВНИ) ---
         const magneticButtons = document.querySelectorAll('.magnetic');
         magneticButtons.forEach((btn) => {
             btn.addEventListener('mousemove', function(e) {
                 const position = btn.getBoundingClientRect();
-                const x = e.pageX - position.left - position.width / 2;
-                const y = e.pageY - position.top - position.height / 2;
+                // Изчисляваме позицията спрямо центъра на бутона
+                const x = e.clientX - position.left - position.width / 2;
+                const y = e.clientY - position.top - position.height / 2;
                 
-                // Премества бутона леко към мишката
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+                // Намален множител (0.15), за да не "бяга" мишката извън бутона
+                btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
             });
-            btn.addEventListener('mouseout', function(e) {
-                // Връща бутона в центъра
+            btn.addEventListener('mouseout', function() {
+                // Връщаме го плавно в центъра
                 btn.style.transform = `translate(0px, 0px)`;
             });
         });
@@ -525,8 +573,8 @@
         // --- 3. ПАРАЛАКС ЕФЕКТ НА ФОНА ---
         const parallaxBg = document.getElementById('parallax-bg');
         document.addEventListener('mousemove', function(e) {
-            const x = (window.innerWidth - e.pageX * 2) / 90;
-            const y = (window.innerHeight - e.pageY * 2) / 90;
+            const x = (window.innerWidth - e.clientX * 2) / 90;
+            const y = (window.innerHeight - e.clientY * 2) / 90;
             parallaxBg.style.transform = `translate(${x}px, ${y}px)`;
         });
 
@@ -540,13 +588,15 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal();
+        // Извикваме след като прелоудърът изчезне
+        setTimeout(reveal, 1000); 
 
         // --- 5. Анимирани броячи за статистиката ---
         const counters = document.querySelectorAll('.counter');
         let hasCounted = false;
         window.addEventListener('scroll', () => {
             const statsSection = document.getElementById('stats');
+            if(!statsSection) return;
             const sectionPos = statsSection.getBoundingClientRect().top;
             const screenPos = window.innerHeight;
 
