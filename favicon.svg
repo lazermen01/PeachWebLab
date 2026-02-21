@@ -1,0 +1,32 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="peachNeon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5A5F" />
+      <stop offset="100%" stop-color="#FF8A5B" />
+    </linearGradient>
+    
+    <filter id="peachGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <linearGradient id="glassLayer" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="white" stop-opacity="0.05" />
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="18" fill="#0B0B0E" />
+
+  <path d="M32 8C32 8 36 16 42 18C48 20 52 14 52 14C52 14 48 22 40 21C34 20 32 8 32 8Z" fill="url(#peachNeon)" filter="url(#peachGlow)" />
+
+  <g filter="url(#peachGlow)">
+    <path d="M32 22C22 22 8 30 8 42C8 52 16 58 26 58C30 58 32 56 32 54C32 56 34 58 38 58C48 58 56 52 56 42C56 30 42 22 32 22Z" fill="url(#peachNeon)" fill-opacity="0.8" />
+    
+    <path d="M32 22C22 22 8 30 8 42C8 48 12 52 18 54L46 26C42 23 38 22 32 22Z" fill="url(#glassLayer)" />
+    
+    <path d="M32 54V40" stroke="white" stroke-width="2" stroke-linecap="round" stroke-opacity="0.3" />
+  </g>
+
+  <path d="M16 38C16 38 20 30 30 28" stroke="white" stroke-width="2" stroke-linecap="round" stroke-opacity="0.4" />
+</svg>
