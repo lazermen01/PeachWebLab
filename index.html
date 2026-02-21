@@ -84,7 +84,10 @@
 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         ul { list-style: none; }
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        
+        /* Увеличена ширина на контейнера за по-широки кутии */
+        .container { width: 90%; max-width: 1300px; margin: 0 auto; }
+        
         h1, h2, h3 { font-weight: 700; }
 
         .peach-text-gradient {
@@ -131,7 +134,7 @@
         /* --- ГОРЕН ХЕДЪР --- */
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
         header.hide-header { transform: translateY(-160%); }
-        .header-wrapper { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; }
+        .header-wrapper { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1300px; }
         .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 20px rgba(255, 90, 95, 0.3); }
         .logo span { color: var(--peach-primary); }
         .nav-menu-container {
@@ -162,10 +165,19 @@
         .delay-1 { animation-delay: 0.2s; } .delay-2 { animation-delay: 0.4s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- MARQUEE ЛЕНТА --- */
-        .marquee-section { background-color: var(--peach-primary); color: var(--bg-dark); padding: 18px 0; overflow: hidden; display: flex; position: relative; z-index: 10; font-weight: 800; font-size: 1.3rem; text-transform: uppercase; box-shadow: 0 0 40px rgba(255, 90, 95, 0.3); }
-        .marquee-content { display: flex; width: max-content; animation: marqueeScroll 35s linear infinite; }
-        .marquee-track { display: flex; align-items: center; gap: 40px; padding-right: 40px; }
+        /* --- MARQUEE ЛЕНТА (ЗАКЛЮЧЕНА НА 1 РЕД) --- */
+        .marquee-section { 
+            background-color: var(--peach-primary); color: var(--bg-dark); padding: 18px 0; 
+            overflow: hidden; display: flex; position: relative; z-index: 10; font-weight: 800; 
+            font-size: 1.3rem; text-transform: uppercase; box-shadow: 0 0 40px rgba(255, 90, 95, 0.3); 
+            white-space: nowrap; flex-wrap: nowrap; 
+        }
+        .marquee-content { 
+            display: flex; flex-wrap: nowrap; width: max-content; animation: marqueeScroll 35s linear infinite; 
+        }
+        .marquee-track { 
+            display: flex; flex-wrap: nowrap; align-items: center; gap: 40px; padding-right: 40px; flex-shrink: 0;
+        }
         .marquee-track i { font-size: 0.9rem; }
         @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -184,16 +196,20 @@
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .feature-icon { font-size: 3.5rem; color: var(--peach-primary); margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.4)); }
 
-        /* --- ПРОЕКТИ --- */
+        /* --- ПРОЕКТИ (ПО-ШИРОКИ И ПРОПОРЦИОНАЛНИ КУТИИ) --- */
         #projects { padding: var(--section-spacing) 0; background-color: rgba(5,5,7,0.8); }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 40px; 
+        }
         .project-card { padding: 0; overflow: hidden; display: flex; flex-direction: column;}
         .project-card > * { transform: translateZ(0); }
         
         .project-image { 
             position: relative;
             width: 100%; 
-            height: 260px; 
+            height: 240px; /* Намалена височина за по-широк (widescreen) изглед */
             background-color: #15151e; 
             background-size: cover; 
             background-position: top center; 
@@ -352,7 +368,6 @@
                     <span>E-commerce</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Бързина</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Брандинг</span> <i class="fa-solid fa-star-of-life"></i>
-                    <span>Мобилни Приложения</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Копирайтинг</span> <i class="fa-solid fa-star-of-life"></i>
                 </div>
                 <div class="marquee-track">
@@ -362,7 +377,6 @@
                     <span>E-commerce</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Бързина</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Брандинг</span> <i class="fa-solid fa-star-of-life"></i>
-                    <span>Мобилни Приложения</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Копирайтинг</span> <i class="fa-solid fa-star-of-life"></i>
                 </div>
             </div>
