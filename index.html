@@ -10,11 +10,11 @@
     <style>
         /* --- ВАРИАНТ 2: НЕОН --- */
         :root {
-            --peach-primary: #FF5A5F; /* Ярка, наситена праскова/корал */
-            --peach-secondary: #FF8A5B; /* Оранжевееща праскова */
+            --peach-primary: #FF5A5F; 
+            --peach-secondary: #FF8A5B; 
             --peach-light-bg: #fff0e6;
-            --bg-dark: #0B0B0E; /* Почти пълен мрак */
-            --bg-darker: #050507; /* Абсолютно черно */
+            --bg-dark: #0B0B0E; 
+            --bg-darker: #050507; 
             --text-light: #FFFFFF;
             --text-gray: #8A8A93;
             --section-spacing: 100px;
@@ -52,16 +52,28 @@
         }
 
         /* Типография и специални текстови ефекти */
-        h1, h2, h3 {
-            font-weight: 700;
-        }
+        h1, h2, h3 { font-weight: 700; }
 
-        /* Ефект за текст с прасковен градиент */
         .peach-text-gradient {
             background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
         }
 
         /* --- БУТОНИ --- */
@@ -78,12 +90,12 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary));
             color: white;
-            box-shadow: 0 10px 20px -10px rgba(255, 127, 80, 0.5);
+            box-shadow: 0 10px 20px -10px rgba(255, 90, 95, 0.5);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px -10px rgba(255, 127, 80, 0.7);
+            box-shadow: 0 15px 30px -10px rgba(255, 90, 95, 0.7);
         }
 
         .btn-outline {
@@ -108,273 +120,119 @@
             transition: background-color 0.4s ease, padding 0.4s ease;
         }
 
-        /* Клас, който ще добавим с JS при скрол */
         header.scrolled {
-            background-color: rgba(18, 18, 28, 0.95);
+            background-color: rgba(11, 11, 14, 0.95);
             backdrop-filter: blur(10px);
             padding: 15px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .logo span {
-            color: var(--peach-primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-        }
-
-        /* Ефект на подчертаване при ховър в навигацията */
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; letter-spacing: -1px; }
+        .logo span { color: var(--peach-primary); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; position: relative; }
         .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--peach-primary);
-            transition: width 0.3s ease;
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -5px; left: 0; background-color: var(--peach-primary); transition: width 0.3s ease;
         }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-buttons { display: flex; align-items: center; }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-buttons {
-             display: flex;
-             align-items: center;
-        }
-
-        /* --- HERO SECTION (НАЧАЛЕН ЕКРАН) --- */
+        /* --- HERO SECTION --- */
         #hero {
-            height: 100vh;
-            min-height: 700px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
+            height: 100vh; min-height: 700px; display: flex; align-items: center;
+            position: relative; overflow: hidden;
         }
 
-        /* Анимирани фонови елементи (Балончета) */
-        .hero-blobs {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
+        .hero-blobs { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.3; }
+        .blob-1 { top: -10%; left: -10%; width: 400px; height: 400px; background: var(--peach-primary); animation: moveBlob1 15s infinite alternate; }
+        .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: #9d2448; animation: moveBlob2 18s infinite alternate; }
 
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.4;
-        }
+        @keyframes moveBlob1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(100px, 50px) scale(1.1); } }
+        @keyframes moveBlob2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-100px, -50px) scale(1.2); } }
 
-        .blob-1 {
-            top: -10%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            background: var(--peach-primary);
-            animation: moveBlob1 15s infinite alternate;
-        }
+        .hero-content { max-width: 700px; z-index: 1; }
+        .fade-in-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s ease forwards; }
+        .delay-1 { animation-delay: 0.2s; } .delay-2 { animation-delay: 0.4s; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        .blob-2 {
-            bottom: -10%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: #5b32a8; /* Лилав акцент за контраст */
-            animation: moveBlob2 18s infinite alternate;
-        }
+        .hero-title { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 40px; max-width: 600px; }
 
-        @keyframes moveBlob1 {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.1); }
-        }
-
-        @keyframes moveBlob2 {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-100px, -50px) scale(1.2); }
-        }
-
-
-        .hero-content {
-            max-width: 700px;
-            z-index: 1;
-        }
-
-        /* Анимация за появяване на текста */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
-        /* --- FEATURES SECTION (Секция Услуги) --- */
-        #features {
-            padding: var(--section-spacing) 0;
-            background-color: var(--bg-darker);
-            position: relative;
-            z-index: 2; /* За да покрие балончетата */
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
+        /* --- СЕКЦИЯ: УСЛУГИ --- */
+        #features { padding: var(--section-spacing) 0; background-color: var(--bg-darker); position: relative; z-index: 2; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background: rgba(255, 255, 255, 0.02); padding: 40px; border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease;
         }
+        .feature-card:hover { transform: translateY(-10px); border-color: var(--peach-primary); background: rgba(255, 255, 255, 0.04); }
+        .feature-icon { font-size: 3rem; color: var(--peach-primary); margin-bottom: 25px; }
+        .feature-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .feature-card p { color: var(--text-gray); }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--peach-primary);
+        /* --- СЕКЦИЯ: ПРОЕКТИ --- */
+        #projects { padding: var(--section-spacing) 0; background-color: var(--bg-dark); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .project-card {
+            border-radius: 15px; overflow: hidden; background: var(--bg-darker);
+            border: 1px solid rgba(255, 255, 255, 0.05); transition: transform 0.3s ease;
         }
+        .project-card:hover { transform: translateY(-5px); }
+        .project-image {
+            width: 100%; height: 220px; background: linear-gradient(45deg, #1a1a24, #2a2a36);
+            display: flex; align-items: center; justify-content: center; color: var(--text-gray); font-size: 2rem;
+        }
+        .project-info { padding: 25px; }
+        .project-info h3 { margin-bottom: 10px; font-size: 1.3rem; }
+        .project-info p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 20px; }
+        .project-link { color: var(--peach-primary); font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+        .project-link:hover { color: var(--peach-secondary); }
 
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--peach-primary);
-            margin-bottom: 25px;
+        /* --- СЕКЦИЯ: ПРОЦЕС НА РАБОТА --- */
+        #process { padding: var(--section-spacing) 0; background-color: var(--bg-darker); }
+        .process-steps { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+        .step-card {
+            flex: 1; min-width: 280px; background: rgba(255, 255, 255, 0.02);
+            padding: 40px 30px; border-radius: 20px; position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
+        .step-number {
+            font-size: 4rem; font-weight: 700; color: rgba(255, 90, 95, 0.1);
+            position: absolute; top: 10px; right: 20px; line-height: 1;
+        }
+        .step-card h3 { font-size: 1.4rem; margin-bottom: 15px; position: relative; z-index: 1; }
+        .step-card p { color: var(--text-gray); position: relative; z-index: 1; }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+        /* --- СЕКЦИЯ: CALL TO ACTION --- */
+        #cta {
+            padding: 100px 0; text-align: center;
+            background: linear-gradient(135deg, rgba(255, 90, 95, 0.05), rgba(255, 138, 91, 0.05));
+            border-top: 1px solid rgba(255, 90, 95, 0.1); border-bottom: 1px solid rgba(255, 90, 95, 0.1);
         }
-
-        .feature-card p {
-            color: var(--text-gray);
-        }
+        .cta-content h2 { font-size: 3rem; margin-bottom: 20px; }
+        .cta-content p { color: var(--text-gray); font-size: 1.2rem; margin-bottom: 40px; }
 
         /* --- FOOTER --- */
-        footer {
-            background-color: var(--bg-darker);
-            padding: 80px 0 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        footer { padding: 80px 0 30px; background-color: var(--bg-darker); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .footer-about p { color: var(--text-gray); margin-top: 20px; max-width: 300px; }
+        .footer-col h4 { margin-bottom: 25px; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 15px; }
+        .footer-col ul li a { color: var(--text-gray); }
+        .footer-col ul li a:hover { color: var(--peach-primary); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); font-size: 0.9rem; }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .footer-about p {
-            color: var(--text-gray);
-            margin-top: 20px;
-            max-width: 300px;
-        }
-
-        .footer-col h4 {
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 15px;
-        }
-
-        .footer-col ul li a {
-            color: var(--text-gray);
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--peach-primary);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        /* --- RESPONSIVE DESIGN (Мобилна версия) --- */
+        /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.8rem;
-            }
-            
-            .nav-links, .btn-outline.hide-mobile {
-                display: none; /* Скриваме навигацията на мобилни (за простота в този пример) */
-            }
-            
-            .footer-grid {
-                 grid-template-columns: 1fr;
-                 text-align: center;
-            }
-            
-            .footer-about p {
-                margin: 20px auto;
-            }
-             .btn-outline {
-                margin-left: 0;
-                margin-top: 15px;
-                display: block;
-                width: fit-content;
-            }
+            .hero-title { font-size: 2.8rem; }
+            .nav-links, .btn-outline.hide-mobile { display: none; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-about p { margin: 20px auto; }
+            .btn-outline { margin-left: 0; margin-top: 15px; display: block; width: fit-content; }
+            .cta-content h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -383,17 +241,15 @@
     <header id="main-header">
         <div class="container nav-container">
             <a href="#" class="logo">Peach<span>WebLab</span>.</a>
-            
             <nav>
                 <ul class="nav-links">
                     <li><a href="#features">Услуги</a></li>
-                    <li><a href="#">Проекти</a></li>
-                    <li><a href="#">За нас</a></li>
+                    <li><a href="#projects">Проекти</a></li>
+                    <li><a href="#process">Как работим</a></li>
                 </ul>
             </nav>
-
             <div class="nav-buttons">
-                 <a href="#" class="btn btn-primary">Свържи се</a>
+                 <a href="#cta" class="btn btn-primary">Свържи се</a>
             </div>
         </div>
     </header>
@@ -404,7 +260,6 @@
                 <div class="blob blob-1"></div>
                 <div class="blob blob-2"></div>
             </div>
-
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title fade-in-up">
@@ -415,8 +270,8 @@
                         PeachWebLab е вашата лаборатория за иновативен уеб дизайн и модерни технологии. Превръщаме идеите в работещи решения.
                     </p>
                     <div class="hero-buttons fade-in-up delay-2">
-                        <a href="#features" class="btn btn-primary">Разгледай услугите</a>
-                        <a href="#" class="btn btn-outline hide-mobile">Нашият процес</a>
+                        <a href="#projects" class="btn btn-primary">Разгледай проектите</a>
+                        <a href="#process" class="btn btn-outline hide-mobile">Нашият процес</a>
                     </div>
                 </div>
             </div>
@@ -426,34 +281,91 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Нашата експертиза</h2>
-                    <p style="color: var(--text-gray);">Какво забъркваме в лабораторията</p>
+                    <p class="section-subtitle">Какво забъркваме в лабораторията</p>
                 </div>
-
                 <div class="features-grid">
                     <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fa-solid fa-layer-group"></i>
-                        </div>
+                        <div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div>
                         <h3>UI/UX Дизайн</h3>
                         <p>Създаваме интуитивни и красиви интерфейси, фокусирани върху потребителското изживяване и естетиката.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
+                        <div class="feature-icon"><i class="fa-solid fa-code"></i></div>
                         <h3>Модерна Разработка</h3>
                         <p>Използваме най-новите технологии (React, Vue, Node.js) за бързи, сигурни и мащабируеми уеб сайтове.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fa-solid fa-rocket"></i>
-                        </div>
+                        <div class="feature-icon"><i class="fa-solid fa-rocket"></i></div>
                         <h3>Дигитален Растеж</h3>
                         <p>Не просто сайт, а инструмент за бизнес растеж. SEO оптимизация и стратегии за конверсии.</p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Избрани Проекти</h2>
+                    <p class="section-subtitle">Част от най-новите ни успешни колаборации</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image"><i class="fa-solid fa-image"></i></div>
+                        <div class="project-info">
+                            <h3>E-commerce Платформа</h3>
+                            <p>Пълен редизайн и къстъм разработка за водещ моден бранд. Увеличение на продажбите с 40%.</p>
+                            <a href="#" class="project-link">Разгледай <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image"><i class="fa-solid fa-image"></i></div>
+                        <div class="project-info">
+                            <h3>Корпоративен Уебсайт</h3>
+                            <p>Модерно дигитално присъствие за финтех стартъп, базирано на бързина и сигурност.</p>
+                            <a href="#" class="project-link">Разгледай <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Как работим?</h2>
+                    <p class="section-subtitle">Прозрачен процес от идеята до реализацията</p>
+                </div>
+                <div class="process-steps">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <h3>Откриване</h3>
+                        <p>Анализираме вашия бизнес, конкуренцията и нуждите на потребителите, за да изградим правилна стратегия.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <h3>Дизайн и Разработка</h3>
+                        <p>Създаваме интерактивни прототипи и пишем чист код, за да вдъхнем живот на проекта.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <h3>Стартиране</h3>
+                        <p>Тестваме всичко детайлно, пускаме сайта на живо и осигуряваме последваща поддръжка.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Готови ли сте да започнем?</h2>
+                    <p>Нека обсъдим вашата идея и да я превърнем в следващия успешен дигитален продукт.</p>
+                    <a href="#" class="btn btn-primary">Запази безплатна консултация</a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
@@ -468,8 +380,8 @@
                     <ul>
                         <li><a href="#">Начало</a></li>
                         <li><a href="#features">Услуги</a></li>
-                        <li><a href="#">Проекти</a></li>
-                        <li><a href="#">Блог</a></li>
+                        <li><a href="#projects">Проекти</a></li>
+                        <li><a href="#process">Как работим</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -490,14 +402,13 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 PeachWebLab. Всички права запазени.</p>
+                <p>&copy; 2026 PeachWebLab. Всички права запазени.</p>
             </div>
         </div>
     </footer>
 
     <script>
         const header = document.getElementById('main-header');
-
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
@@ -509,5 +420,3 @@
 
 </body>
 </html>
-
-
