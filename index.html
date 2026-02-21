@@ -29,10 +29,10 @@
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            /* Премахваме стандартния smooth scroll, защото ще ползваме Lenis JS */
         }
 
-        /* --- PRELOADER (ЗАРЕЖДАЩ ЕКРАН) --- */
+        /* --- PRELOADER --- */
         #preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: var(--bg-darker); z-index: 99999;
@@ -59,6 +59,14 @@
             border-color: transparent; mix-blend-mode: difference;
         }
 
+        /* --- ЛИНИЯ ЗА СКРОЛ ПРОГРЕС --- */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary));
+            z-index: 100000; box-shadow: 0 0 15px var(--peach-primary);
+            transition: width 0.1s ease-out;
+        }
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-darker); }
         ::-webkit-scrollbar-thumb { background: linear-gradient(var(--peach-primary), var(--peach-secondary)); border-radius: 10px; }
@@ -79,18 +87,17 @@
         .section-title { font-size: 2.8rem; margin-bottom: 15px; letter-spacing: -1px; }
         .section-subtitle { color: var(--text-gray); font-size: 1.1rem; }
 
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal { opacity: 0; transform: translateY(60px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- БУТОНИ (ФИКСИРАН МАГНИТЕН ЕФЕКТ) --- */
+        /* --- БУТОНИ --- */
         .btn {
             display: inline-flex; justify-content: center; align-items: center; gap: 10px;
             padding: 14px 35px; border-radius: 50px; font-weight: 600; cursor: none; border: none;
             text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
-            /* Добавена транзиция за по-гладко връщане и движение */
             transition: transform 0.1s linear, box-shadow 0.3s ease, background-color 0.3s ease;
         }
-        .btn * { pointer-events: none; /* Забраняваме мишката да хваща иконите вътре */ }
+        .btn * { pointer-events: none; }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white;
@@ -107,7 +114,9 @@
         .btn-outline:hover { background-color: var(--peach-primary); color: white; }
 
         /* --- ПЛАВАЩ ХЕДЪР --- */
-        header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; }
+        header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
+        /* Клас, който ще скрива хедъра при скрол надолу и ще го показва при скрол нагоре */
+        header.hide-header { transform: translateY(-150%); }
         .header-wrapper { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; }
         .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 20px rgba(255, 90, 95, 0.3); }
         .logo span { color: var(--peach-primary); }
@@ -118,8 +127,7 @@
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 6px; transition: color 0.3s ease; }
         .nav-links a:hover { color: var(--peach-primary); }
-        .nav-links i { font-size: 0.7rem; opacity: 0.7; transition: transform 0.3s ease; pointer-events: none;}
-        .nav-links a:hover i { transform: rotate(180deg); }
+        .nav-links i { font-size: 0.7rem; opacity: 0.7; pointer-events: none;}
 
         /* --- HERO СЕКЦИЯ --- */
         #hero { height: 100vh; min-height: 750px; display: flex; align-items: center; position: relative; overflow: hidden; perspective: 1000px; }
@@ -130,6 +138,8 @@
         .blob-2 { bottom: -10%; right: -5%; width: 600px; height: 600px; background: #6a040f; animation: moveBlob2 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
         @keyframes moveBlob1 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(150px, 100px) scale(1.2) rotate(45deg); } }
         @keyframes moveBlob2 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(-150px, -100px) scale(1.3) rotate(-45deg); } }
+        
+        .hero-scroll-container { width: 100%; } /* Контейнер за скрол ефекта на текста */
         .hero-content { max-width: 800px; z-index: 1; transform-style: preserve-3d; }
         .hero-title { font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); letter-spacing: -2px; }
         .hero-subtitle { font-size: 1.25rem; color: #cfcfd6; margin-bottom: 45px; max-width: 600px; }
@@ -139,7 +149,7 @@
         .delay-1 { animation-delay: 0.2s; } .delay-2 { animation-delay: 0.4s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- БЕЗКРАЙНА БЯГАЩА ПЪТЕКА (INFINITE MARQUEE) --- */
+        /* --- БЕЗКРАЙНА БЯГАЩА ПЪТЕКА (MARQUEE) --- */
         .marquee-section {
             background-color: var(--peach-primary); color: var(--bg-dark); padding: 15px 0; overflow: hidden; display: flex; white-space: nowrap;
             border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -147,7 +157,6 @@
         }
         .marquee-content { display: flex; gap: 40px; animation: marqueeScroll 20s linear infinite; }
         .marquee-content span { display: flex; align-items: center; gap: 40px; }
-        .marquee-content i { font-size: 0.8rem; }
         @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- GLASSMORPHISM КАРТИ --- */
@@ -159,13 +168,12 @@
         .glass-card:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15), inset 0 0 20px rgba(255, 90, 95, 0.05); }
         .glass-card > * { transform: translateZ(30px); }
 
-        /* --- СТАТИСТИКА --- */
+        /* --- СТАТИСТИКА, УСЛУГИ И ПРОЕКТИ --- */
         #stats { margin-top: 80px; margin-bottom: 80px; position: relative; z-index: 10; }
         .stats-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; text-align: center; }
         .stat-item h3 { font-size: 3.5rem; margin-bottom: 5px; font-weight: 800; line-height: 1; }
         .stat-item p { color: var(--text-gray); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- УСЛУГИ И ПРОЕКТИ --- */
         #features { padding: 60px 0 var(--section-spacing); position: relative; z-index: 2; }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .feature-icon { font-size: 3.5rem; color: var(--peach-primary); margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.4)); }
@@ -204,13 +212,11 @@
         .faq-answer { padding: 0 30px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-gray); }
         .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; }
 
-        /* --- НОВ CTA + ФОРМА ЗА КОНТАКТИ --- */
+        /* --- ФОРМА ЗА КОНТАКТИ --- */
         #cta { padding: 100px 0; position: relative; background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02)); border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15); overflow: hidden; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
         .cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 90, 95, 0.3); letter-spacing: -1px; }
         .cta-content p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; }
-        
-        /* Стилизиране на формата */
         .contact-form { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-gray); }
@@ -227,10 +233,7 @@
         .footer-col ul li a:hover { color: var(--peach-primary); padding-left: 5px; }
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); }
 
-        @media (max-width: 900px) {
-            .contact-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-        }
-
+        @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; } }
         @media (max-width: 768px) {
             * { cursor: auto; }
             .custom-cursor { display: none; }
@@ -243,7 +246,6 @@
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .cta-content h2 { font-size: 2.5rem; }
             .glass-card { padding: 30px; }
-            .faq-question { font-size: 1.1rem; padding: 20px; }
             .marquee-section { font-size: 1rem; }
         }
     </style>
@@ -253,6 +255,8 @@
     <div id="preloader">
         <div class="loader-text">PeachWebLab<span>.</span></div>
     </div>
+
+    <div id="scroll-progress"></div>
 
     <div class="custom-cursor" id="cursor"></div>
 
@@ -284,8 +288,8 @@
                 </div>
             </div>
             
-            <div class="container">
-                <div class="hero-content" data-tilt data-tilt-max="2" data-tilt-speed="400" data-tilt-perspective="1000">
+            <div class="container hero-scroll-container">
+                <div class="hero-content" id="hero-text-content" data-tilt data-tilt-max="2" data-tilt-speed="400" data-tilt-perspective="1000">
                     <h1 class="hero-title fade-in-up">
                         Ние създаваме <br>
                         <span class="peach-text-gradient">дигитални преживявания</span>, които вдъхновяват.
@@ -393,6 +397,9 @@
         </section>
 
         <section id="testimonials">
+            <div class="hero-blobs">
+                <div class="blob blob-2" style="width: 400px; height: 400px; top: 10%; right: -10%;"></div>
+            </div>
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="section-title">Какво казват за нас</h2>
@@ -468,7 +475,6 @@
                             <a href="tel:+359888123456" class="interactive-element" style="display: flex; align-items: center; gap: 10px; color: var(--text-light);"><i class="fa-solid fa-phone" style="color: var(--peach-primary);"></i> +359 888 123 456</a>
                         </div>
                     </div>
-                    
                     <div class="contact-form">
                         <form action="#" method="POST">
                             <div class="form-group">
@@ -526,19 +532,73 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     
     <script>
-        // --- 0. PRELOADER ---
+        // --- 1. LENIS SMOOTH SCROLL (Маслено гладко скролване) ---
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // --- 2. PRELOADER ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             setTimeout(() => {
                 preloader.style.opacity = '0';
                 preloader.style.visibility = 'hidden';
                 setTimeout(() => preloader.remove(), 600);
-            }, 800); // Показва се за малко под 1 секунда
+                setTimeout(reveal, 200); // Стартираме анимациите след прелоудъра
+            }, 800);
         });
 
-        // --- 1. ПЕРСОНАЛИЗИРАН КУРСОР ---
+        // --- 3. СЛОЖНИ SCROLL ЕФЕКТИ (Прогрес бар, Хедър и Hero Parallax) ---
+        const scrollProgress = document.getElementById('scroll-progress');
+        const header = document.getElementById('main-header');
+        const heroText = document.getElementById('hero-text-content');
+        let lastScrollY = window.scrollY;
+
+        lenis.on('scroll', (e) => {
+            let currentScrollY = window.scrollY;
+            
+            // 3.1. Scroll Progress Bar
+            let scrollHeight = document.body.scrollHeight - window.innerHeight;
+            let progress = (currentScrollY / scrollHeight) * 100;
+            scrollProgress.style.width = progress + "%";
+
+            // 3.2. Скриване/Показване на хедъра (Hide on scroll down, show on scroll up)
+            if (currentScrollY > 150) {
+                if (currentScrollY > lastScrollY) {
+                    header.classList.add('hide-header'); // Скрол надолу
+                } else {
+                    header.classList.remove('hide-header'); // Скрол нагоре
+                }
+            } else {
+                header.classList.remove('hide-header');
+            }
+            lastScrollY = currentScrollY;
+
+            // 3.3. Hero Parallax (Избледняване и потъване на началния текст)
+            if(currentScrollY < 800) {
+                let opacityValue = 1 - (currentScrollY / 500);
+                // Преместваме го леко надолу, докато избледнява
+                heroText.style.opacity = Math.max(0, opacityValue);
+                // Забележка: Не използваме transform Y тук, за да не счупим Tilt ефекта, opacity-то е достатъчно красиво!
+            }
+        });
+
+        // --- 4. ПЕРСОНАЛИЗИРАН КУРСОР ---
         const cursor = document.getElementById('cursor');
         const interactiveElements = document.querySelectorAll('a, .btn, .interactive-element, .faq-question, input, textarea');
 
@@ -552,25 +612,21 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
         });
 
-        // --- 2. МАГНИТНИ БУТОНИ (ФИКСИРАНИ И ПЛАВНИ) ---
+        // --- 5. МАГНИТНИ БУТОНИ ---
         const magneticButtons = document.querySelectorAll('.magnetic');
         magneticButtons.forEach((btn) => {
             btn.addEventListener('mousemove', function(e) {
                 const position = btn.getBoundingClientRect();
-                // Изчисляваме позицията спрямо центъра на бутона
                 const x = e.clientX - position.left - position.width / 2;
                 const y = e.clientY - position.top - position.height / 2;
-                
-                // Намален множител (0.15), за да не "бяга" мишката извън бутона
                 btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
             });
             btn.addEventListener('mouseout', function() {
-                // Връщаме го плавно в центъра
                 btn.style.transform = `translate(0px, 0px)`;
             });
         });
 
-        // --- 3. ПАРАЛАКС ЕФЕКТ НА ФОНА ---
+        // --- 6. ПАРАЛАКС ЕФЕКТ НА ФОНА ---
         const parallaxBg = document.getElementById('parallax-bg');
         document.addEventListener('mousemove', function(e) {
             const x = (window.innerWidth - e.clientX * 2) / 90;
@@ -578,7 +634,7 @@
             parallaxBg.style.transform = `translate(${x}px, ${y}px)`;
         });
 
-        // --- 4. Анимации при скролиране (Reveal) ---
+        // --- 7. REVEAL АНИМАЦИИ ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -588,19 +644,15 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        // Извикваме след като прелоудърът изчезне
-        setTimeout(reveal, 1000); 
 
-        // --- 5. Анимирани броячи за статистиката ---
+        // --- 8. АНИМИРАНИ БРОЯЧИ ---
         const counters = document.querySelectorAll('.counter');
         let hasCounted = false;
         window.addEventListener('scroll', () => {
             const statsSection = document.getElementById('stats');
             if(!statsSection) return;
             const sectionPos = statsSection.getBoundingClientRect().top;
-            const screenPos = window.innerHeight;
-
-            if(sectionPos < screenPos && !hasCounted) {
+            if(sectionPos < window.innerHeight && !hasCounted) {
                 counters.forEach(counter => {
                     const updateCount = () => {
                         const target = +counter.getAttribute('data-target');
@@ -619,7 +671,7 @@
             }
         });
 
-        // --- 6. Често Задавани Въпроси (FAQ Акордеон) ---
+        // --- 9. FAQ АКОРДЕОН ---
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
