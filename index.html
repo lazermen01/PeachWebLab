@@ -8,24 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- ВАРИАНТ 2: НЕОН --- */
+        /* --- ЦВЕТОВА ПАЛИТРА: НЕОН --- */
         :root {
             --peach-primary: #FF5A5F; 
             --peach-secondary: #FF8A5B; 
-            --peach-light-bg: #fff0e6;
             --bg-dark: #0B0B0E; 
             --bg-darker: #050507; 
             --text-light: #FFFFFF;
             --text-gray: #8A8A93;
-            --section-spacing: 100px;
+            --section-spacing: 120px;
         }
 
-        /* --- ОСНОВНИ НАСТРОЙКИ --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -33,25 +27,12 @@
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
+            scroll-behavior: smooth; /* Плавно скролиране към секциите */
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s ease;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Типография и специални текстови ефекти */
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         h1, h2, h3 { font-weight: 700; }
 
         .peach-text-gradient {
@@ -61,178 +42,185 @@
             display: inline-block;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+        /* --- ГЛОБАЛНИ СЕКЦИИ И ЗАГЛАВИЯ --- */
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-title { font-size: 2.8rem; margin-bottom: 15px; }
+        .section-subtitle { color: var(--text-gray); font-size: 1.1rem; }
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+        /* Клас за анимация при скролиране */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-
-        .section-subtitle {
-            color: var(--text-gray);
-            font-size: 1.1rem;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- БУТОНИ --- */
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
+            display: inline-block; padding: 14px 35px; border-radius: 50px;
+            font-weight: 600; transition: all 0.3s ease; cursor: pointer; border: none;
+            text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary));
             color: white;
-            box-shadow: 0 10px 20px -10px rgba(255, 90, 95, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(255, 90, 95, 0.5);
+            position: relative;
+            overflow: hidden;
         }
 
+        .btn-primary::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .btn-primary:hover::after { left: 100%; }
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px -10px rgba(255, 90, 95, 0.7);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(255, 90, 95, 0.8);
         }
 
-        .btn-outline {
-            border: 2px solid var(--peach-primary);
-            color: var(--peach-primary);
-            margin-left: 15px;
-        }
+        .btn-outline { border: 2px solid var(--peach-primary); color: var(--peach-primary); margin-left: 15px; }
+        .btn-outline:hover { background-color: var(--peach-primary); color: white; transform: translateY(-5px); }
 
-        .btn-outline:hover {
-            background-color: var(--peach-primary);
-            color: white;
-        }
-
-        /* --- HEADER / NAVIGATION --- */
+        /* --- ХЕДЪР --- */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: background-color 0.4s ease, padding 0.4s ease;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            padding: 25px 0; transition: all 0.4s ease;
         }
-
         header.scrolled {
-            background-color: rgba(11, 11, 14, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            background-color: rgba(11, 11, 14, 0.85);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            padding: 15px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 700; letter-spacing: -1px; }
+        .logo { font-size: 2rem; font-weight: 700; letter-spacing: -1px; text-shadow: 0 0 20px rgba(255, 90, 95, 0.3); }
         .logo span { color: var(--peach-primary); }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { font-weight: 500; font-size: 0.95rem; position: relative; }
+        .nav-links { display: flex; gap: 35px; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; position: relative; padding-bottom: 5px;}
         .nav-links a::after {
             content: ''; position: absolute; width: 0; height: 2px;
-            bottom: -5px; left: 0; background-color: var(--peach-primary); transition: width 0.3s ease;
+            bottom: 0; left: 0; background-color: var(--peach-primary); transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--peach-primary);
         }
         .nav-links a:hover::after { width: 100%; }
-        .nav-buttons { display: flex; align-items: center; }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO СЕКЦИЯ --- */
         #hero {
             height: 100vh; min-height: 700px; display: flex; align-items: center;
-            position: relative; overflow: hidden;
+            position: relative; overflow: hidden; perspective: 1000px;
         }
 
-        .hero-blobs { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.3; }
-        .blob-1 { top: -10%; left: -10%; width: 400px; height: 400px; background: var(--peach-primary); animation: moveBlob1 15s infinite alternate; }
-        .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: #9d2448; animation: moveBlob2 18s infinite alternate; }
+        /* Подобрени 3D балончета */
+        .hero-blobs { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.4; mix-blend-mode: screen; }
+        .blob-1 { top: 10%; left: -5%; width: 500px; height: 500px; background: var(--peach-primary); animation: moveBlob1 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
+        .blob-2 { bottom: -10%; right: -5%; width: 600px; height: 600px; background: #6a040f; animation: moveBlob2 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
 
-        @keyframes moveBlob1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(100px, 50px) scale(1.1); } }
-        @keyframes moveBlob2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-100px, -50px) scale(1.2); } }
+        @keyframes moveBlob1 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(150px, 100px) scale(1.2) rotate(45deg); } }
+        @keyframes moveBlob2 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(-150px, -100px) scale(1.3) rotate(-45deg); } }
 
-        .hero-content { max-width: 700px; z-index: 1; }
-        .fade-in-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s ease forwards; }
+        .hero-content { max-width: 800px; z-index: 1; transform-style: preserve-3d; }
+        .hero-title { font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .hero-subtitle { font-size: 1.3rem; color: #cfcfd6; margin-bottom: 45px; max-width: 600px; }
+
+        /* Анимация на текста при зареждане */
+        .fade-in-up { opacity: 0; transform: translateY(40px); animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         .delay-1 { animation-delay: 0.2s; } .delay-2 { animation-delay: 0.4s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        .hero-title { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
-        .hero-subtitle { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 40px; max-width: 600px; }
+        /* --- GLASSMORPHISM КАРТИ (Стъклен 3D ефект) --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transform-style: preserve-3d; /* За 3D ефекта вътре в картата */
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 90, 95, 0.3);
+            box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15), inset 0 0 20px rgba(255, 90, 95, 0.05);
+        }
+
+        /* Елементите вътре изпъкват в 3D (изисква vanilla-tilt) */
+        .glass-card > * {
+            transform: translateZ(30px);
+        }
 
         /* --- СЕКЦИЯ: УСЛУГИ --- */
-        #features { padding: var(--section-spacing) 0; background-color: var(--bg-darker); position: relative; z-index: 2; }
+        #features { padding: var(--section-spacing) 0; position: relative; z-index: 2; }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .feature-card {
-            background: rgba(255, 255, 255, 0.02); padding: 40px; border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease;
+        .feature-icon { 
+            font-size: 3.5rem; color: var(--peach-primary); margin-bottom: 25px;
+            filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.4));
         }
-        .feature-card:hover { transform: translateY(-10px); border-color: var(--peach-primary); background: rgba(255, 255, 255, 0.04); }
-        .feature-icon { font-size: 3rem; color: var(--peach-primary); margin-bottom: 25px; }
-        .feature-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
-        .feature-card p { color: var(--text-gray); }
+        .glass-card h3 { font-size: 1.6rem; margin-bottom: 15px; }
+        .glass-card p { color: var(--text-gray); }
 
         /* --- СЕКЦИЯ: ПРОЕКТИ --- */
-        #projects { padding: var(--section-spacing) 0; background-color: var(--bg-dark); }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .project-card {
-            border-radius: 15px; overflow: hidden; background: var(--bg-darker);
-            border: 1px solid rgba(255, 255, 255, 0.05); transition: transform 0.3s ease;
-        }
-        .project-card:hover { transform: translateY(-5px); }
+        #projects { padding: var(--section-spacing) 0; background-color: var(--bg-darker); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .project-card { padding: 0; overflow: hidden; display: flex; flex-direction: column;}
+        .project-card > * { transform: translateZ(0); /* Изключваме вътрешното 3D за тези карти за по-чист вид */ }
         .project-image {
-            width: 100%; height: 220px; background: linear-gradient(45deg, #1a1a24, #2a2a36);
-            display: flex; align-items: center; justify-content: center; color: var(--text-gray); font-size: 2rem;
+            width: 100%; height: 250px; background: linear-gradient(45deg, #15151e, #232330);
+            display: flex; align-items: center; justify-content: center; color: var(--text-gray); font-size: 3rem;
+            transition: transform 0.5s ease;
         }
-        .project-info { padding: 25px; }
-        .project-info h3 { margin-bottom: 10px; font-size: 1.3rem; }
-        .project-info p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 20px; }
-        .project-link { color: var(--peach-primary); font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
-        .project-link:hover { color: var(--peach-secondary); }
+        .project-card:hover .project-image { transform: scale(1.05); }
+        .project-info { padding: 30px; position: relative; z-index: 2; background: inherit; }
+        .project-link { color: var(--peach-primary); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;}
+        .project-link:hover { gap: 15px; text-shadow: 0 0 10px rgba(255, 90, 95, 0.5); }
 
-        /* --- СЕКЦИЯ: ПРОЦЕС НА РАБОТА --- */
-        #process { padding: var(--section-spacing) 0; background-color: var(--bg-darker); }
+        /* --- СЕКЦИЯ: ПРОЦЕС --- */
+        #process { padding: var(--section-spacing) 0; }
         .process-steps { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
-        .step-card {
-            flex: 1; min-width: 280px; background: rgba(255, 255, 255, 0.02);
-            padding: 40px 30px; border-radius: 20px; position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
         .step-number {
-            font-size: 4rem; font-weight: 700; color: rgba(255, 90, 95, 0.1);
-            position: absolute; top: 10px; right: 20px; line-height: 1;
+            font-size: 5rem; font-weight: 800; color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 90, 95, 0.2);
+            position: absolute; top: -10px; right: 20px; line-height: 1;
+            transition: all 0.4s ease;
         }
-        .step-card h3 { font-size: 1.4rem; margin-bottom: 15px; position: relative; z-index: 1; }
-        .step-card p { color: var(--text-gray); position: relative; z-index: 1; }
+        .glass-card:hover .step-number { -webkit-text-stroke: 1px rgba(255, 90, 95, 0.6); transform: translateY(-10px) translateZ(40px); }
 
-        /* --- СЕКЦИЯ: CALL TO ACTION --- */
+        /* --- CTA --- */
         #cta {
-            padding: 100px 0; text-align: center;
-            background: linear-gradient(135deg, rgba(255, 90, 95, 0.05), rgba(255, 138, 91, 0.05));
-            border-top: 1px solid rgba(255, 90, 95, 0.1); border-bottom: 1px solid rgba(255, 90, 95, 0.1);
+            padding: 120px 0; text-align: center; position: relative;
+            background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02));
+            border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15);
+            overflow: hidden;
         }
-        .cta-content h2 { font-size: 3rem; margin-bottom: 20px; }
-        .cta-content p { color: var(--text-gray); font-size: 1.2rem; margin-bottom: 40px; }
+        .cta-content { position: relative; z-index: 2; }
+        .cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 90, 95, 0.3); }
 
-        /* --- FOOTER --- */
-        footer { padding: 80px 0 30px; background-color: var(--bg-darker); }
+        /* --- ФУТЪР --- */
+        footer { padding: 80px 0 30px; background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
         .footer-about p { color: var(--text-gray); margin-top: 20px; max-width: 300px; }
-        .footer-col h4 { margin-bottom: 25px; font-size: 1.1rem; }
+        .footer-col h4 { margin-bottom: 25px; font-size: 1.2rem; color: #fff; }
         .footer-col ul li { margin-bottom: 15px; }
-        .footer-col ul li a { color: var(--text-gray); }
-        .footer-col ul li a:hover { color: var(--peach-primary); }
-        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: var(--peach-primary); padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); }
 
-        /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.8rem; }
+            .hero-title { font-size: 3rem; }
             .nav-links, .btn-outline.hide-mobile { display: none; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .footer-about p { margin: 20px auto; }
-            .btn-outline { margin-left: 0; margin-top: 15px; display: block; width: fit-content; }
-            .cta-content h2 { font-size: 2.2rem; }
+            .cta-content h2 { font-size: 2.5rem; }
+            .glass-card { padding: 30px; }
         }
     </style>
 </head>
@@ -261,13 +249,13 @@
                 <div class="blob blob-2"></div>
             </div>
             <div class="container">
-                <div class="hero-content">
+                <div class="hero-content" data-tilt data-tilt-max="3" data-tilt-speed="400" data-tilt-perspective="1000">
                     <h1 class="hero-title fade-in-up">
                         Ние създаваме <br>
                         <span class="peach-text-gradient">дигитални преживявания</span>, които вдъхновяват.
                     </h1>
                     <p class="hero-subtitle fade-in-up delay-1">
-                        PeachWebLab е вашата лаборатория за иновативен уеб дизайн и модерни технологии. Превръщаме идеите в работещи решения.
+                        PeachWebLab е вашата лаборатория за иновативен уеб дизайн. Превръщаме идеите в невероятни визуални решения с най-висока скорост.
                     </p>
                     <div class="hero-buttons fade-in-up delay-2">
                         <a href="#projects" class="btn btn-primary">Разгледай проектите</a>
@@ -279,25 +267,25 @@
 
         <section id="features">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header reveal">
                     <h2 class="section-title">Нашата експертиза</h2>
                     <p class="section-subtitle">Какво забъркваме в лабораторията</p>
                 </div>
                 <div class="features-grid">
-                    <div class="feature-card">
+                    <div class="glass-card reveal" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.2">
                         <div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div>
                         <h3>UI/UX Дизайн</h3>
                         <p>Създаваме интуитивни и красиви интерфейси, фокусирани върху потребителското изживяване и естетиката.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="glass-card reveal" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.1s;">
                         <div class="feature-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
                         <h3>Адаптивен Дизайн</h3>
-                        <p>Създаваме сайтове, които изглеждат и работят перфектно на всяко устройство – от мобилни телефони до големи екрани.</p>
+                        <p>Сайтове, които изглеждат и работят перфектно на всяко устройство – от мобилни телефони до големи екрани.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="glass-card reveal" data-tilt data-tilt-max="10" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.2s;">
                         <div class="feature-icon"><i class="fa-solid fa-rocket"></i></div>
                         <h3>Дигитален Растеж</h3>
-                        <p>Не просто сайт, а инструмент за бизнес растеж. SEO оптимизация и стратегии за конверсии.</p>
+                        <p>Не просто сайт, а инструмент за бизнес. Пишем ултра бърз код, оптимизиран за Google (SEO).</p>
                     </div>
                 </div>
             </div>
@@ -305,25 +293,25 @@
 
         <section id="projects">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header reveal">
                     <h2 class="section-title">Избрани Проекти</h2>
                     <p class="section-subtitle">Част от най-новите ни успешни колаборации</p>
                 </div>
                 <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image"><i class="fa-solid fa-image"></i></div>
+                    <div class="glass-card project-card reveal" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.1">
+                        <div class="project-image"><i class="fa-solid fa-gem"></i></div>
                         <div class="project-info">
                             <h3>E-commerce Платформа</h3>
-                            <p>Пълен редизайн и къстъм разработка за водещ моден бранд. Увеличение на продажбите с 40%.</p>
-                            <a href="#" class="project-link">Разгледай <i class="fa-solid fa-arrow-right"></i></a>
+                            <p>Пълен редизайн за водещ моден бранд. Изчистен код и 3D продуктови визуализации.</p>
+                            <a href="#" class="project-link">Разгледай проекта <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div class="project-image"><i class="fa-solid fa-image"></i></div>
+                    <div class="glass-card project-card reveal" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.1" style="transition-delay: 0.2s;">
+                        <div class="project-image"><i class="fa-solid fa-chart-pie"></i></div>
                         <div class="project-info">
                             <h3>Корпоративен Уебсайт</h3>
-                            <p>Модерно дигитално присъствие за финтех стартъп, базирано на бързина и сигурност.</p>
-                            <a href="#" class="project-link">Разгледай <i class="fa-solid fa-arrow-right"></i></a>
+                            <p>Модерно дигитално присъствие за стартъп, базирано на бързина, стъклени ефекти и сигурност.</p>
+                            <a href="#" class="project-link">Разгледай проекта <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -332,35 +320,40 @@
 
         <section id="process">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header reveal">
                     <h2 class="section-title">Как работим?</h2>
                     <p class="section-subtitle">Прозрачен процес от идеята до реализацията</p>
                 </div>
                 <div class="process-steps">
-                    <div class="step-card">
+                    <div class="glass-card reveal" data-tilt data-tilt-max="8" style="flex: 1; min-width: 280px;">
                         <div class="step-number">01</div>
                         <h3>Откриване</h3>
-                        <p>Анализираме вашия бизнес, конкуренцията и нуждите на потребителите, за да изградим правилна стратегия.</p>
+                        <p>Анализираме вашия бизнес, конкуренцията и нуждите на потребителите за перфектната стратегия.</p>
                     </div>
-                    <div class="step-card">
+                    <div class="glass-card reveal" data-tilt data-tilt-max="8" style="flex: 1; min-width: 280px; transition-delay: 0.1s;">
                         <div class="step-number">02</div>
-                        <h3>Дизайн и Разработка</h3>
-                        <p>Създаваме интерактивни прототипи и пишем чист код, за да вдъхнем живот на проекта.</p>
+                        <h3>Дизайн и Код</h3>
+                        <p>Създаваме 3D прототипи, стъклени интерфейси и пишем чист, светкавично бърз код.</p>
                     </div>
-                    <div class="step-card">
+                    <div class="glass-card reveal" data-tilt data-tilt-max="8" style="flex: 1; min-width: 280px; transition-delay: 0.2s;">
                         <div class="step-number">03</div>
                         <h3>Стартиране</h3>
-                        <p>Тестваме всичко детайлно, пускаме сайта на живо и осигуряваме последваща поддръжка.</p>
+                        <p>Тестваме всичко детайлно, пускаме сайта на живо и виждаме как магията работи.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="cta">
-            <div class="container">
+            <div class="hero-blobs">
+                <div class="blob blob-1" style="width: 300px; height: 300px; top: -50%; left: 30%; animation-duration: 10s;"></div>
+            </div>
+            <div class="container reveal">
                 <div class="cta-content">
-                    <h2>Готови ли сте да започнем?</h2>
-                    <p>Нека обсъдим вашата идея и да я превърнем в следващия успешен дигитален продукт.</p>
+                    <h2>Готови ли сте да създадем нещо красиво?</h2>
+                    <p style="color: var(--text-gray); font-size: 1.2rem; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Нека обсъдим вашата идея и да я превърнем в следващия успешен дигитален продукт.
+                    </p>
                     <a href="#" class="btn btn-primary">Запази безплатна консултация</a>
                 </div>
             </div>
@@ -369,11 +362,11 @@
     </main>
 
     <footer>
-        <div class="container">
+        <div class="container reveal">
             <div class="footer-grid">
                 <div class="footer-col footer-about">
                     <a href="#" class="logo">Peach<span>WebLab</span>.</a>
-                    <p>Вашият партньор в дигиталния свят. Създаваме с внимание към детайла и страст към иновациите.</p>
+                    <p>Вашият партньор в дигиталния свят. Изкуство, код и страст към иновациите.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Навигация</h4>
@@ -381,7 +374,6 @@
                         <li><a href="#">Начало</a></li>
                         <li><a href="#features">Услуги</a></li>
                         <li><a href="#projects">Проекти</a></li>
-                        <li><a href="#process">Как работим</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -407,7 +399,10 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    
     <script>
+        // Ефект на хедъра при скрол
         const header = document.getElementById('main-header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -416,8 +411,22 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        // Анимации при скролиране (Scroll Reveal)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Колко пиксела преди да се покаже елементът да се активира анимацията
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Извикваме я веднъж при зареждане
     </script>
 
 </body>
 </html>
-
