@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="PeachWebLab - Лаборатория за иновативен уеб дизайн и разработка. Създаваме бързи, красиви и функционални уебсайтове.">
+    <meta name="keywords" content="уеб дизайн, изработка на сайтове, SEO оптимизация, уеб разработка, PeachWebLab">
+    <meta name="author" content="PeachWebLab">
+    
     <title>PeachWebLab - Дигитални иновации</title>
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -72,6 +77,7 @@
             z-index: 100002; box-shadow: 0 0 15px var(--peach-primary);
         }
 
+        /* --- СКРОЛБАР --- */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-darker); }
         ::-webkit-scrollbar-thumb { background: linear-gradient(var(--peach-primary), var(--peach-secondary)); border-radius: 10px; }
@@ -110,7 +116,19 @@
         .btn-outline { background: rgba(255, 90, 95, 0.05); border: 2px solid var(--peach-primary); color: var(--peach-primary); }
         .btn-outline:hover { background-color: var(--peach-primary); color: white; }
 
-        /* --- ГОРЕН ХЕДЪР (ВЪРНАТ КЪМ PILL ДИЗАЙНА) --- */
+        /* --- BACK TO TOP BUTTON --- */
+        #back-to-top {
+            position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px;
+            border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary));
+            color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center;
+            z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4);
+        }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 90, 95, 0.7); }
+        #back-to-top i { pointer-events: none; }
+
+        /* --- ГОРЕН ХЕДЪР --- */
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
         header.hide-header { transform: translateY(-160%); }
         .header-wrapper { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; }
@@ -144,7 +162,7 @@
         .delay-1 { animation-delay: 0.2s; } .delay-2 { animation-delay: 0.4s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- БЕЗКРАЙНА БЯГАЩА ПЪТЕКА (MARQUEE) --- */
+        /* --- MARQUEE ЛЕНТА --- */
         .marquee-section { background-color: var(--peach-primary); color: var(--bg-dark); padding: 18px 0; overflow: hidden; display: flex; position: relative; z-index: 10; font-weight: 800; font-size: 1.3rem; text-transform: uppercase; box-shadow: 0 0 40px rgba(255, 90, 95, 0.3); }
         .marquee-content { display: flex; width: max-content; animation: marqueeScroll 35s linear infinite; }
         .marquee-track { display: flex; align-items: center; gap: 40px; padding-right: 40px; }
@@ -156,7 +174,7 @@
         .glass-card:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15), inset 0 0 20px rgba(255, 90, 95, 0.05); }
         .glass-card > * { transform: translateZ(30px); }
 
-        /* --- STATS, FEATURES, PROJECTS --- */
+        /* --- STATS, FEATURES --- */
         #stats { margin-top: 80px; margin-bottom: 80px; position: relative; z-index: 10; }
         .stats-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; text-align: center; }
         .stat-item h3 { font-size: 3.5rem; margin-bottom: 5px; font-weight: 800; line-height: 1; }
@@ -166,17 +184,19 @@
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .feature-icon { font-size: 3.5rem; color: var(--peach-primary); margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.4)); }
 
+        /* --- ПРОЕКТИ --- */
         #projects { padding: var(--section-spacing) 0; background-color: rgba(5,5,7,0.8); }
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
         .project-card { padding: 0; overflow: hidden; display: flex; flex-direction: column;}
         .project-card > * { transform: translateZ(0); }
         .project-image { width: 100%; height: 260px; background: linear-gradient(45deg, #15151e, #232330); display: flex; align-items: center; justify-content: center; color: var(--text-gray); font-size: 3.5rem; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .project-card:hover .project-image { transform: scale(1.08); color: var(--peach-primary); filter: drop-shadow(0 0 20px rgba(255,90,95,0.4));}
-        .project-info { padding: 35px; position: relative; z-index: 2; background: inherit; }
-        .project-link { color: var(--peach-primary); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;}
+        .project-info { padding: 35px; position: relative; z-index: 2; background: inherit; flex-grow: 1; display: flex; flex-direction: column;}
+        .project-info p { margin-bottom: 20px; flex-grow: 1;}
+        .project-link { color: var(--peach-primary); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; margin-top: auto;}
         .project-link:hover { gap: 15px; text-shadow: 0 0 10px rgba(255, 90, 95, 0.5); }
 
-        /* --- TESTIMONIALS & FAQ --- */
+        /* --- ОТЗИВИ И FAQ --- */
         #testimonials { padding: var(--section-spacing) 0; position: relative; overflow: hidden; }
         .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .testimonial-card { position: relative; }
@@ -198,7 +218,7 @@
         .faq-answer { padding: 0 30px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-gray); }
         .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; }
 
-        /* --- CONTACT FORM --- */
+        /* --- ФОРМА ЗА КОНТАКТИ --- */
         #cta { padding: 100px 0; position: relative; background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02)); border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15); overflow: hidden; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
         .cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 90, 95, 0.3); letter-spacing: -1px; }
@@ -210,7 +230,7 @@
         .form-control:focus { outline: none; border-color: var(--peach-primary); background: rgba(0,0,0,0.5); box-shadow: 0 0 15px rgba(255, 90, 95, 0.2); }
         textarea.form-control { resize: none; height: 120px; }
 
-        /* --- FOOTER --- */
+        /* --- ФУТЪР --- */
         footer { padding: 80px 0 30px; background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
         .footer-about p { color: var(--text-gray); margin-top: 20px; max-width: 300px; }
@@ -234,6 +254,7 @@
             .cta-content h2 { font-size: 2.5rem; }
             .glass-card { padding: 30px; }
             .marquee-section { font-size: 1rem; }
+            #back-to-top { bottom: 20px; right: 20px; }
         }
     </style>
 </head>
@@ -246,6 +267,10 @@
     <div id="scroll-progress"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
     <div class="cursor-outline" id="cursor-outline"></div>
+
+    <button id="back-to-top" class="interactive-element" aria-label="Върни се в началото">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <header id="main-header">
         <div class="header-wrapper">
@@ -373,22 +398,29 @@
                     <p class="section-subtitle">Вижте какво сме създали до момента</p>
                 </div>
                 <div class="projects-grid">
+                    
                     <div class="glass-card project-card reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.1">
-                        <div class="project-image"><i class="fa-solid fa-shop"></i></div>
+                        <div class="project-image"><i class="fa-solid fa-building"></i></div>
                         <div class="project-info">
-                            <h3>E-commerce Платформа</h3>
-                            <p>Пълен редизайн за премиум моден бранд. Изчистен код, плавни анимации и 40% ръст в продажбите.</p>
-                            <a href="#" class="project-link interactive-element">Разгледай проекта <i class="fa-solid fa-arrow-right"></i></a>
+                            <h3>Bomarpro</h3>
+                            <p>Цялостна изработка на модерен корпоративен уебсайт с фокус върху бързината, елегантния дизайн и потребителското изживяване.</p>
+                            <a href="https://bomarpro.com/" target="_blank" rel="noopener noreferrer" class="project-link interactive-element">
+                                Разгледай сайта <i class="fa-solid fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
+                    
                     <div class="glass-card project-card reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.1" style="transition-delay: 0.2s;">
-                        <div class="project-image"><i class="fa-solid fa-chart-pie"></i></div>
+                        <div class="project-image"><i class="fa-solid fa-laptop-code"></i></div>
                         <div class="project-info">
-                            <h3>Финтех Стартъп</h3>
-                            <p>Модерно дигитално присъствие, базирано на бързина, стъклени 3D ефекти и максимална сигурност.</p>
-                            <a href="#" class="project-link interactive-element">Разгледай проекта <i class="fa-solid fa-arrow-right"></i></a>
+                            <h3>SmartLand PC</h3>
+                            <p>Оптимизирана платформа за компютърна техника. Изчистен дизайн, лесна навигация и отлична SEO структура за максимални продажби.</p>
+                            <a href="https://smartlandpc.com/" target="_blank" rel="noopener noreferrer" class="project-link interactive-element">
+                                Разгледай сайта <i class="fa-solid fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -516,9 +548,9 @@
                 <div class="footer-col">
                     <h4>Социални мрежи</h4>
                     <ul>
-                        <li><a href="#" class="interactive-element"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
-                        <li><a href="#" class="interactive-element"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
-                        <li><a href="#" class="interactive-element"><i class="fa-brands fa-github"></i> GitHub</a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" class="interactive-element"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" class="interactive-element"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" class="interactive-element"><i class="fa-brands fa-github"></i> GitHub</a></li>
                     </ul>
                 </div>
             </div>
@@ -532,7 +564,7 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     
     <script>
-        // --- 1. LENIS SMOOTH SCROLL (Маслено гладко скролване) ---
+        // --- 1. LENIS SMOOTH SCROLL ---
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -556,14 +588,14 @@
                 preloader.style.opacity = '0';
                 preloader.style.visibility = 'hidden';
                 setTimeout(() => preloader.remove(), 600);
-                setTimeout(reveal, 200); // Стартираме анимациите след прелоудъра
+                setTimeout(reveal, 200); 
             }, 800);
         });
 
-        // --- 3. FLUID CURSOR (С инерция) ---
+        // --- 3. FLUID CURSOR ---
         const dot = document.getElementById('cursor-dot');
         const outline = document.getElementById('cursor-outline');
-        const interactiveEls = document.querySelectorAll('a, .btn, .interactive-element, .faq-question, input, textarea');
+        const interactiveEls = document.querySelectorAll('a, .btn, .interactive-element, .faq-question, input, textarea, button');
 
         let mouseX = 0, mouseY = 0;
         let outlineX = 0, outlineY = 0;
@@ -592,10 +624,11 @@
             el.addEventListener('mouseleave', () => outline.classList.remove('hovering'));
         });
 
-        // --- 4. SCROLL ЕФЕКТИ ---
+        // --- 4. SCROLL ЕФЕКТИ & BACK TO TOP ---
         const scrollProgress = document.getElementById('scroll-progress');
         const header = document.getElementById('main-header');
         const heroText = document.getElementById('hero-text-content');
+        const backToTopBtn = document.getElementById('back-to-top');
         let lastScrollY = window.scrollY;
 
         lenis.on('scroll', (e) => {
@@ -623,6 +656,18 @@
                 let opacityValue = 1 - (currentScrollY / 500);
                 heroText.style.opacity = Math.max(0, opacityValue);
             }
+
+            // Back to top бутон показване
+            if(currentScrollY > 600) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Клик на бутона Back to Top
+        backToTopBtn.addEventListener('click', () => {
+            lenis.scrollTo(0, { duration: 1.5 });
         });
 
         // --- 5. МАГНИТНИ БУТОНИ ---
@@ -647,7 +692,7 @@
             parallaxBg.style.transform = `translate(${x}px, ${y}px)`;
         });
 
-        // --- 7. REVEAL АНИМАЦИИ ПРИ СКРОЛ ---
+        // --- 7. REVEAL АНИМАЦИИ ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
