@@ -83,7 +83,6 @@
         .btn-outline { background: rgba(255, 90, 95, 0.05); border: 2px solid var(--peach-primary); color: var(--peach-primary); }
         .btn-outline:hover { background-color: var(--peach-primary); color: white; }
         
-        /* Класове за изпращане на формата */
         .btn.sending { opacity: 0.8; pointer-events: none; }
         .btn.success { background: #25D366 !important; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important; color: white !important; pointer-events: none; }
 
@@ -93,7 +92,6 @@
         #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 90, 95, 0.7); }
         #back-to-top i { pointer-events: none; }
 
-        /* WhatsApp Chat Button */
         #chat-btn { position: fixed; bottom: 40px; left: 40px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; font-size: 2rem; display: flex; justify-content: center; align-items: center; z-index: 999; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); transition: transform 0.3s ease; animation: pulseChat 2s infinite; }
         #chat-btn:hover { transform: scale(1.1); animation: none; }
         #chat-btn i { pointer-events: none; }
@@ -199,7 +197,6 @@
         }
         .project-card-wide:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15); }
 
-        /* Увеличаваме височината на снимката, за да има място текстът да се плъзга */
         .project-image-wrapper { flex: 0 0 55%; position: relative; overflow: hidden; border-radius: 24px 0 0 24px; min-height: 500px; }
         .project-card-wide.reverse .project-image-wrapper { border-radius: 0 24px 24px 0; }
         
@@ -209,10 +206,9 @@
         .project-card-wide:hover .project-image { transform: scale(1.05); }
         .project-card-wide:hover .project-image::before { background: rgba(11, 11, 14, 0.1); }
 
-        /* Текстът се залепя при скрол */
         .project-info { 
             flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center;
-            position: sticky; top: 120px; /* Залепва на 120px от върха на екрана */
+            position: sticky; top: 120px; 
             height: max-content;
         }
         .project-info h3 { font-size: 2.2rem; margin-bottom: 15px; }
@@ -259,7 +255,7 @@
 
         /* --- ФУТЪР --- */
         footer { padding: 80px 0 30px; background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
         .footer-about p { color: var(--text-gray); margin-top: 20px; max-width: 300px; }
         .footer-col h4 { margin-bottom: 25px; font-size: 1.2rem; color: #fff; }
         .footer-col ul li { margin-bottom: 15px; }
@@ -277,10 +273,11 @@
             .hero-subtitle { margin-left: auto; margin-right: auto; }
             .hero-visuals { display: none; } 
             
-            /* Премахваме sticky ефекта на мобилни, защото няма място */
             .project-card-wide, .project-card-wide.reverse { flex-direction: column; align-items: stretch;}
             .project-image-wrapper { flex: auto; min-height: 250px; border-radius: 24px 24px 0 0 !important; }
             .project-info { position: static; padding: 30px; height: auto;}
+            
+            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
             * { cursor: auto !important; }
@@ -314,7 +311,7 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <a href="https://wa.me/359888123456" target="_blank" rel="noopener noreferrer" id="chat-btn" class="interactive-element" aria-label="Пишете ни във WhatsApp">
+    <a href="https://wa.me/359889030110" target="_blank" rel="noopener noreferrer" id="chat-btn" class="interactive-element" aria-label="Пишете ни във WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -396,7 +393,6 @@
                     <span>E-commerce</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Бързина</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Брандинг</span> <i class="fa-solid fa-star-of-life"></i>
-                    <span>Копирайтинг</span> <i class="fa-solid fa-star-of-life"></i>
                 </div>
                 <div class="marquee-track">
                     <span>UI/UX Дизайн</span> <i class="fa-solid fa-star-of-life"></i>
@@ -405,7 +401,22 @@
                     <span>E-commerce</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Бързина</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Брандинг</span> <i class="fa-solid fa-star-of-life"></i>
-                    <span>Копирайтинг</span> <i class="fa-solid fa-star-of-life"></i>
+                </div>
+                <div class="marquee-track">
+                    <span>UI/UX Дизайн</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>Web Development</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>SEO Оптимизация</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>E-commerce</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>Бързина</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>Брандинг</span> <i class="fa-solid fa-star-of-life"></i>
+                </div>
+                <div class="marquee-track">
+                    <span>UI/UX Дизайн</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>Web Development</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>SEO Оптимизация</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>E-commerce</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>Бързина</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>Брандинг</span> <i class="fa-solid fa-star-of-life"></i>
                 </div>
             </div>
         </div>
@@ -529,8 +540,7 @@
                     <span>HTML5</span> <i class="fa-brands fa-html5"></i>
                     <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
                     <span>JavaScript</span> <i class="fa-brands fa-js"></i>
-                    <span>React</span> <i class="fa-brands fa-react"></i>
-                    <span>WordPress</span> <i class="fa-brands fa-wordpress"></i>
+                    <span>Figma</span> <i class="fa-brands fa-figma"></i>
                     <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
                     <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
                     <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
@@ -539,8 +549,25 @@
                     <span>HTML5</span> <i class="fa-brands fa-html5"></i>
                     <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
                     <span>JavaScript</span> <i class="fa-brands fa-js"></i>
-                    <span>React</span> <i class="fa-brands fa-react"></i>
-                    <span>WordPress</span> <i class="fa-brands fa-wordpress"></i>
+                    <span>Figma</span> <i class="fa-brands fa-figma"></i>
+                    <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
+                    <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
+                    <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
+                </div>
+                <div class="marquee-track">
+                    <span>HTML5</span> <i class="fa-brands fa-html5"></i>
+                    <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
+                    <span>JavaScript</span> <i class="fa-brands fa-js"></i>
+                    <span>Figma</span> <i class="fa-brands fa-figma"></i>
+                    <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
+                    <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
+                    <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
+                </div>
+                <div class="marquee-track">
+                    <span>HTML5</span> <i class="fa-brands fa-html5"></i>
+                    <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
+                    <span>JavaScript</span> <i class="fa-brands fa-js"></i>
+                    <span>Figma</span> <i class="fa-brands fa-figma"></i>
                     <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
                     <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
                     <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
@@ -623,8 +650,8 @@
                         <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">Готови ли сте?</h2>
                         <p>Нека обсъдим вашата идея и да я превърнем в следващия успешен дигитален продукт. Изпратете ни съобщение и ще се свържем с вас до 24 часа.</p>
                         <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px;">
-                            <a href="mailto:hello@peachweblab.com" class="interactive-element" style="display: flex; align-items: center; gap: 10px; color: var(--text-light);"><i class="fa-solid fa-envelope" style="color: var(--peach-primary);"></i> hello@peachweblab.com</a>
-                            <a href="tel:+359888123456" class="interactive-element" style="display: flex; align-items: center; gap: 10px; color: var(--text-light);"><i class="fa-solid fa-phone" style="color: var(--peach-primary);"></i> +359 888 123 456</a>
+                            <a href="mailto:thilsey13542@gmail.com" class="interactive-element" style="display: flex; align-items: center; gap: 10px; color: var(--text-light);"><i class="fa-solid fa-envelope" style="color: var(--peach-primary);"></i> thilsey13542@gmail.com</a>
+                            <a href="tel:0889030110" class="interactive-element" style="display: flex; align-items: center; gap: 10px; color: var(--text-light);"><i class="fa-solid fa-phone" style="color: var(--peach-primary);"></i> 0889 030 110</a>
                         </div>
                     </div>
                     <div class="contact-form spotlight-card">
@@ -669,11 +696,10 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Социални мрежи</h4>
+                    <h4>Контакти</h4>
                     <ul>
-                        <li><a href="#" target="_blank" rel="noopener noreferrer" class="interactive-element"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
-                        <li><a href="#" target="_blank" rel="noopener noreferrer" class="interactive-element"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
-                        <li><a href="#" target="_blank" rel="noopener noreferrer" class="interactive-element"><i class="fa-brands fa-github"></i> GitHub</a></li>
+                        <li><a href="tel:0889030110" class="interactive-element"><i class="fa-solid fa-phone"></i> 0889 030 110</a></li>
+                        <li><a href="mailto:thilsey13542@gmail.com" class="interactive-element"><i class="fa-solid fa-envelope"></i> thilsey13542@gmail.com</a></li>
                     </ul>
                 </div>
             </div>
@@ -769,10 +795,12 @@
         lenis.on('scroll', (e) => {
             let currentScrollY = window.scrollY;
             
+            // Progress Bar
             let scrollHeight = document.body.scrollHeight - window.innerHeight;
             let progress = (currentScrollY / scrollHeight) * 100;
             scrollProgress.style.width = progress + "%";
 
+            // Header Hide/Show
             if (currentScrollY > 150) {
                 if (currentScrollY > lastScrollY) {
                     header.classList.add('hide-header');
@@ -784,11 +812,13 @@
             }
             lastScrollY = currentScrollY;
 
+            // Hero Parallax Fade
             if(currentScrollY < 800) {
                 let opacityValue = 1 - (currentScrollY / 500);
                 heroText.style.opacity = Math.max(0, opacityValue);
             }
 
+            // Back to top бутон показване
             if(currentScrollY > 600) {
                 backToTopBtn.classList.add('show');
             } else {
@@ -879,21 +909,18 @@
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             
             contactForm.addEventListener('submit', (e) => {
-                e.preventDefault(); // Спира реалното презареждане
+                e.preventDefault(); 
                 const originalText = submitBtn.innerHTML;
                 
-                // 1. Състояние "Изпращане"
                 submitBtn.classList.add('sending');
                 submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Изпращане...';
                 
-                // 2. Симулираме изчакване от сървъра (1.5 секунди)
                 setTimeout(() => {
                     submitBtn.classList.remove('sending');
                     submitBtn.classList.add('success');
                     submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Успешно изпратено!';
-                    contactForm.reset(); // Изчиства полетата
+                    contactForm.reset(); 
                     
-                    // 3. Връщаме бутона в нормално състояние след 4 секунди
                     setTimeout(() => {
                         submitBtn.classList.remove('success');
                         submitBtn.innerHTML = originalText;
