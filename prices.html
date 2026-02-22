@@ -86,16 +86,11 @@
         .btn.sending { opacity: 0.8; pointer-events: none; }
         .btn.success { background: #25D366 !important; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important; color: white !important; pointer-events: none; }
 
-        /* --- BACK TO TOP & CHAT BUTTONS --- */
+        /* --- BACK TO TOP BUTTON --- */
         #back-to-top { position: fixed; bottom: 40px; right: 40px; width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4); }
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 90, 95, 0.7); }
         #back-to-top i { pointer-events: none; }
-
-        #chat-btn { position: fixed; bottom: 40px; left: 40px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; font-size: 2rem; display: flex; justify-content: center; align-items: center; z-index: 999; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); transition: transform 0.3s ease; animation: pulseChat 2s infinite; }
-        #chat-btn:hover { transform: scale(1.1); animation: none; }
-        #chat-btn i { pointer-events: none; }
-        @keyframes pulseChat { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
         /* --- ГОРЕН ХЕДЪР --- */
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
@@ -246,7 +241,6 @@
             .footer-col ul { padding: 0; }
             
             #back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px;}
-            #chat-btn { display: none; }
         }
     </style>
 </head>
@@ -264,10 +258,6 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <a href="https://wa.me/359889030110" target="_blank" rel="noopener noreferrer" id="chat-btn" class="interactive-element" aria-label="Пишете ни във WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
     <header id="main-header">
         <div class="header-wrapper">
             <a href="index.html" class="logo interactive-element">Peach<span>WebLab</span>.</a>
@@ -275,7 +265,7 @@
                 <nav>
                     <ul class="nav-links">
                         <li><a href="index.html" class="interactive-element">Начало</a></li>
-                        <li><a href="index.html#features" class="interactive-element">Услуги</a></li>
+                        <li><a href="services.html" class="interactive-element">Услуги</a></li>
                         <li><a href="#" class="interactive-element active">Цени</a></li>
                         <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
@@ -295,7 +285,7 @@
             </div>
             <div class="container reveal">
                 <div class="section-header" style="margin-bottom: 30px;">
-                    <h1 class="section-title">Прозрачни цени.<br>0 лв. първоначален риск.</h1>
+                    <h1 class="section-title">Прозрачни цени.<br>0 EUR първоначален риск.</h1>
                     <p class="section-subtitle">Изберете пакет, а плащането оставете за накрая – плащате пълната сума чак когато сайтът е готов и напълно одобрен от вас!</p>
                 </div>
             </div>
@@ -310,11 +300,11 @@
                             <h3>Онлайн Магазин</h3>
                             <p>Мощна платформа за електронна търговия, готова за продажби.</p>
                         </div>
-                        <div class="pricing-price">
-                            690 <span class="currency">EUR</span>
+                        <div class="pricing-price" style="font-size: 2.2rem; margin: 31px 0;">
+                            По договаряне
                         </div>
                         <div class="pricing-subprice">
-                            Еднократна такса (~1350 BGN)
+                            След безплатна консултация
                             <div class="guarantee-text"><i class="fa-solid fa-shield-check"></i> Плащане при готов сайт</div>
                         </div>
                         
@@ -340,18 +330,14 @@
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Пълна E-commerce SEO оптимизация</div>
+                                <div class="feature-text">Качване и E-commerce SEO на до 200 продукта</div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Плащане с карта (Stripe) и наложен платеж</div>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Интеграция на Facebook Pixel и Analytics</div>
+                                <div class="feature-text">Интеграция на Google Analytics</div>
                             </li>
                         </ul>
-                        <a href="#cta" class="btn btn-outline magnetic interactive-element">Избери този план</a>
+                        <a href="#cta" class="btn btn-outline magnetic interactive-element">Заяви оферта</a>
                     </div>
 
                     <div class="glass-card spotlight-card pricing-card popular reveal interactive-element" data-tilt data-tilt-max="2" data-tilt-glare="true" data-tilt-max-glare="0.1" style="transition-delay: 0.1s;">
@@ -385,15 +371,8 @@
                             <li>
                                 <i class="fa-solid fa-check"></i>
                                 <div class="feature-text">
-                                    <span>Безплатен Домейн (.com/.bg)</span>
-                                    <span class="feature-value"><strike>35 лв.</strike> Включен за 1 год.</span>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">
-                                    <span>Бърз Cloud Хостинг и SSL</span>
-                                    <span class="feature-value"><strike>180 лв.</strike> Включени за 1 год.</span>
+                                    <span>Безплатен Домейн, Хостинг и SSL</span>
+                                    <span class="feature-value"><strike>215 лв.</strike> Включени за 1 год.</span>
                                 </div>
                             </li>
                             <li>
@@ -415,23 +394,24 @@
                     <div class="glass-card spotlight-card pricing-card reveal interactive-element" data-tilt data-tilt-max="3" data-tilt-glare="true" data-tilt-max-glare="0.1" style="transition-delay: 0.2s;">
                         <div class="pricing-header">
                             <h3>Custom Проект</h3>
-                            <p>За мащабни платформи и бизнеси със специфични изисквания.</p>
+                            <p>За мащабни бизнеси със специфични изисквания и обем.</p>
                         </div>
                         <div class="pricing-price" style="font-size: 2.2rem; margin: 31px 0;">
                             По договаряне
                         </div>
                         <div class="pricing-subprice">
                             След безплатна консултация
+                            <div class="guarantee-text"><i class="fa-solid fa-shield-check"></i> Плащане при готов сайт</div>
                         </div>
                         
                         <ul class="pricing-features">
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text"><strong>Изцяло индивидуална логика и архитектура</strong></div>
+                                <div class="feature-text"><strong>Индивидуален UI/UX дизайн (без темплейти)</strong></div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text"><strong>Сложни уеб приложения и функционалности</strong></div>
+                                <div class="feature-text"><strong>Оптимизиран за максимална скорост</strong></div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
@@ -439,11 +419,18 @@
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Цялостна SEO стратегия и проучване на пазара</div>
+                                <div class="feature-text">
+                                    <span>Безплатен Домейн, Хостинг и SSL</span>
+                                    <span class="feature-value"><strike>215 лв.</strike> Включени за 1 год.</span>
+                                </div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Неограничен брой страници и продукти</div>
+                                <div class="feature-text">Неограничен брой страници</div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                <div class="feature-text">Цялостна SEO стратегия и проучване на пазара</div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
@@ -458,7 +445,7 @@
                 <div class="trust-banner reveal interactive-element">
                     <i class="fa-solid fa-handshake-angle"></i>
                     <div>
-                        <h4>100% Защита за клиента (0 лв. Капаро)</h4>
+                        <h4>100% Защита за клиента (0 EUR / 0 лв. Капаро)</h4>
                         <p>Вие не поемате риск. Ние изграждаме всичко от нулата с чист код. Заплащате уговорената цена <strong>едва след като видите готовия сайт</strong> и сте напълно удовлетворени от резултата.</p>
                     </div>
                 </div>
@@ -583,7 +570,7 @@
                     <h4>Навигация</h4>
                     <ul>
                         <li><a href="index.html" class="interactive-element">Начало</a></li>
-                        <li><a href="index.html#features" class="interactive-element">Услуги</a></li>
+                        <li><a href="services.html" class="interactive-element">Услуги</a></li>
                         <li><a href="#" class="interactive-element">Цени</a></li>
                         <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
