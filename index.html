@@ -104,10 +104,14 @@
         .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 20px rgba(255, 90, 95, 0.3); }
         .logo span { color: var(--peach-primary); }
         .nav-menu-container { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 50px; padding: 12px 30px; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
-        .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 6px; transition: color 0.3s ease; }
+        .nav-links { display: flex; gap: 30px; align-items: center; position: relative;}
+        .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 6px; transition: color 0.3s ease; position: relative;}
         .nav-links a:hover { color: var(--peach-primary); }
         .nav-links i { font-size: 0.7rem; opacity: 0.7; pointer-events: none;}
+        
+        /* СВЕТЕЩО "НАЧАЛО" / АКТИВЕН ЛИНК В МЕНЮТО */
+        .nav-links a.active { color: var(--peach-primary); text-shadow: 0 0 12px rgba(255, 90, 95, 0.5); }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 15px; height: 3px; background-color: var(--peach-primary); border-radius: 50px; box-shadow: 0 0 8px var(--peach-primary); }
 
         /* --- HERO --- */
         #hero { height: 100vh; min-height: 750px; display: flex; align-items: center; position: relative; overflow: hidden; perspective: 1000px; }
@@ -148,9 +152,8 @@
         .marquee-track { display: flex; flex-wrap: nowrap; align-items: center; gap: 40px; padding-right: 40px; flex-shrink: 0;}
         .marquee-track i { font-size: 0.9rem; }
         
-        /* Тъмна Marquee лента за Технологии */
         .tech-marquee { background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-gray); box-shadow: inset 0 0 20px rgba(0,0,0,0.5); font-weight: 600; font-size: 1.1rem;}
-        .tech-marquee .marquee-content { animation: marqueeScroll 45s linear infinite reverse; } /* Върти се наобратно и по-бавно */
+        .tech-marquee .marquee-content { animation: marqueeScroll 45s linear infinite reverse; } 
         .tech-marquee .marquee-track i { font-size: 1.4rem; color: var(--text-light); }
 
         @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -185,16 +188,11 @@
         #features h3 { font-size: 1.8rem; margin-bottom: 15px; line-height: 1.3; }
         #features p { font-size: 1.1rem; color: var(--text-gray); line-height: 1.6; }
 
-        /* --- ПРОЕКТИ (СЪС STICKY ТЕКСТ) --- */
+        /* --- ПРОЕКТИ --- */
         #projects { padding: var(--section-spacing) 0; background-color: rgba(5,5,7,0.8); }
         .projects-list { display: flex; flex-direction: column; gap: 80px; }
         
-        .project-card-wide { 
-            display: flex; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); 
-            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; overflow: hidden; 
-            transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
-            align-items: flex-start; /* Важно за sticky ефекта */
-        }
+        .project-card-wide { display: flex; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; overflow: hidden; transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); align-items: flex-start; }
         .project-card-wide:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15); }
 
         .project-image-wrapper { flex: 0 0 55%; position: relative; overflow: hidden; border-radius: 24px 0 0 24px; min-height: 500px; }
@@ -206,11 +204,7 @@
         .project-card-wide:hover .project-image { transform: scale(1.05); }
         .project-card-wide:hover .project-image::before { background: rgba(11, 11, 14, 0.1); }
 
-        .project-info { 
-            flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center;
-            position: sticky; top: 120px; 
-            height: max-content;
-        }
+        .project-info { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; position: sticky; top: 120px; height: max-content; }
         .project-info h3 { font-size: 2.2rem; margin-bottom: 15px; }
         .project-info p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.8; }
         
@@ -260,6 +254,7 @@
         .footer-col h4 { margin-bottom: 25px; font-size: 1.2rem; color: #fff; }
         .footer-col ul li { margin-bottom: 15px; }
         .footer-col ul li a:hover { color: var(--peach-primary); padding-left: 5px; }
+        .footer-col ul li i { color: var(--peach-primary); margin-right: 8px; width: 15px; text-align: center;}
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); }
 
         /* --- РЕСПОНСИВ --- */
@@ -277,7 +272,7 @@
             .project-image-wrapper { flex: auto; min-height: 250px; border-radius: 24px 24px 0 0 !important; }
             .project-info { position: static; padding: 30px; height: auto;}
             
-            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; text-align: left;}
         }
         @media (max-width: 768px) {
             * { cursor: auto !important; }
@@ -321,9 +316,9 @@
             <div class="nav-menu-container">
                 <nav>
                     <ul class="nav-links">
+                        <li><a href="#" class="interactive-element active">Начало</a></li>
                         <li><a href="#features" class="interactive-element">Услуги</a></li>
-                        <li><a href="#projects" class="interactive-element">Проекти</a></li>
-                        <li><a href="#testimonials" class="interactive-element">Отзиви</a></li>
+                        <li><a href="#pricing" class="interactive-element">Цени</a></li>
                         <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
                 </nav>
@@ -393,6 +388,7 @@
                     <span>E-commerce</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Бързина</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Брандинг</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>Копирайтинг</span> <i class="fa-solid fa-star-of-life"></i>
                 </div>
                 <div class="marquee-track">
                     <span>UI/UX Дизайн</span> <i class="fa-solid fa-star-of-life"></i>
@@ -401,6 +397,7 @@
                     <span>E-commerce</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Бързина</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Брандинг</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>Копирайтинг</span> <i class="fa-solid fa-star-of-life"></i>
                 </div>
                 <div class="marquee-track">
                     <span>UI/UX Дизайн</span> <i class="fa-solid fa-star-of-life"></i>
@@ -409,6 +406,7 @@
                     <span>E-commerce</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Бързина</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Брандинг</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>Копирайтинг</span> <i class="fa-solid fa-star-of-life"></i>
                 </div>
                 <div class="marquee-track">
                     <span>UI/UX Дизайн</span> <i class="fa-solid fa-star-of-life"></i>
@@ -417,6 +415,7 @@
                     <span>E-commerce</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Бързина</span> <i class="fa-solid fa-star-of-life"></i>
                     <span>Брандинг</span> <i class="fa-solid fa-star-of-life"></i>
+                    <span>Копирайтинг</span> <i class="fa-solid fa-star-of-life"></i>
                 </div>
             </div>
         </div>
@@ -540,7 +539,6 @@
                     <span>HTML5</span> <i class="fa-brands fa-html5"></i>
                     <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
                     <span>JavaScript</span> <i class="fa-brands fa-js"></i>
-                    <span>Figma</span> <i class="fa-brands fa-figma"></i>
                     <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
                     <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
                     <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
@@ -549,7 +547,6 @@
                     <span>HTML5</span> <i class="fa-brands fa-html5"></i>
                     <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
                     <span>JavaScript</span> <i class="fa-brands fa-js"></i>
-                    <span>Figma</span> <i class="fa-brands fa-figma"></i>
                     <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
                     <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
                     <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
@@ -558,7 +555,6 @@
                     <span>HTML5</span> <i class="fa-brands fa-html5"></i>
                     <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
                     <span>JavaScript</span> <i class="fa-brands fa-js"></i>
-                    <span>Figma</span> <i class="fa-brands fa-figma"></i>
                     <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
                     <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
                     <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
@@ -567,7 +563,6 @@
                     <span>HTML5</span> <i class="fa-brands fa-html5"></i>
                     <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
                     <span>JavaScript</span> <i class="fa-brands fa-js"></i>
-                    <span>Figma</span> <i class="fa-brands fa-figma"></i>
                     <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
                     <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
                     <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
@@ -691,7 +686,7 @@
                     <ul>
                         <li><a href="#" class="interactive-element">Начало</a></li>
                         <li><a href="#features" class="interactive-element">Услуги</a></li>
-                        <li><a href="#projects" class="interactive-element">Проекти</a></li>
+                        <li><a href="#pricing" class="interactive-element">Цени</a></li>
                         <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
                 </div>
@@ -795,12 +790,10 @@
         lenis.on('scroll', (e) => {
             let currentScrollY = window.scrollY;
             
-            // Progress Bar
             let scrollHeight = document.body.scrollHeight - window.innerHeight;
             let progress = (currentScrollY / scrollHeight) * 100;
             scrollProgress.style.width = progress + "%";
 
-            // Header Hide/Show
             if (currentScrollY > 150) {
                 if (currentScrollY > lastScrollY) {
                     header.classList.add('hide-header');
@@ -812,13 +805,11 @@
             }
             lastScrollY = currentScrollY;
 
-            // Hero Parallax Fade
             if(currentScrollY < 800) {
                 let opacityValue = 1 - (currentScrollY / 500);
                 heroText.style.opacity = Math.max(0, opacityValue);
             }
 
-            // Back to top бутон показване
             if(currentScrollY > 600) {
                 backToTopBtn.classList.add('show');
             } else {
