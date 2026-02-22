@@ -27,6 +27,7 @@
             --section-spacing: 120px;
         }
 
+        /* Премахваме стандартната мишка */
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
 
         body {
@@ -40,42 +41,18 @@
         }
 
         /* --- FLUID КУРСОР --- */
-        .cursor-dot {
-            position: fixed; top: 0; left: 0; width: 8px; height: 8px;
-            background-color: var(--peach-primary); border-radius: 50%;
-            pointer-events: none; z-index: 100001; transform: translate(-50%, -50%);
-        }
-        .cursor-outline {
-            position: fixed; top: 0; left: 0; width: 40px; height: 40px;
-            border: 2px solid var(--peach-primary); border-radius: 50%;
-            pointer-events: none; z-index: 100000; transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-        }
-        .cursor-outline.hovering {
-            width: 70px; height: 70px; background-color: rgba(255, 90, 95, 0.1); border-color: rgba(255, 90, 95, 0.5);
-        }
+        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background-color: var(--peach-primary); border-radius: 50%; pointer-events: none; z-index: 100001; transform: translate(-50%, -50%); }
+        .cursor-outline { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 2px solid var(--peach-primary); border-radius: 50%; pointer-events: none; z-index: 100000; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
+        .cursor-outline.hovering { width: 70px; height: 70px; background-color: rgba(255, 90, 95, 0.1); border-color: rgba(255, 90, 95, 0.5); }
 
         /* --- PRELOADER --- */
-        #preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--bg-darker); z-index: 999999;
-            display: flex; justify-content: center; align-items: center;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        .loader-text {
-            font-size: 3rem; font-weight: 800; letter-spacing: -1px;
-            color: var(--text-light); animation: pulseLoader 1.5s infinite alternate;
-        }
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-darker); z-index: 999999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
+        .loader-text { font-size: 3rem; font-weight: 800; letter-spacing: -1px; color: var(--text-light); animation: pulseLoader 1.5s infinite alternate; }
         .loader-text span { color: var(--peach-primary); }
         @keyframes pulseLoader { 0% { opacity: 0.3; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
 
         /* --- PROGRESS BAR --- */
-        #scroll-progress {
-            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
-            background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary));
-            z-index: 100002; box-shadow: 0 0 15px var(--peach-primary);
-        }
-
+        #scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary)); z-index: 100002; box-shadow: 0 0 15px var(--peach-primary); }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-darker); }
         ::-webkit-scrollbar-thumb { background: linear-gradient(var(--peach-primary), var(--peach-secondary)); border-radius: 10px; }
@@ -85,45 +62,19 @@
         .container { width: 90%; max-width: 1300px; margin: 0 auto; }
         h1, h2, h3 { font-weight: 700; }
 
-        .peach-text-gradient {
-            background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;
-            animation: textGlow 3s ease-in-out infinite alternate;
-        }
+        .peach-text-gradient { background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; animation: textGlow 3s ease-in-out infinite alternate; }
         @keyframes textGlow { 0% { filter: drop-shadow(0 0 5px rgba(255, 90, 95, 0.2)); } 100% { filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.5)); } }
 
-        /* --- ИЗЧИСТЕН "WOW" ЕФЕКТ ЗА ЗАГЛАВИЯТА --- */
-        .section-header { 
-            text-align: center; 
-            margin-bottom: 70px; 
-        }
-        .section-title { 
-            font-size: 3.8rem; 
-            font-weight: 800;
-            margin-bottom: 15px; 
-            letter-spacing: -1.5px; 
-            display: inline-block;
-            background: linear-gradient(90deg, #FFFFFF 0%, var(--peach-primary) 50%, #FFFFFF 100%);
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shineText 4s linear infinite;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
-        }
+        /* --- ЗАГЛАВИЯ --- */
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-title { font-size: 3.8rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1.5px; display: inline-block; background: linear-gradient(90deg, #FFFFFF 0%, var(--peach-primary) 50%, #FFFFFF 100%); background-size: 200% auto; color: transparent; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shineText 4s linear infinite; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4)); }
         @keyframes shineText { to { background-position: 200% center; } }
         .section-subtitle { color: var(--text-gray); font-size: 1.25rem; font-weight: 400; }
-
         .reveal { opacity: 0; transform: translateY(60px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- БУТОНИ --- */
-        .btn {
-            display: inline-flex; justify-content: center; align-items: center; gap: 10px;
-            padding: 14px 35px; border-radius: 50px; font-weight: 600; border: none;
-            text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
-            transition: transform 0.1s linear, box-shadow 0.3s ease;
-        }
+        /* --- БУТОНИ И ИНТЕРАКЦИИ --- */
+        .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 35px; border-radius: 50px; font-weight: 600; border: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: transform 0.1s linear, box-shadow 0.3s ease, background 0.3s ease; }
         .btn * { pointer-events: none; }
         .btn-primary { background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; box-shadow: 0 10px 25px -5px rgba(255, 90, 95, 0.4); position: relative; overflow: hidden; }
         .btn-primary::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: all 0.6s ease; }
@@ -131,18 +82,22 @@
         .btn-primary:hover { box-shadow: 0 15px 35px -10px rgba(255, 90, 95, 0.7); }
         .btn-outline { background: rgba(255, 90, 95, 0.05); border: 2px solid var(--peach-primary); color: var(--peach-primary); }
         .btn-outline:hover { background-color: var(--peach-primary); color: white; }
+        
+        /* Класове за изпращане на формата */
+        .btn.sending { opacity: 0.8; pointer-events: none; }
+        .btn.success { background: #25D366 !important; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important; color: white !important; pointer-events: none; }
 
-        /* --- BACK TO TOP BUTTON --- */
-        #back-to-top {
-            position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px;
-            border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary));
-            color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center;
-            z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4);
-        }
+        /* --- BACK TO TOP & CHAT BUTTONS --- */
+        #back-to-top { position: fixed; bottom: 40px; right: 40px; width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4); }
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 90, 95, 0.7); }
         #back-to-top i { pointer-events: none; }
+
+        /* WhatsApp Chat Button */
+        #chat-btn { position: fixed; bottom: 40px; left: 40px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; font-size: 2rem; display: flex; justify-content: center; align-items: center; z-index: 999; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); transition: transform 0.3s ease; animation: pulseChat 2s infinite; }
+        #chat-btn:hover { transform: scale(1.1); animation: none; }
+        #chat-btn i { pointer-events: none; }
+        @keyframes pulseChat { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
         /* --- ГОРЕН ХЕДЪР --- */
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
@@ -172,7 +127,6 @@
         .hero-subtitle { font-size: 1.2rem; color: #cfcfd6; margin-bottom: 40px; max-width: 90%; }
         .hero-buttons { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
         
-        /* ПЛАВАЩИ ЕЛЕМЕНТИ ОТДЯСНО */
         .hero-visuals { position: relative; height: 450px; display: flex; justify-content: center; align-items: center; z-index: 1; }
         .floating-card { position: absolute; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-top: 1px solid rgba(255, 255, 255, 0.15); border-left: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 25px; box-shadow: 0 25px 40px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 20px; }
         .floating-card i { font-size: 2rem; color: var(--peach-primary); filter: drop-shadow(0 0 10px rgba(255, 90, 95, 0.5)); }
@@ -190,42 +144,24 @@
         .delay-1 { animation-delay: 0.2s; } .delay-2 { animation-delay: 0.4s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- MARQUEE ЛЕНТА --- */
+        /* --- MARQUEE ЛЕНТИ --- */
         .marquee-section { background-color: var(--peach-primary); color: var(--bg-dark); padding: 18px 0; overflow: hidden; display: flex; position: relative; z-index: 10; font-weight: 800; font-size: 1.3rem; text-transform: uppercase; box-shadow: 0 0 40px rgba(255, 90, 95, 0.3); white-space: nowrap; flex-wrap: nowrap; }
         .marquee-content { display: flex; flex-wrap: nowrap; width: max-content; animation: marqueeScroll 35s linear infinite; }
         .marquee-track { display: flex; flex-wrap: nowrap; align-items: center; gap: 40px; padding-right: 40px; flex-shrink: 0;}
         .marquee-track i { font-size: 0.9rem; }
+        
+        /* Тъмна Marquee лента за Технологии */
+        .tech-marquee { background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-gray); box-shadow: inset 0 0 20px rgba(0,0,0,0.5); font-weight: 600; font-size: 1.1rem;}
+        .tech-marquee .marquee-content { animation: marqueeScroll 45s linear infinite reverse; } /* Върти се наобратно и по-бавно */
+        .tech-marquee .marquee-track i { font-size: 1.4rem; color: var(--text-light); }
+
         @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- SPOTLIGHT EFFECT CLASS --- */
-        /* Този клас ще се добави към всички кутии, за да светят спрямо мишката */
-        .spotlight-card {
-            position: relative;
-            overflow: hidden;
-        }
-        .spotlight-card::after {
-            content: "";
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            background: radial-gradient(
-                600px circle at var(--mouse-x) var(--mouse-y), 
-                rgba(255, 90, 95, 0.15), 
-                transparent 40%
-            );
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-            border-radius: inherit;
-        }
-        .spotlight-card:hover::after {
-            opacity: 1;
-        }
-        /* Всичко вътре в картата (освен светлината от tilt) да е над spotlight ефекта */
-        .spotlight-card > *:not(.js-tilt-glare):not(::after) {
-            position: relative;
-            z-index: 2;
-        }
+        .spotlight-card { position: relative; overflow: hidden; }
+        .spotlight-card::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 90, 95, 0.15), transparent 40%); z-index: 0; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; border-radius: inherit; }
+        .spotlight-card:hover::after { opacity: 1; }
+        .spotlight-card > *:not(.js-tilt-glare):not(::after) { position: relative; z-index: 2; }
 
         /* --- GLASS CARDS ОБЩИ --- */
         .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.1); border-left: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); transform-style: preserve-3d; }
@@ -239,56 +175,46 @@
         .stat-item h3 { font-size: 3.5rem; margin-bottom: 5px; font-weight: 800; line-height: 1; }
         .stat-item p { color: var(--text-gray); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- УСЛУГИ (МАСИВНИ КУТИИ В МРЕЖА) --- */
+        /* --- УСЛУГИ --- */
         #features { padding: 60px 0 var(--section-spacing); position: relative; z-index: 2; }
-        
-        .features-grid { 
-            display: grid; 
-            grid-template-columns: repeat(6, 1fr); 
-            gap: 30px; 
-        }
-        
+        .features-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 30px; }
         .feature-card-1, .feature-card-2, .feature-card-3 { grid-column: span 2; }
         .feature-card-4, .feature-card-5 { grid-column: span 3; }
 
-        #features .glass-card { 
-            padding: 50px 40px; 
-            text-align: center; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        
+        #features .glass-card { padding: 50px 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
         #features .glass-card > *:not(.js-tilt-glare) { transform: translateZ(30px); } 
-        
-        .feature-icon { 
-            font-size: 4rem; color: var(--peach-primary); margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.4)); 
-        }
+        .feature-icon { font-size: 4rem; color: var(--peach-primary); margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.4)); }
         #features h3 { font-size: 1.8rem; margin-bottom: 15px; line-height: 1.3; }
         #features p { font-size: 1.1rem; color: var(--text-gray); line-height: 1.6; }
 
-        /* --- ПРОЕКТИ --- */
+        /* --- ПРОЕКТИ (СЪС STICKY ТЕКСТ) --- */
         #projects { padding: var(--section-spacing) 0; background-color: rgba(5,5,7,0.8); }
-        .projects-list { display: flex; flex-direction: column; gap: 60px; }
+        .projects-list { display: flex; flex-direction: column; gap: 80px; }
         
         .project-card-wide { 
             display: flex; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); 
-            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; overflow: hidden; 
             transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+            align-items: flex-start; /* Важно за sticky ефекта */
         }
         .project-card-wide:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15); }
 
-        .project-image-wrapper { flex: 0 0 55%; position: relative; overflow: hidden; border-radius: 24px 0 0 24px; }
+        /* Увеличаваме височината на снимката, за да има място текстът да се плъзга */
+        .project-image-wrapper { flex: 0 0 55%; position: relative; overflow: hidden; border-radius: 24px 0 0 24px; min-height: 500px; }
         .project-card-wide.reverse .project-image-wrapper { border-radius: 0 24px 24px 0; }
         
-        .project-image { width: 100%; height: 100%; min-height: 350px; background-color: #15151e; background-size: cover; background-position: top center; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project-image { width: 100%; height: 100%; position: absolute; background-color: #15151e; background-size: cover; background-position: top center; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .project-image::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 14, 0.5); transition: background 0.5s ease; z-index: 1; }
 
         .project-card-wide:hover .project-image { transform: scale(1.05); }
         .project-card-wide:hover .project-image::before { background: rgba(11, 11, 14, 0.1); }
 
-        .project-info { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        /* Текстът се залепя при скрол */
+        .project-info { 
+            flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center;
+            position: sticky; top: 120px; /* Залепва на 120px от върха на екрана */
+            height: max-content;
+        }
         .project-info h3 { font-size: 2.2rem; margin-bottom: 15px; }
         .project-info p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.8; }
         
@@ -350,9 +276,11 @@
             .hero-buttons { justify-content: center; }
             .hero-subtitle { margin-left: auto; margin-right: auto; }
             .hero-visuals { display: none; } 
-            .project-card-wide, .project-card-wide.reverse { flex-direction: column; }
-            .project-image-wrapper { flex: auto; height: 250px; border-radius: 24px 24px 0 0 !important; }
-            .project-info { padding: 30px; }
+            
+            /* Премахваме sticky ефекта на мобилни, защото няма място */
+            .project-card-wide, .project-card-wide.reverse { flex-direction: column; align-items: stretch;}
+            .project-image-wrapper { flex: auto; min-height: 250px; border-radius: 24px 24px 0 0 !important; }
+            .project-info { position: static; padding: 30px; height: auto;}
         }
         @media (max-width: 768px) {
             * { cursor: auto !important; }
@@ -368,6 +296,7 @@
             .cta-content h2 { font-size: 2.5rem; }
             .marquee-section { font-size: 1rem; }
             #back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px;}
+            #chat-btn { bottom: 20px; left: 20px; width: 50px; height: 50px; font-size: 1.6rem;}
         }
     </style>
 </head>
@@ -384,6 +313,10 @@
     <button id="back-to-top" class="interactive-element" aria-label="Върни се в началото">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
+
+    <a href="https://wa.me/359888123456" target="_blank" rel="noopener noreferrer" id="chat-btn" class="interactive-element" aria-label="Пишете ни във WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <header id="main-header">
         <div class="header-wrapper">
@@ -590,6 +523,31 @@
             </div>
         </section>
 
+        <div class="marquee-section tech-marquee interactive-element">
+            <div class="marquee-content">
+                <div class="marquee-track">
+                    <span>HTML5</span> <i class="fa-brands fa-html5"></i>
+                    <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
+                    <span>JavaScript</span> <i class="fa-brands fa-js"></i>
+                    <span>React</span> <i class="fa-brands fa-react"></i>
+                    <span>WordPress</span> <i class="fa-brands fa-wordpress"></i>
+                    <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
+                    <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
+                    <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
+                </div>
+                <div class="marquee-track">
+                    <span>HTML5</span> <i class="fa-brands fa-html5"></i>
+                    <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
+                    <span>JavaScript</span> <i class="fa-brands fa-js"></i>
+                    <span>React</span> <i class="fa-brands fa-react"></i>
+                    <span>WordPress</span> <i class="fa-brands fa-wordpress"></i>
+                    <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
+                    <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
+                    <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
+                </div>
+            </div>
+        </div>
+
         <section id="testimonials">
             <div class="hero-blobs">
                 <div class="blob blob-2" style="width: 400px; height: 400px; top: 10%; right: -10%;"></div>
@@ -670,7 +628,7 @@
                         </div>
                     </div>
                     <div class="contact-form spotlight-card">
-                        <form action="#" method="POST">
+                        <form action="#" method="POST" id="main-contact-form">
                             <div class="form-group">
                                 <label for="name">Вашето Име</label>
                                 <input type="text" id="name" class="form-control interactive-element" placeholder="Иван Иванов" required>
@@ -811,12 +769,10 @@
         lenis.on('scroll', (e) => {
             let currentScrollY = window.scrollY;
             
-            // Progress Bar
             let scrollHeight = document.body.scrollHeight - window.innerHeight;
             let progress = (currentScrollY / scrollHeight) * 100;
             scrollProgress.style.width = progress + "%";
 
-            // Header Hide/Show
             if (currentScrollY > 150) {
                 if (currentScrollY > lastScrollY) {
                     header.classList.add('hide-header');
@@ -828,13 +784,11 @@
             }
             lastScrollY = currentScrollY;
 
-            // Hero Parallax Fade
             if(currentScrollY < 800) {
                 let opacityValue = 1 - (currentScrollY / 500);
                 heroText.style.opacity = Math.max(0, opacityValue);
             }
 
-            // Back to top бутон показване
             if(currentScrollY > 600) {
                 backToTopBtn.classList.add('show');
             } else {
@@ -918,6 +872,35 @@
                 item.classList.toggle('active');
             });
         });
+
+        // --- 11. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ ---
+        const contactForm = document.getElementById('main-contact-form');
+        if(contactForm) {
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Спира реалното презареждане
+                const originalText = submitBtn.innerHTML;
+                
+                // 1. Състояние "Изпращане"
+                submitBtn.classList.add('sending');
+                submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Изпращане...';
+                
+                // 2. Симулираме изчакване от сървъра (1.5 секунди)
+                setTimeout(() => {
+                    submitBtn.classList.remove('sending');
+                    submitBtn.classList.add('success');
+                    submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Успешно изпратено!';
+                    contactForm.reset(); // Изчиства полетата
+                    
+                    // 3. Връщаме бутона в нормално състояние след 4 секунди
+                    setTimeout(() => {
+                        submitBtn.classList.remove('success');
+                        submitBtn.innerHTML = originalText;
+                    }, 4000);
+                }, 1500);
+            });
+        }
     </script>
 
 </body>
