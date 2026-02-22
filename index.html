@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="PeachWebLab - Лаборатория за иновативен уеб дизайн и разработка. Създаваме бързи, красиви и функционални уебсайтове и онлайн магазини.">
-    <meta name="keywords" content="изработка на сайтове, уеб дизайн, онлайн магазини, SEO оптимизация, уеб разработка, дигитална агенция, PeachWebLab">
+    <meta name="description" content="PeachWebLab - Лаборатория за иновативен уеб дизайн и разработка. Създаваме бързи, красиви и функционални уебсайтове и онлайн магазини с 0 лв. първоначално капаро.">
+    <meta name="keywords" content="изработка на сайтове, уеб дизайн, онлайн магазини, SEO оптимизация, уеб разработка, дигитална агенция, без капаро, PeachWebLab">
     <meta name="author" content="PeachWebLab">
     
     <title>Изработка на сайтове и уеб дизайн | PeachWebLab</title>
@@ -27,7 +27,6 @@
             --section-spacing: 120px;
         }
 
-        /* Премахваме стандартната мишка */
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
 
         body {
@@ -69,28 +68,34 @@
         .section-header { text-align: center; margin-bottom: 70px; }
         .section-title { font-size: 3.8rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1.5px; display: inline-block; background: linear-gradient(90deg, #FFFFFF 0%, var(--peach-primary) 50%, #FFFFFF 100%); background-size: 200% auto; color: transparent; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shineText 4s linear infinite; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4)); }
         @keyframes shineText { to { background-position: 200% center; } }
-        .section-subtitle { color: var(--text-gray); font-size: 1.25rem; font-weight: 400; }
+        .section-subtitle { color: var(--text-gray); font-size: 1.25rem; font-weight: 400; max-width: 700px; margin: 0 auto;}
+        
         .reveal { opacity: 0; transform: translateY(60px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* --- БУТОНИ И ИНТЕРАКЦИИ --- */
         .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 35px; border-radius: 50px; font-weight: 600; border: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: transform 0.1s linear, box-shadow 0.3s ease, background 0.3s ease; }
         .btn * { pointer-events: none; }
-        .btn-primary { background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; box-shadow: 0 10px 25px -5px rgba(255, 90, 95, 0.4); position: relative; overflow: hidden; }
+        .btn-primary { background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; box-shadow: 0 10px 25px -5px rgba(255, 90, 95, 0.4); position: relative; overflow: hidden; width: 100%;}
         .btn-primary::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: all 0.6s ease; }
         .btn-primary:hover::after { left: 100%; }
         .btn-primary:hover { box-shadow: 0 15px 35px -10px rgba(255, 90, 95, 0.7); }
-        .btn-outline { background: rgba(255, 90, 95, 0.05); border: 2px solid var(--peach-primary); color: var(--peach-primary); }
-        .btn-outline:hover { background-color: var(--peach-primary); color: white; }
+        .btn-outline { background: rgba(255, 90, 95, 0.05); border: 2px solid var(--peach-primary); color: var(--peach-primary); width: 100%;}
+        .btn-outline:hover { background-color: var(--peach-primary); color: white; box-shadow: 0 10px 25px rgba(255, 90, 95, 0.3); }
         
         .btn.sending { opacity: 0.8; pointer-events: none; }
         .btn.success { background: #25D366 !important; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important; color: white !important; pointer-events: none; }
 
-        /* --- BACK TO TOP BUTTON --- */
+        /* --- BACK TO TOP & CHAT BUTTONS --- */
         #back-to-top { position: fixed; bottom: 40px; right: 40px; width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4); }
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 90, 95, 0.7); }
         #back-to-top i { pointer-events: none; }
+
+        #chat-btn { position: fixed; bottom: 40px; left: 40px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; font-size: 2rem; display: flex; justify-content: center; align-items: center; z-index: 999; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); transition: transform 0.3s ease; animation: pulseChat 2s infinite; }
+        #chat-btn:hover { transform: scale(1.1); animation: none; }
+        #chat-btn i { pointer-events: none; }
+        @keyframes pulseChat { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
         /* --- ГОРЕН ХЕДЪР --- */
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
@@ -103,11 +108,20 @@
         .nav-links { display: flex; gap: 30px; align-items: center; position: relative;}
         .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 6px; transition: color 0.3s ease; position: relative;}
         .nav-links a:hover { color: var(--peach-primary); }
-        .nav-links i { font-size: 0.7rem; opacity: 0.7; pointer-events: none;}
         
-        /* СВЕТЕЩО "НАЧАЛО" / АКТИВЕН ЛИНК В МЕНЮТО */
+        /* СВЕТЕЩО "НАЧАЛО" ЗА ТАЗИ СТРАНИЦА */
         .nav-links a.active { color: var(--peach-primary); text-shadow: 0 0 12px rgba(255, 90, 95, 0.5); }
         .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 15px; height: 3px; background-color: var(--peach-primary); border-radius: 50px; box-shadow: 0 0 8px var(--peach-primary); }
+
+        /* --- SPOTLIGHT EFFECT CLASS --- */
+        .spotlight-card { position: relative; overflow: hidden; }
+        .spotlight-card::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 90, 95, 0.15), transparent 40%); z-index: 0; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; border-radius: inherit; }
+        .spotlight-card:hover::after { opacity: 1; }
+        .spotlight-card > *:not(.js-tilt-glare):not(::after) { position: relative; z-index: 2; }
+
+        /* --- GLASS CARDS ОБЩИ --- */
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.1); border-left: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); transform-style: preserve-3d; }
+        .glass-card:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15), inset 0 0 20px rgba(255, 90, 95, 0.05); }
 
         /* --- HERO --- */
         #hero { height: 100vh; min-height: 750px; display: flex; align-items: center; position: relative; overflow: hidden; perspective: 1000px; }
@@ -121,6 +135,23 @@
         
         .hero-container { width: 100%; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 60px; } 
         .hero-content { z-index: 1; transform-style: preserve-3d; }
+        
+        /* БАДЖ ЗА 0 ЛВ. РИСК В HERO СЕКЦИЯТА */
+        .hero-trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 90, 95, 0.1);
+            border: 1px solid rgba(255, 90, 95, 0.3);
+            color: var(--peach-primary);
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(255, 90, 95, 0.15);
+        }
+
         .hero-title { font-size: 4.2rem; line-height: 1.15; margin-bottom: 25px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); letter-spacing: -2px; }
         .hero-subtitle { font-size: 1.2rem; color: #cfcfd6; margin-bottom: 40px; max-width: 90%; }
         .hero-buttons { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
@@ -154,17 +185,6 @@
 
         @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- SPOTLIGHT EFFECT CLASS --- */
-        .spotlight-card { position: relative; overflow: hidden; }
-        .spotlight-card::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 90, 95, 0.15), transparent 40%); z-index: 0; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; border-radius: inherit; }
-        .spotlight-card:hover::after { opacity: 1; }
-        .spotlight-card > *:not(.js-tilt-glare):not(::after) { position: relative; z-index: 2; }
-
-        /* --- GLASS CARDS ОБЩИ --- */
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.1); border-left: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); transform-style: preserve-3d; }
-        .glass-card:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15), inset 0 0 20px rgba(255, 90, 95, 0.05); }
-        .glass-card > *:not(.js-tilt-glare) { transform: translateZ(30px); }
-
         /* --- STATS --- */
         #stats { margin-top: 80px; margin-bottom: 80px; position: relative; z-index: 10; }
         #stats .glass-card { padding: 40px 20px; }
@@ -192,7 +212,7 @@
             display: flex; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); 
             border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; overflow: hidden; 
             transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
-            align-items: stretch; /* Разтяга контейнерите еднакво */
+            align-items: stretch;
         }
         .project-card-wide:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15); }
 
@@ -205,16 +225,19 @@
         .project-card-wide:hover .project-image { transform: scale(1.05); }
         .project-card-wide:hover .project-image::before { background: rgba(11, 11, 14, 0.1); }
 
-        /* ВЕРТИКАЛНО ЦЕНТРИРАНЕ НА ТЕКСТА В ПРОЕКТИТЕ */
-        .project-info { 
-            flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center;
-        }
+        .project-info { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
         .project-info h3 { font-size: 2.2rem; margin-bottom: 15px; }
         .project-info p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.8; }
         
         .project-link { color: var(--peach-primary); font-weight: 600; font-size: 1rem; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; align-self: flex-start; padding: 10px 0; position: relative; z-index: 3;}
         .project-link:hover { gap: 15px; text-shadow: 0 0 10px rgba(255, 90, 95, 0.5); }
         .project-card-wide.reverse { flex-direction: row-reverse; }
+
+        /* Банер за гаранция (0 лв. капаро) */
+        .trust-banner { max-width: 900px; margin: 60px auto 0; background: rgba(255, 90, 95, 0.05); border: 1px solid rgba(255, 90, 95, 0.2); border-radius: 20px; padding: 30px 40px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .trust-banner i { font-size: 3rem; color: var(--peach-primary); filter: drop-shadow(0 0 10px rgba(255,90,95,0.4));}
+        .trust-banner h4 { font-size: 1.4rem; margin-bottom: 5px; color: #fff;}
+        .trust-banner p { color: var(--text-gray); font-size: 1rem; margin: 0; line-height: 1.6;}
 
         /* --- ОТЗИВИ И FAQ --- */
         #testimonials { padding: var(--section-spacing) 0; position: relative; overflow: hidden; }
@@ -228,7 +251,7 @@
         .client-details h4 { font-size: 1.1rem; margin-bottom: 2px; }
         .client-details p { font-size: 0.9rem; color: var(--peach-primary); }
 
-        #faq { padding: var(--section-spacing) 0; background-color: rgba(5,5,7,0.8); }
+        #faq { padding: 60px 0 var(--section-spacing); background-color: rgba(5,5,7,0.8); }
         .faq-container { max-width: 800px; margin: 0 auto; }
         .faq-item { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; }
         .faq-item.active { border-color: rgba(255, 90, 95, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
@@ -237,7 +260,7 @@
         .faq-question i { color: var(--peach-primary); transition: transform 0.3s ease; pointer-events: none; }
         .faq-item.active .faq-question i { transform: rotate(180deg); }
         .faq-answer { padding: 0 30px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-gray); }
-        .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; }
+        .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; line-height: 1.6;}
 
         /* --- ФОРМА ЗА КОНТАКТИ --- */
         #cta { padding: 100px 0; position: relative; background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02)); border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15); overflow: hidden; }
@@ -265,6 +288,7 @@
         @media (max-width: 1100px) {
             .features-grid { grid-template-columns: 1fr 1fr; } 
             .feature-card-1, .feature-card-2, .feature-card-3, .feature-card-4, .feature-card-5 { grid-column: span 1; }
+            .trust-banner { flex-direction: column; text-align: center; gap: 15px;}
         }
         @media (max-width: 968px) { 
             .hero-container { grid-template-columns: 1fr; text-align: center; }
@@ -279,32 +303,29 @@
             .footer-grid { grid-template-columns: 1fr 1fr; text-align: left;}
         }
         @media (max-width: 768px) {
-            /* СКРИВАМЕ МИШКАТА НА ТЕЛЕФОНИ */
             * { cursor: auto !important; }
             .cursor-dot, .cursor-outline { display: none !important; }
             
-            /* ЦЕНТРИРАН ХЕДЪР */
             .header-wrapper { flex-direction: column; gap: 15px; }
             .nav-menu-container { padding: 12px 20px; width: 100%; display: flex; justify-content: center;}
             .nav-links { gap: 15px; justify-content: center; width: 100%; padding: 0; margin: 0; flex-wrap: wrap;}
             .nav-buttons { display: none; }
             
-            /* ХЕРО ТЕКСТ С ОТСТОЯНИЯ ЗА ДА ДИША */
             .hero-content { padding: 0 15px; }
             .hero-title { font-size: 2.6rem; }
-            
             .section-title { font-size: 2.5rem; } 
+            
             .features-grid { grid-template-columns: 1fr; } 
             .stats-grid { flex-direction: column; gap: 40px; }
             .contact-grid, .footer-grid { grid-template-columns: 1fr; text-align: center; }
             
-            /* ЦЕНТРИРАНЕ НА ФУТЪР ТЕКСТА */
             .footer-about p { margin: 0 auto 20px auto; max-width: 100%; }
             .footer-col ul { padding: 0; }
             
             .cta-content h2 { font-size: 2.2rem; }
             .marquee-section { font-size: 1rem; }
             #back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px;}
+            #chat-btn { display: none; }
         }
     </style>
 </head>
@@ -322,6 +343,10 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
+    <a href="https://wa.me/359889030110" target="_blank" rel="noopener noreferrer" id="chat-btn" class="interactive-element" aria-label="Пишете ни във WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <header id="main-header">
         <div class="header-wrapper">
             <a href="#" class="logo interactive-element">Peach<span>WebLab</span>.</a>
@@ -330,7 +355,7 @@
                     <ul class="nav-links">
                         <li><a href="#" class="interactive-element active">Начало</a></li>
                         <li><a href="#features" class="interactive-element">Услуги</a></li>
-                        <li><a href="#pricing" class="interactive-element">Цени</a></li>
+                        <li><a href="prices.html" class="interactive-element">Цени</a></li>
                         <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
                 </nav>
@@ -353,6 +378,11 @@
             <div class="container hero-container" id="hero-text-content" data-tilt data-tilt-max="1" data-tilt-speed="400" data-tilt-perspective="1000">
                 
                 <div class="hero-content">
+                    
+                    <div class="hero-trust-badge fade-in-up delay-1">
+                        <i class="fa-solid fa-shield-halved"></i> 100% без риск: 0 лв. капаро. Плащате при готов сайт!
+                    </div>
+
                     <h1 class="hero-title fade-in-up">
                         Изработка на <br>
                         <span class="peach-text-gradient">успешни уебсайтове</span> <br>и онлайн магазини.
@@ -542,6 +572,15 @@
                     </div>
 
                 </div>
+
+                <div class="trust-banner reveal interactive-element">
+                    <i class="fa-solid fa-handshake-angle"></i>
+                    <div>
+                        <h4>100% Защита за клиента (0 лв. Капаро)</h4>
+                        <p>Вие не поемате риск. Ние изграждаме всичко от нулата с чист код. Заплащате уговорената цена <strong>едва след като видите готовия сайт</strong> и сте напълно удовлетворени от резултата.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -629,6 +668,14 @@
                     <p class="section-subtitle">Отговаряме на най-важното</p>
                 </div>
                 <div class="faq-container reveal">
+                    
+                    <div class="faq-item spotlight-card interactive-element">
+                        <div class="faq-question" style="color: var(--peach-primary);">Има ли капаро и кога се плаща? <i class="fa-solid fa-chevron-down"></i></div>
+                        <div class="faq-answer">
+                            <p><strong>Работим с 0% първоначален риск за вас!</strong> Не изискваме капаро. Изработваме сайта на наш тестов сървър, за да следите процеса. Вие заплащате пълната сума по банков път <strong>едва когато сайтът е напълно готов</strong> и одобрен от вас.</p>
+                        </div>
+                    </div>
+
                     <div class="faq-item spotlight-card interactive-element">
                         <div class="faq-question">Колко време отнема изработката на един сайт? <i class="fa-solid fa-chevron-down"></i></div>
                         <div class="faq-answer">
@@ -639,12 +686,6 @@
                         <div class="faq-question">Ще мога ли сам да редактирам съдържанието си? <i class="fa-solid fa-chevron-down"></i></div>
                         <div class="faq-answer">
                             <p>Абсолютно! Ние интегрираме лесен за използване административен панел, чрез който ще можете да променяте текстове, снимки и услуги без никакви технически познания.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item spotlight-card interactive-element">
-                        <div class="faq-question">Предлагате ли поддръжка след създаването на сайта? <i class="fa-solid fa-chevron-down"></i></div>
-                        <div class="faq-answer">
-                            <p>Да, предлагаме различни планове за месечна техническа поддръжка, ъпдейти на сигурността и добавяне на нови функционалности при нужда.</p>
                         </div>
                     </div>
                 </div>
@@ -694,15 +735,15 @@
         <div class="container reveal">
             <div class="footer-grid">
                 <div class="footer-col footer-about">
-                    <a href="#" class="logo interactive-element">Peach<span>WebLab</span>.</a>
+                    <a href="index.html" class="logo interactive-element">Peach<span>WebLab</span>.</a>
                     <p>Вашият партньор в дигиталния свят. Изкуство, чист код и страст към иновациите.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Навигация</h4>
                     <ul>
-                        <li><a href="#" class="interactive-element">Начало</a></li>
-                        <li><a href="#features" class="interactive-element">Услуги</a></li>
-                        <li><a href="#pricing" class="interactive-element">Цени</a></li>
+                        <li><a href="index.html" class="interactive-element">Начало</a></li>
+                        <li><a href="index.html#features" class="interactive-element">Услуги</a></li>
+                        <li><a href="prices.html" class="interactive-element">Цени</a></li>
                         <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
                 </div>
@@ -755,7 +796,7 @@
         // --- 3. FLUID CURSOR ---
         const dot = document.getElementById('cursor-dot');
         const outline = document.getElementById('cursor-outline');
-        const interactiveEls = document.querySelectorAll('a, .btn, .interactive-element, .faq-question, input, textarea, button');
+        const interactiveEls = document.querySelectorAll('a, .btn, .interactive-element, input, textarea, button');
 
         let mouseX = 0, mouseY = 0;
         let outlineX = 0, outlineY = 0;
@@ -799,7 +840,6 @@
         // --- 5. SCROLL ЕФЕКТИ & BACK TO TOP ---
         const scrollProgress = document.getElementById('scroll-progress');
         const header = document.getElementById('main-header');
-        const heroText = document.getElementById('hero-text-content');
         const backToTopBtn = document.getElementById('back-to-top');
         let lastScrollY = window.scrollY;
 
@@ -810,7 +850,7 @@
             let progress = (currentScrollY / scrollHeight) * 100;
             scrollProgress.style.width = progress + "%";
 
-            if (currentScrollY > 150) {
+            if (currentScrollY > 100) {
                 if (currentScrollY > lastScrollY) {
                     header.classList.add('hide-header');
                 } else {
@@ -821,12 +861,7 @@
             }
             lastScrollY = currentScrollY;
 
-            if(currentScrollY < 800) {
-                let opacityValue = 1 - (currentScrollY / 500);
-                heroText.style.opacity = Math.max(0, opacityValue);
-            }
-
-            if(currentScrollY > 600) {
+            if(currentScrollY > 400) {
                 backToTopBtn.classList.add('show');
             } else {
                 backToTopBtn.classList.remove('show');
@@ -853,11 +888,13 @@
 
         // --- 7. ПАРАЛАКС НА ФОНА ---
         const parallaxBg = document.getElementById('parallax-bg');
-        document.addEventListener('mousemove', function(e) {
-            const x = (window.innerWidth - e.clientX * 2) / 90;
-            const y = (window.innerHeight - e.clientY * 2) / 90;
-            parallaxBg.style.transform = `translate(${x}px, ${y}px)`;
-        });
+        if(parallaxBg) {
+            document.addEventListener('mousemove', function(e) {
+                const x = (window.innerWidth - e.clientX * 2) / 90;
+                const y = (window.innerHeight - e.clientY * 2) / 90;
+                parallaxBg.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        }
 
         // --- 8. REVEAL АНИМАЦИИ ---
         function reveal() {
@@ -865,40 +902,12 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) reveals[i].classList.add("active");
+                if (elementTop < windowHeight - 50) reveals[i].classList.add("active");
             }
         }
         window.addEventListener("scroll", reveal);
 
-        // --- 9. АНИМИРАНИ БРОЯЧИ ---
-        const counters = document.querySelectorAll('.counter');
-        let hasCounted = false;
-        window.addEventListener('scroll', () => {
-            const statsSection = document.getElementById('stats');
-            if(!statsSection) return;
-            const sectionPos = statsSection.getBoundingClientRect().top;
-            
-            if(sectionPos < window.innerHeight && !hasCounted) {
-                counters.forEach(counter => {
-                    const updateCount = () => {
-                        const target = +counter.getAttribute('data-target');
-                        const count = +counter.innerText;
-                        const inc = target / 40; 
-                        
-                        if (count < target) {
-                            counter.innerText = Math.ceil(count + inc);
-                            setTimeout(updateCount, 40);
-                        } else {
-                            counter.innerText = target;
-                        }
-                    };
-                    updateCount();
-                });
-                hasCounted = true;
-            }
-        });
-
-        // --- 10. FAQ АКОРДЕОН ---
+        // --- 9. FAQ АКОРДЕОН ---
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
@@ -910,7 +919,7 @@
             });
         });
 
-        // --- 11. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ ---
+        // --- 10. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ ---
         const contactForm = document.getElementById('main-contact-form');
         if(contactForm) {
             const submitBtn = contactForm.querySelector('button[type="submit"]');
