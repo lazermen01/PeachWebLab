@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="Прозрачни цени за изработка на уебсайт и онлайн магазин от PeachWebLab. Индивидуален дизайн, безплатни домейн и хостинг, SEO и техническа поддръжка.">
-    <meta name="keywords" content="цени за изработка на сайт, цена за онлайн магазин, уеб дизайн цени, етапи на изработка, абонаментна поддръжка, PeachWebLab ценоразпис">
+    <meta name="description" content="Прозрачни цени за изработка на уебсайт и онлайн магазин от PeachWebLab. Индивидуален дизайн, безплатни домейн и хостинг. Плащане едва когато сайтът е напълно готов!">
+    <meta name="keywords" content="цени за изработка на сайт, цена за онлайн магазин, уеб дизайн цени, етапи на изработка, без капаро, плащане при готов сайт, PeachWebLab">
     <meta name="author" content="PeachWebLab">
     
     <title>Цени за изработка на уебсайт и онлайн магазин | PeachWebLab</title>
@@ -109,7 +109,6 @@
         .nav-links a { font-weight: 500; font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 6px; transition: color 0.3s ease; position: relative;}
         .nav-links a:hover { color: var(--peach-primary); }
         
-        /* СВЕТЕЩО "ЦЕНИ" ЗА ТАЗИ СТРАНИЦА */
         .nav-links a.active { color: var(--peach-primary); text-shadow: 0 0 12px rgba(255, 90, 95, 0.5); }
         .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 15px; height: 3px; background-color: var(--peach-primary); border-radius: 50px; box-shadow: 0 0 8px var(--peach-primary); }
 
@@ -132,50 +131,33 @@
         /* --- PRICING CARDS --- */
         #pricing-cards { padding-bottom: 60px; position: relative; z-index: 2; }
         
-        /* Използваме align-items: center; за да може средната кутия да стърчи нагоре и надолу */
         .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: center; }
         
-        .pricing-card { 
-            display: flex; flex-direction: column; padding: 40px 30px; text-align: left; position: relative;
-        }
+        .pricing-card { display: flex; flex-direction: column; padding: 40px 30px; text-align: left; position: relative; }
         .pricing-card > *:not(.js-tilt-glare) { transform: translateZ(20px); } 
         
-        /* Акцент върху средната карта (Бизнес Уебсайт) - ОГРОМНА И МАСИВНА */
+        /* Акцент върху средната карта (Бизнес Уебсайт) */
         .pricing-card.popular { 
-            padding: 60px 40px; /* По-голям падинг прави кутията по-висока и масивна */
+            padding: 60px 40px; 
             border-color: rgba(255, 90, 95, 0.6); 
             box-shadow: 0 30px 60px rgba(255, 90, 95, 0.2); 
             background: rgba(255, 255, 255, 0.04);
             z-index: 5;
         }
         
-        /* Поправен бадж, за да не стърчи извън картата */
-        .popular-badge { 
-            position: absolute; 
-            top: 0; 
-            right: 0; 
-            background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); 
-            color: white; 
-            padding: 8px 25px; 
-            border-radius: 0 24px 0 20px; 
-            font-size: 0.9rem; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            box-shadow: -5px 5px 15px rgba(255,90,95,0.3);
-            z-index: 10;
-        }
+        .popular-badge { position: absolute; top: 0; right: 0; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; padding: 8px 25px; border-radius: 0 24px 0 20px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; box-shadow: -5px 5px 15px rgba(255,90,95,0.3); z-index: 10; }
 
         .pricing-header h3 { font-size: 1.8rem; margin-bottom: 5px; }
-        .popular .pricing-header h3 { font-size: 2.2rem; } /* По-голямо заглавие за средната */
-        
+        .popular .pricing-header h3 { font-size: 2.2rem; } 
         .pricing-header p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 20px; min-height: 45px;}
         
         .pricing-price { font-size: 3rem; font-weight: 800; color: var(--text-light); margin-bottom: 5px; display: flex; align-items:baseline; gap: 5px; line-height: 1;}
-        .popular .pricing-price { font-size: 3.8rem; color: var(--peach-primary); text-shadow: 0 0 20px rgba(255,90,95,0.3);} /* Светеща цена за средната */
-        
+        .popular .pricing-price { font-size: 3.8rem; color: var(--peach-primary); text-shadow: 0 0 20px rgba(255,90,95,0.3);} 
         .pricing-price span.currency { font-size: 1.2rem; font-weight: 600; color: var(--text-light); margin-top: 5px;}
-        .pricing-subprice { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 30px; font-weight: 500;}
+        
+        /* Гаранцията за плащане при готов сайт */
+        .pricing-subprice { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 30px; font-weight: 500; line-height: 1.6;}
+        .guarantee-text { color: var(--peach-primary); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; margin-top: 3px; }
 
         .pricing-features { flex-grow: 1; margin-bottom: 40px; }
         .pricing-features li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; font-size: 1rem; color: #cfcfd6; line-height: 1.4;}
@@ -185,25 +167,20 @@
         .pricing-features li .feature-value strike { color: rgba(255,255,255,0.3); margin-right: 5px;}
 
         /* Банер за гаранция */
-        .trust-banner {
-            max-width: 900px; margin: 60px auto 0; background: rgba(255, 90, 95, 0.05); border: 1px solid rgba(255, 90, 95, 0.2); border-radius: 20px; padding: 30px 40px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+        .trust-banner { max-width: 900px; margin: 60px auto 0; background: rgba(255, 90, 95, 0.05); border: 1px solid rgba(255, 90, 95, 0.2); border-radius: 20px; padding: 30px 40px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .trust-banner i { font-size: 3rem; color: var(--peach-primary); filter: drop-shadow(0 0 10px rgba(255,90,95,0.4));}
         .trust-banner h4 { font-size: 1.4rem; margin-bottom: 5px; color: #fff;}
-        .trust-banner p { color: var(--text-gray); font-size: 1rem; margin: 0;}
+        .trust-banner p { color: var(--text-gray); font-size: 1rem; margin: 0; line-height: 1.6;}
 
-        /* --- СЕКЦИЯ: ПРОЦЕС НА РАБОТА (SEO ОПТИМИЗИРАНА) --- */
+        /* --- СЕКЦИЯ: ПРОЦЕС НА РАБОТА --- */
         #process { padding: 60px 0 var(--section-spacing); position: relative; z-index: 2; }
         .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
         
         .process-step { padding: 40px 30px; position: relative; overflow: hidden; }
         .process-step > *:not(.js-tilt-glare) { transform: translateZ(20px); }
         
-        .step-number { 
-            font-size: 6rem; font-weight: 800; color: rgba(255, 90, 95, 0.05); 
-            position: absolute; top: -10px; right: 10px; line-height: 1; z-index: 0; pointer-events: none;
-        }
-        .process-step h3 { font-size: 1.4rem; margin-bottom: 15px; position: relative; z-index: 1; color: var(--peach-primary);}
+        .step-number { font-size: 6rem; font-weight: 800; color: rgba(255, 90, 95, 0.05); position: absolute; top: -10px; right: 10px; line-height: 1; z-index: 0; pointer-events: none; }
+        .process-step h3 { font-size: 1.4rem; margin-bottom: 15px; position: relative; z-index: 1; color: var(--text-light);}
         .process-step p { color: var(--text-gray); font-size: 0.95rem; position: relative; z-index: 1; line-height: 1.6;}
 
         /* --- FAQ СЕКЦИЯ ЗА ЦЕНИТЕ --- */
@@ -216,14 +193,14 @@
         .faq-question i { color: var(--peach-primary); transition: transform 0.3s ease; pointer-events: none; }
         .faq-item.active .faq-question i { transform: rotate(180deg); }
         .faq-answer { padding: 0 30px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-gray); }
-        .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; }
+        .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; line-height: 1.6;}
 
         /* --- ФОРМА ЗА КОНТАКТИ --- */
         #cta { padding: 100px 0; position: relative; background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02)); border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15); overflow: hidden; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
         .cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 90, 95, 0.3); letter-spacing: -1px; }
         .cta-content p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; }
-        .contact-form { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .contact-form { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-gray); }
         .form-control { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s ease; cursor: none; }
@@ -243,7 +220,8 @@
         /* --- РЕСПОНСИВ --- */
         @media (max-width: 1150px) {
             .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; gap: 50px;}
-            .pricing-card.popular { padding: 40px 30px; } /* На таблет няма нужда да е огромна */
+            .pricing-card.popular { transform: scale(1); padding: 40px 30px; } 
+            .pricing-card.popular:hover { transform: scale(1.02); }
             .process-grid { grid-template-columns: 1fr 1fr; }
             .trust-banner { flex-direction: column; text-align: center; gap: 15px;}
         }
@@ -257,7 +235,6 @@
             .nav-buttons { display: none; }
             
             .section-title { font-size: 2.8rem; } 
-            
             #pricing-hero { padding-top: 140px; padding-bottom: 40px;}
             
             .process-grid { grid-template-columns: 1fr; }
@@ -317,8 +294,8 @@
             </div>
             <div class="container reveal">
                 <div class="section-header" style="margin-bottom: 30px;">
-                    <h1 class="section-title">Прозрачни цени.<br>Без скрити такси.</h1>
-                    <p class="section-subtitle">Инвестирайте в дигитално присъствие, което възвръща стойността си. Изберете пакетът, който отговаря на вашите нужди.</p>
+                    <h1 class="section-title">Прозрачни цени.<br>0 лв. първоначален риск.</h1>
+                    <p class="section-subtitle">Изберете пакет, а плащането оставете за накрая – плащате пълната сума чак когато сайтът е готов и напълно одобрен от вас!</p>
                 </div>
             </div>
         </section>
@@ -335,7 +312,10 @@
                         <div class="pricing-price">
                             690 <span class="currency">EUR</span>
                         </div>
-                        <p class="pricing-subprice">Еднократна такса (~1350 BGN)</p>
+                        <div class="pricing-subprice">
+                            Еднократна такса (~1350 BGN)
+                            <div class="guarantee-text"><i class="fa-solid fa-shield-check"></i> Плащане при готов сайт</div>
+                        </div>
                         
                         <ul class="pricing-features">
                             <li>
@@ -359,7 +339,7 @@
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Качване и SEO на до 200 продукта</div>
+                                <div class="feature-text">Качване и E-commerce SEO на до 200 продукта</div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
@@ -387,7 +367,10 @@
                         <div class="pricing-price">
                             370 <span class="currency">EUR</span>
                         </div>
-                        <p class="pricing-subprice">Еднократна такса (~720 BGN)</p>
+                        <div class="pricing-subprice">
+                            Еднократна такса (~720 BGN)
+                            <div class="guarantee-text"><i class="fa-solid fa-shield-check"></i> Плащане при готов сайт</div>
+                        </div>
                         
                         <ul class="pricing-features">
                             <li>
@@ -444,7 +427,9 @@
                         <div class="pricing-price" style="font-size: 2.2rem; margin: 31px 0;">
                             По договаряне
                         </div>
-                        <p class="pricing-subprice">След безплатна консултация</p>
+                        <div class="pricing-subprice">
+                            След безплатна консултация
+                        </div>
                         
                         <ul class="pricing-features">
                             <li>
@@ -482,10 +467,10 @@
                 </div>
                 
                 <div class="trust-banner reveal interactive-element">
-                    <i class="fa-solid fa-award"></i>
+                    <i class="fa-solid fa-handshake-angle"></i>
                     <div>
-                        <h4>Безкомпромисно Качество</h4>
-                        <p>Ние не използваме готови, бавни и пълни с грешки темплейти. Всеки един проект се изгражда от нулата с чист код, за да гарантираме светкавична скорост, сигурност и дизайн, който продава.</p>
+                        <h4>100% Защита за клиента (0 лв. Капаро)</h4>
+                        <p>Вие не поемате риск. Ние изграждаме всичко от нулата с чист код. Заплащате уговорената цена <strong>едва след като видите готовия сайт</strong> и сте напълно удовлетворени от резултата.</p>
                     </div>
                 </div>
 
@@ -495,33 +480,33 @@
         <section id="process">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="section-title">Как работим?</h2>
+                    <h2 class="section-title">Етапи на работа</h2>
                     <p class="section-subtitle">Изграден и оптимизиран процес, гарантиращ успешен краен продукт.</p>
                 </div>
                 
                 <div class="process-grid">
                     <div class="glass-card spotlight-card process-step reveal interactive-element" data-tilt data-tilt-max="5">
                         <div class="step-number">01</div>
-                        <h3>Планиране и Стратегия</h3>
-                        <p>Започваме с детайлно проучване на вашия бизнес, целевата аудитория и конкуренцията. Изграждаме логическа структура (Wireframing), която ще води клиентите ви към покупка.</p>
+                        <h3>Стратегия и Концепция</h3>
+                        <p>Започваме с детайлно проучване на вашия бизнес, целевата аудитория и конкуренцията. Изграждаме логическа структура, която ще води клиентите ви към покупка.</p>
                     </div>
                     
                     <div class="glass-card spotlight-card process-step reveal interactive-element" data-tilt data-tilt-max="5" style="transition-delay: 0.1s;">
                         <div class="step-number">02</div>
-                        <h3>Уникален UI/UX Дизайн</h3>
-                        <p>На базата на проучването, създаваме изцяло персонализиран, модерен и интуитивен дизайн. Фокусираме се върху потребителското изживяване и мобилната версия.</p>
+                        <h3>Дизайн и Разработка</h3>
+                        <p>Създаваме изцяло персонализиран UI/UX дизайн. След одобрение го превръщаме във функциониращ уебсайт, използвайки най-новите технологии за максимална скорост.</p>
                     </div>
 
                     <div class="glass-card spotlight-card process-step reveal interactive-element" data-tilt data-tilt-max="5" style="transition-delay: 0.2s;">
                         <div class="step-number">03</div>
-                        <h3>Програмиране и Чист код</h3>
-                        <p>Превръщаме дизайна във функциониращ уебсайт, използвайки най-новите технологии. Пишем лек и оптимизиран код, който гарантира светкавична скорост на зареждане.</p>
+                        <h3 style="color: var(--peach-primary);">Тест и Одобрение</h3>
+                        <p>Качваме сайта на наш тестов сървър, за да го разгледате реално. Правим финални корекции до пълното ви удовлетворение. <strong>До този момент не дължите нищо.</strong></p>
                     </div>
 
                     <div class="glass-card spotlight-card process-step reveal interactive-element" data-tilt data-tilt-max="5" style="transition-delay: 0.3s;">
                         <div class="step-number">04</div>
-                        <h3>SEO и Пускане онлайн</h3>
-                        <p>Извършваме пълна техническа SEO оптимизация, свързваме сайта с Google Analytics и го пускаме официално. Осигуряваме обучение и продължаваща техническа поддръжка.</p>
+                        <h3 style="color: #25D366;">Плащане и Старт</h3>
+                        <p>Заплащате пълната сума <strong>едва когато сте 100% доволни</strong> от резултата. След това прехвърляме сайта на вашия домейн, индексираме го в Google и стартираме!</p>
                     </div>
                 </div>
             </div>
@@ -534,18 +519,21 @@
                     <p class="section-subtitle">Всичко, което трябва да знаете за плащанията и процеса</p>
                 </div>
                 <div class="faq-container reveal">
+                    
+                    <div class="faq-item spotlight-card interactive-element">
+                        <div class="faq-question" style="color: var(--peach-primary);">Има ли капаро и кога се плаща? <i class="fa-solid fa-chevron-down"></i></div>
+                        <div class="faq-answer">
+                            <p><strong>Работим с 0% първоначален риск за вас!</strong> Не изискваме капаро. Изработваме сайта на наш тестов сървър, за да следите процеса. Вие заплащате пълната сума по банков път <strong>едва когато сайтът е напълно готов</strong>, одобрен от вас и готов за прехвърляне на вашия реален домейн.</p>
+                        </div>
+                    </div>
+
                     <div class="faq-item spotlight-card interactive-element">
                         <div class="faq-question">Има ли скрити такси след изработката? <i class="fa-solid fa-chevron-down"></i></div>
                         <div class="faq-answer">
                             <p>Не. Всички планове включват безплатен домейн, хостинг и SSL сертификат за първата година. След изтичането на 12-те месеца, се заплаща стандартна годишна такса за тяхното подновяване (около 150-200 лв./год. в зависимост от параметрите на сайта).</p>
                         </div>
                     </div>
-                    <div class="faq-item spotlight-card interactive-element">
-                        <div class="faq-question">Как се извършва плащането? <i class="fa-solid fa-chevron-down"></i></div>
-                        <div class="faq-answer">
-                            <p>За да стартираме работа по вашия проект, се заплаща капаро в размер на 50% от сумата. Останалите 50% се доплащат едва след като сайтът е напълно готов, одобрен от вас и пуснат реално онлайн.</p>
-                        </div>
-                    </div>
+                    
                     <div class="faq-item spotlight-card interactive-element">
                         <div class="faq-question">Мога ли да започна с Бизнес сайт и после да добавя магазин? <i class="fa-solid fa-chevron-down"></i></div>
                         <div class="faq-answer">
