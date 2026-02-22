@@ -138,7 +138,7 @@
         }
         .pricing-card > *:not(.js-tilt-glare) { transform: translateZ(20px); } 
         
-        /* Акцент върху средната карта (Бизнес Уебсайт) */
+        /* Акцент върху средната карта */
         .pricing-card.popular { 
             border-color: rgba(255, 90, 95, 0.5); 
             box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15); 
@@ -147,7 +147,6 @@
             z-index: 5;
         }
         
-        /* Поправен бадж, за да не стърчи извън картата */
         .popular-badge { 
             position: absolute; 
             top: 0; 
@@ -155,7 +154,7 @@
             background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); 
             color: white; 
             padding: 8px 20px; 
-            border-radius: 0 24px 0 20px; /* Следва извивката на картата */
+            border-radius: 0 24px 0 20px;
             font-size: 0.85rem; 
             font-weight: 700; 
             text-transform: uppercase; 
@@ -248,7 +247,7 @@
             .footer-col ul { padding: 0; }
             
             #back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px;}
-            #chat-btn { bottom: 20px; left: 20px; width: 50px; height: 50px; font-size: 1.6rem;}
+            #chat-btn { display: none; } /* Скриваме го на телефон, за да не пречи, но ако искаш можем да го оставим */
         }
     </style>
 </head>
@@ -265,10 +264,6 @@
     <button id="back-to-top" class="interactive-element" aria-label="Върни се в началото">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-
-    <a href="https://wa.me/359889030110" target="_blank" rel="noopener noreferrer" id="chat-btn" class="interactive-element" aria-label="Пишете ни във WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
 
     <header id="main-header">
         <div class="header-wrapper">
@@ -320,7 +315,7 @@
                         <ul class="pricing-features">
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text"><strong>Индивидуален UI/UX дизайн (без темплейти)</strong></div>
+                                <div class="feature-text"><strong>Уникален UI/UX дизайн (Без темплейти)</strong></div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
@@ -328,7 +323,7 @@
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text"><strong>Технически съпорт и помощ при нужда</strong></div>
+                                <div class="feature-text"><strong>Осигурен технически съпорт и помощ</strong></div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
@@ -339,15 +334,23 @@
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Качване на до 200 продукта</div>
+                                <div class="feature-text">Качване и E-commerce SEO на до 200 продукта</div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Интеграция с Еконт и Спиди</div>
+                                <div class="feature-text">Интеграция с куриери (Еконт, Спиди)</div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
                                 <div class="feature-text">Плащане с карта (Stripe) и наложен платеж</div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                <div class="feature-text">Интеграция на Facebook Pixel и Analytics</div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                <div class="feature-text">Автоматизирани имейли при поръчка</div>
                             </li>
                         </ul>
                         <a href="#cta" class="btn btn-outline magnetic interactive-element">Избери този план</a>
@@ -368,7 +371,7 @@
                         <ul class="pricing-features">
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text"><strong>Индивидуален UI/UX дизайн (без темплейти)</strong></div>
+                                <div class="feature-text"><strong>Уникален UI/UX дизайн (Без темплейти)</strong></div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
@@ -376,7 +379,7 @@
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text"><strong>Технически съпорт и помощ при нужда</strong></div>
+                                <div class="feature-text"><strong>Осигурен технически съпорт и помощ</strong></div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
@@ -394,11 +397,19 @@
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Изграждане на до 5 страници</div>
+                                <div class="feature-text">Изграждане на до 5-7 страници</div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Базова SEO оптимизация за Google</div>
+                                <div class="feature-text">Пълна On-Page и Локална SEO оптимизация</div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                <div class="feature-text">Интеграция на Google Maps и Соц. мрежи</div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                <div class="feature-text">GDPR съвместимост и бисквитки</div>
                             </li>
                         </ul>
                         <a href="#cta" class="btn btn-primary magnetic interactive-element">Избери този план</a>
@@ -417,11 +428,11 @@
                         <ul class="pricing-features">
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text"><strong>Индивидуален UI/UX дизайн (без темплейти)</strong></div>
+                                <div class="feature-text"><strong>Изцяло индивидуална логика и архитектура</strong></div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text"><strong>Оптимизиран за максимална скорост</strong></div>
+                                <div class="feature-text"><strong>Безкомпромисна скорост на зареждане</strong></div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
@@ -433,11 +444,19 @@
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Специфични API интеграции (ERP, Счетоводство)</div>
+                                <div class="feature-text">Интеграция със счетоводен софтуер / ERP</div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-check"></i>
-                                <div class="feature-text">Многоезичност (Multi-language)</div>
+                                <div class="feature-text">Разработка на къстъм модули (Резервации и др.)</div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                <div class="feature-text">Многоезичност (Multi-language) и мулти-валутност</div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                <div class="feature-text">Цялостна SEO стратегия и проучване</div>
                             </li>
                         </ul>
                         <a href="#cta" class="btn btn-outline magnetic interactive-element">Заяви оферта</a>
@@ -448,8 +467,8 @@
                 <div class="trust-banner reveal interactive-element">
                     <i class="fa-solid fa-award"></i>
                     <div>
-                        <h4>Гаранция за качество</h4>
-                        <p>Ние не използваме готови, бавни темплейти. Всеки един проект се изгражда от нулата с чист код, за да гарантираме светкавична скорост, сигурност и уникален дизайн, който продава.</p>
+                        <h4>Безкомпромисно Качество</h4>
+                        <p>Ние не използваме готови, бавни и пълни с грешки темплейти. Всеки един проект се изгражда от нулата с чист код, за да гарантираме светкавична скорост, сигурност и дизайн, който продава.</p>
                     </div>
                 </div>
 
@@ -466,19 +485,19 @@
                     <div class="faq-item spotlight-card interactive-element">
                         <div class="faq-question">Има ли скрити такси след изработката? <i class="fa-solid fa-chevron-down"></i></div>
                         <div class="faq-answer">
-                            <p>Не. Всички планове включват безплатен домейн, хостинг и SSL сертификат за първата година. След изтичането на 12-те месеца, се заплаща стандартна годишна такса за тяхното подновяване (около 150-200 лв./год. в зависимост от параметрите).</p>
+                            <p>Не. Всички планове включват безплатен домейн, хостинг и SSL сертификат за първата година. След изтичането на 12-те месеца, се заплаща стандартна годишна такса за тяхното подновяване (около 150-200 лв./год. в зависимост от параметрите на сайта).</p>
                         </div>
                     </div>
                     <div class="faq-item spotlight-card interactive-element">
                         <div class="faq-question">Как се извършва плащането? <i class="fa-solid fa-chevron-down"></i></div>
                         <div class="faq-answer">
-                            <p>За да стартираме работа по вашия проект, се заплаща капаро в размер на 50% от сумата. Останалите 50% се доплащат едва след като сайтът е напълно готов, одобрен от вас и пуснат онлайн.</p>
+                            <p>За да стартираме работа по вашия проект, се заплаща капаро в размер на 50% от сумата. Останалите 50% се доплащат едва след като сайтът е напълно готов, одобрен от вас и пуснат реално онлайн.</p>
                         </div>
                     </div>
                     <div class="faq-item spotlight-card interactive-element">
                         <div class="faq-question">Мога ли да започна с Бизнес сайт и после да добавя магазин? <i class="fa-solid fa-chevron-down"></i></div>
                         <div class="faq-answer">
-                            <p>Абсолютно! Нашите сайтове са гъвкави. Можете да стартирате с презентационен уебсайт сега и след време да надградим системата с пълнофункционален онлайн магазин, плащайки само разликата.</p>
+                            <p>Абсолютно! Нашите сайтове са изключително гъвкави. Можете да стартирате с презентационен уебсайт сега и след време да надградим системата с пълнофункционален онлайн магазин, като доплатите само разликата в изработката.</p>
                         </div>
                     </div>
                 </div>
@@ -589,7 +608,7 @@
         // --- 3. FLUID CURSOR ---
         const dot = document.getElementById('cursor-dot');
         const outline = document.getElementById('cursor-outline');
-        const interactiveEls = document.querySelectorAll('a, .btn, .interactive-element, .faq-question, input, textarea, button');
+        const interactiveEls = document.querySelectorAll('a, .btn, .interactive-element, input, textarea, button');
 
         let mouseX = 0, mouseY = 0;
         let outlineX = 0, outlineY = 0;
@@ -700,19 +719,7 @@
         }
         window.addEventListener("scroll", reveal);
 
-        // --- 9. FAQ АКОРДЕОН ---
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                faqItems.forEach(otherItem => {
-                    if(otherItem !== item) otherItem.classList.remove('active');
-                });
-                item.classList.toggle('active');
-            });
-        });
-
-        // --- 10. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ ---
+        // --- 9. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ ---
         const contactForm = document.getElementById('main-contact-form');
         if(contactForm) {
             const submitBtn = contactForm.querySelector('button[type="submit"]');
