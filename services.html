@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="Услуги за изработка на сайтове, онлайн магазини, UI/UX дизайн и SEO оптимизация от PeachWebLab. Детайлен преглед на нашата експертиза.">
-    <meta name="keywords" content="уеб дизайн услуги, изработка на онлайн магазин, SEO оптимизация, custom уеб разработка, поддръжка на сайт, PeachWebLab">
+    <meta name="description" content="Услуги за изработка на сайтове, онлайн магазини (Seliton, Shopify), UI/UX дизайн, SEO оптимизация (Google Analytics) и поддръжка от PeachWebLab.">
+    <meta name="keywords" content="уеб дизайн услуги, изработка на онлайн магазин, Seliton магазин, SEO оптимизация, поддръжка на съществуващ сайт, PeachWebLab">
     <meta name="author" content="PeachWebLab">
     
     <title>Нашите Услуги | Уеб дизайн и разработка | PeachWebLab</title>
@@ -24,7 +24,7 @@
             --bg-darker: #050507; 
             --text-light: #FFFFFF;
             --text-gray: #8A8A93;
-            --section-spacing: 120px;
+            --section-spacing: 100px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
@@ -134,7 +134,7 @@
         @keyframes moveBlob2 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(-150px, -100px) scale(1.3) rotate(-45deg); } }
 
         /* --- DETAILED SERVICES LIST (ZIG-ZAG) --- */
-        #detailed-services { padding-bottom: var(--section-spacing); position: relative; z-index: 2; }
+        #detailed-services { padding-bottom: 60px; position: relative; z-index: 2; }
         .services-list { display: flex; flex-direction: column; gap: 80px; }
         
         .service-detail-card { 
@@ -145,36 +145,58 @@
         }
         .service-detail-card:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15); }
 
-        /* Иконата отстрани */
         .service-visual {
-            flex: 0 0 35%;
-            display: flex; justify-content: center; align-items: center;
-            height: 300px;
-            background: radial-gradient(circle at center, rgba(255, 90, 95, 0.1) 0%, transparent 70%);
-            border-radius: 20px;
-            border: 1px dashed rgba(255, 90, 95, 0.2);
-            position: relative;
+            flex: 0 0 35%; display: flex; justify-content: center; align-items: center;
+            height: 300px; background: radial-gradient(circle at center, rgba(255, 90, 95, 0.1) 0%, transparent 70%);
+            border-radius: 20px; border: 1px dashed rgba(255, 90, 95, 0.2); position: relative;
         }
         .service-visual i {
-            font-size: 8rem;
-            color: var(--peach-primary);
-            filter: drop-shadow(0 0 30px rgba(255, 90, 95, 0.6));
+            font-size: 8rem; color: var(--peach-primary); filter: drop-shadow(0 0 30px rgba(255, 90, 95, 0.6));
             animation: floatObj 6s ease-in-out infinite;
         }
         @keyframes floatObj { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
 
-        /* Текстът */
         .service-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         .service-content h3 { font-size: 2.5rem; margin-bottom: 15px; color: var(--text-light); line-height: 1.2;}
         .service-content > p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.8; }
         
-        /* Списък с детайли вътре в услугата */
         .service-bullets { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 35px;}
         .service-bullets li { display: flex; align-items: flex-start; gap: 10px; font-size: 1rem; color: #cfcfd6;}
         .service-bullets li i { color: var(--peach-primary); font-size: 1.2rem; margin-top: 3px;}
 
-        /* Редуване ляво/дясно */
         .service-detail-card.reverse { flex-direction: row-reverse; }
+
+        /* --- MARQUEE ЛЕНТА С ТЕХНОЛОГИИ --- */
+        .marquee-section { background-color: var(--peach-primary); color: var(--bg-dark); padding: 18px 0; overflow: hidden; display: flex; position: relative; z-index: 10; font-weight: 800; font-size: 1.3rem; text-transform: uppercase; box-shadow: 0 0 40px rgba(255, 90, 95, 0.3); white-space: nowrap; flex-wrap: nowrap; }
+        .marquee-content { display: flex; flex-wrap: nowrap; width: max-content; animation: marqueeScroll 35s linear infinite; }
+        .marquee-track { display: flex; flex-wrap: nowrap; align-items: center; gap: 40px; padding-right: 40px; flex-shrink: 0;}
+        .marquee-track i { font-size: 0.9rem; }
+        
+        .tech-marquee { background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-gray); box-shadow: inset 0 0 20px rgba(0,0,0,0.5); font-weight: 600; font-size: 1.1rem;}
+        .tech-marquee .marquee-content { animation: marqueeScroll 45s linear infinite reverse; } 
+        .tech-marquee .marquee-track i { font-size: 1.4rem; color: var(--text-light); }
+        @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* --- НОВА СЕКЦИЯ: ЗАЩО НИЕ? --- */
+        #benefits { padding: var(--section-spacing) 0; position: relative; z-index: 2; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .benefit-card { padding: 40px 30px; text-align: center; display: flex; flex-direction: column; align-items: center;}
+        .benefit-card > *:not(.js-tilt-glare) { transform: translateZ(20px); }
+        .benefit-card i { font-size: 3.5rem; color: var(--peach-primary); margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.3)); }
+        .benefit-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
+        .benefit-card p { color: var(--text-gray); font-size: 1rem; line-height: 1.6; }
+
+        /* --- FAQ --- */
+        #faq { padding: 60px 0 var(--section-spacing); background-color: rgba(5,5,7,0.8); }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; }
+        .faq-item.active { border-color: rgba(255, 90, 95, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .faq-question { padding: 25px 30px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.2rem; transition: color 0.3s ease; pointer-events: auto; }
+        .faq-question:hover { color: var(--peach-primary); }
+        .faq-question i { color: var(--peach-primary); transition: transform 0.3s ease; pointer-events: none; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .faq-answer { padding: 0 30px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-gray); }
+        .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; line-height: 1.6;}
 
         /* --- ФОРМА ЗА КОНТАКТИ --- */
         #cta { padding: 100px 0; position: relative; background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02)); border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15); overflow: hidden; }
@@ -204,7 +226,7 @@
             .service-visual { width: 100%; height: 200px; }
             .service-visual i { font-size: 5rem; }
             .service-bullets { grid-template-columns: 1fr; text-align: left; max-width: 400px; margin: 0 auto 30px auto;}
-            
+            .benefits-grid { grid-template-columns: 1fr; }
             .contact-grid, .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .footer-grid { grid-template-columns: 1fr 1fr; text-align: left;}
         }
@@ -303,7 +325,7 @@
                                 <li><i class="fa-solid fa-check-double"></i> Интерактивни 3D и Hover анимации</li>
                                 <li><i class="fa-solid fa-check-double"></i> Създаване на лого и графики</li>
                             </ul>
-                            <a href="#cta" class="btn btn-outline magnetic interactive-element" style="align-self: flex-start;">Поискай дизайн</a>
+                            <a href="#cta" class="btn btn-outline magnetic interactive-element" style="align-self: flex-start; margin-top: 15px;">Поискай дизайн</a>
                         </div>
                     </div>
 
@@ -315,14 +337,14 @@
                             <h3>Custom Уеб Разработка</h3>
                             <p>Забравяме за тежките, бавни и пълни с излишен код системи. Пишем структуриран и чист код от нулата (HTML5, CSS3, JavaScript). Това гарантира на вашия уебсайт светкавична скорост на зареждане, перфектен резултат в Google PageSpeed и максимална защита от хакерски атаки.</p>
                             <ul class="service-bullets">
-                                <li><i class="fa-solid fa-check-double"></i> Писане на чист код (Без page builderi)</li>
+                                <li><i class="fa-solid fa-check-double"></i> Писане на чист код от нулата</li>
                                 <li><i class="fa-solid fa-check-double"></i> 100/100 Google PageSpeed Score</li>
                                 <li><i class="fa-solid fa-check-double"></i> Разработка на сложни уеб приложения</li>
                                 <li><i class="fa-solid fa-check-double"></i> Интеграция с външни API системи</li>
                                 <li><i class="fa-solid fa-check-double"></i> Безупречна сигурност на данните</li>
                                 <li><i class="fa-solid fa-check-double"></i> Адаптивност за всякакви екрани</li>
                             </ul>
-                            <a href="#cta" class="btn btn-primary magnetic interactive-element" style="align-self: flex-start;">Искам бърз сайт</a>
+                            <a href="#cta" class="btn btn-primary magnetic interactive-element" style="align-self: flex-start; margin-top: 15px;">Искам бърз сайт</a>
                         </div>
                     </div>
 
@@ -332,16 +354,16 @@
                         </div>
                         <div class="service-content">
                             <h3>Изработка на E-commerce</h3>
-                            <p>Превръщаме обикновените посетители в лоялни купувачи. Изграждаме стабилни и лесни за управление онлайн магазини. Оптимизираме процеса на поръчка (Checkout), за да сведем до минимум изоставените колички и да увеличим вашите приходи.</p>
+                            <p>Превръщаме обикновените посетители в лоялни купувачи. Изграждаме стабилни и лесни за управление онлайн магазини на платформи като Shopify, CloudCart и Seliton. Оптимизираме процеса на поръчка, за да сведем до минимум изоставените колички и да увеличим вашите приходи.</p>
                             <ul class="service-bullets">
-                                <li><i class="fa-solid fa-check-double"></i> WooCommerce, Shopify, CloudCart</li>
-                                <li><i class="fa-solid fa-check-double"></i> Интеграция с Еконт и Спиди (Товарителници)</li>
-                                <li><i class="fa-solid fa-check-double"></i> Онлайн плащания с карта (Stripe/Борика)</li>
+                                <li><i class="fa-solid fa-check-double"></i> Shopify, CloudCart и Seliton</li>
+                                <li><i class="fa-solid fa-check-double"></i> Разширени продуктови филтри</li>
+                                <li><i class="fa-solid fa-check-double"></i> Управление на продуктови вариации</li>
                                 <li><i class="fa-solid fa-check-double"></i> Оптимизиран Чекаут в 1 стъпка</li>
-                                <li><i class="fa-solid fa-check-double"></i> Управление на склад и инвентар</li>
+                                <li><i class="fa-solid fa-check-double"></i> Интеграция със складови програми</li>
                                 <li><i class="fa-solid fa-check-double"></i> Автоматизирани имейли към клиенти</li>
                             </ul>
-                            <a href="prices.html" class="btn btn-outline magnetic interactive-element" style="align-self: flex-start;">Виж цените за магазин</a>
+                            <a href="prices.html" class="btn btn-outline magnetic interactive-element" style="align-self: flex-start; margin-top: 15px;">Виж цените за магазин</a>
                         </div>
                     </div>
 
@@ -350,17 +372,17 @@
                             <i class="fa-solid fa-rocket"></i>
                         </div>
                         <div class="service-content">
-                            <h3>SEO Оптимизация & Маркетинг</h3>
-                            <p>Най-красивият уебсайт е безполезен, ако никой не го посещава. Ние структурираме вашия проект така, че алгоритмите на Google да го "обикнат". Настройваме пълна аналитика, за да следите трафика си и да пускате печеливши рекламни кампании.</p>
+                            <h3>SEO Оптимизация & Аналитика</h3>
+                            <p>Най-красивият уебсайт е безполезен, ако никой не го посещава. Ние структурираме вашия проект така, че алгоритмите на Google да го позиционират на първите страници. Настройваме пълна аналитика, за да следите трафика си и поведението на потребителите.</p>
                             <ul class="service-bullets">
                                 <li><i class="fa-solid fa-check-double"></i> Техническо и On-Page SEO</li>
                                 <li><i class="fa-solid fa-check-double"></i> Локално SEO (Заемане на първи позиции)</li>
                                 <li><i class="fa-solid fa-check-double"></i> E-commerce SEO за продукти</li>
                                 <li><i class="fa-solid fa-check-double"></i> Интеграция на Google Analytics 4</li>
-                                <li><i class="fa-solid fa-check-double"></i> Настройка на Facebook/Meta Pixel</li>
+                                <li><i class="fa-solid fa-check-double"></i> Интеграция на Google Search Console</li>
                                 <li><i class="fa-solid fa-check-double"></i> Оптимизация на мета тагове и снимки</li>
                             </ul>
-                            <a href="#cta" class="btn btn-primary magnetic interactive-element" style="align-self: flex-start;">Подобри трафика си</a>
+                            <a href="#cta" class="btn btn-primary magnetic interactive-element" style="align-self: flex-start; margin-top: 15px;">Подобри трафика си</a>
                         </div>
                     </div>
 
@@ -369,20 +391,111 @@
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
                         <div class="service-content">
-                            <h3>Техническа Поддръжка 24/7</h3>
-                            <p>Дигиталният свят се променя ежедневно. За да бъде вашият бизнес винаги достъпен, ние предлагаме дългосрочно партньорство. Поемаме пълната техническа отговорност за вашия сайт – от актуализации и защита до добавяне на нови функционалности.</p>
+                            <h3>Техническа Поддръжка и Управление</h3>
+                            <p>Дигиталният свят се променя ежедневно. Ние поддържаме както сайтове, изградени от нас, така и вече съществуващи платформи. Поемаме пълната техническа отговорност за вашия сайт – от актуализации и защита до качване на ново съдържание и продукти.</p>
                             <ul class="service-bullets">
-                                <li><i class="fa-solid fa-check-double"></i> Ежедневен бекъп (архив) на данните</li>
+                                <li><i class="fa-solid fa-check-double"></i> Поддръжка на ваши и чужди проекти</li>
+                                <li><i class="fa-solid fa-check-double"></i> Качване на нови продукти и статии</li>
                                 <li><i class="fa-solid fa-check-double"></i> Регулярни ъпдейти на системите</li>
                                 <li><i class="fa-solid fa-check-double"></i> Защита от спам и хакерски атаки</li>
-                                <li><i class="fa-solid fa-check-double"></i> Мониторинг на сървъра (Uptime)</li>
-                                <li><i class="fa-solid fa-check-double"></i> Качване на нови продукти/статии</li>
-                                <li><i class="fa-solid fa-check-double"></i> Приоритетна помощ при възникнал проблем</li>
+                                <li><i class="fa-solid fa-check-double"></i> Ежедневен бекъп (архив) на данните</li>
+                                <li><i class="fa-solid fa-check-double"></i> Приоритетна помощ 24/7 при проблем</li>
                             </ul>
-                            <a href="#cta" class="btn btn-outline magnetic interactive-element" style="align-self: flex-start;">Свържи се с нас</a>
+                            <a href="#cta" class="btn btn-outline magnetic interactive-element" style="align-self: flex-start; margin-top: 15px;">Заяви поддръжка</a>
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <div class="marquee-section tech-marquee interactive-element">
+            <div class="marquee-content">
+                <div class="marquee-track">
+                    <span>HTML5</span> <i class="fa-brands fa-html5"></i>
+                    <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
+                    <span>JavaScript</span> <i class="fa-brands fa-js"></i>
+                    <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
+                    <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
+                    <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
+                </div>
+                <div class="marquee-track">
+                    <span>HTML5</span> <i class="fa-brands fa-html5"></i>
+                    <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
+                    <span>JavaScript</span> <i class="fa-brands fa-js"></i>
+                    <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
+                    <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
+                    <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
+                </div>
+                <div class="marquee-track">
+                    <span>HTML5</span> <i class="fa-brands fa-html5"></i>
+                    <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
+                    <span>JavaScript</span> <i class="fa-brands fa-js"></i>
+                    <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
+                    <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
+                    <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
+                </div>
+                <div class="marquee-track">
+                    <span>HTML5</span> <i class="fa-brands fa-html5"></i>
+                    <span>CSS3</span> <i class="fa-brands fa-css3-alt"></i>
+                    <span>JavaScript</span> <i class="fa-brands fa-js"></i>
+                    <span>Shopify</span> <i class="fa-brands fa-shopify"></i>
+                    <span>Seliton</span> <i class="fa-solid fa-cart-shopping"></i>
+                    <span>CloudCart</span> <i class="fa-solid fa-cloud"></i>
+                </div>
+            </div>
+        </div>
+
+        <section id="benefits">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Защо да изберете нас?</h2>
+                    <p class="section-subtitle">Ние не правим компромиси с качеството на вашия дигитален бизнес.</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="glass-card spotlight-card benefit-card reveal interactive-element" data-tilt data-tilt-max="5">
+                        <i class="fa-solid fa-bolt"></i>
+                        <h3>Светкавична Скорост</h3>
+                        <p>Сайтовете, които изграждаме, зареждат за под 1 секунда. Това задържа клиентите ви на страницата и подобрява позициите ви в Google.</p>
+                    </div>
+                    <div class="glass-card spotlight-card benefit-card reveal interactive-element" data-tilt data-tilt-max="5" style="transition-delay: 0.1s;">
+                        <i class="fa-solid fa-palette"></i>
+                        <h3>Дизайн без Шаблони</h3>
+                        <p>Всяка марка е уникална. Не използваме готови и евтини темплейти. Създаваме визия, която отличава вашия бизнес от конкуренцията.</p>
+                    </div>
+                    <div class="glass-card spotlight-card benefit-card reveal interactive-element" data-tilt data-tilt-max="5" style="transition-delay: 0.2s;">
+                        <i class="fa-solid fa-lock"></i>
+                        <h3>100% Сигурност</h3>
+                        <p>Пишем чист код без излишни плъгини, което прави сайтовете ни изключително трудни за хакване и максимално надеждни за онлайн плащания.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Често задавани въпроси</h2>
+                </div>
+                <div class="faq-container reveal">
+                    <div class="faq-item spotlight-card interactive-element">
+                        <div class="faq-question">Можете ли да преработите вече съществуващ сайт? <i class="fa-solid fa-chevron-down"></i></div>
+                        <div class="faq-answer">
+                            <p>Да! Предлагаме пълен редизайн и техническа преработка на стари сайтове. Оптимизираме скоростта им, подобряваме визията за мобилни устройства и изчистваме натрупаните грешки в кода.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item spotlight-card interactive-element">
+                        <div class="faq-question">Колко време отнема изработката на един проект? <i class="fa-solid fa-chevron-down"></i></div>
+                        <div class="faq-answer">
+                            <p>Зависи от сложността. Стандартен презентационен или бизнес сайт отнема между 2 и 4 седмици. За по-големи платформи или онлайн магазини процесът може да отнеме от 1 до 3 месеца.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item spotlight-card interactive-element">
+                        <div class="faq-question">Предлагате ли месечна поддръжка, ако сайтът не е правен от вас? <i class="fa-solid fa-chevron-down"></i></div>
+                        <div class="faq-answer">
+                            <p>Разбира се. Можем да поемем техническата поддръжка, качването на продукти и защитата на вашия настоящ сайт, стига той да е изграден на платформа, с която работим.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -602,7 +715,19 @@
         }
         window.addEventListener("scroll", reveal);
 
-        // --- 9. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ ---
+        // --- 9. FAQ АКОРДЕОН ---
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                faqItems.forEach(otherItem => {
+                    if(otherItem !== item) otherItem.classList.remove('active');
+                });
+                item.classList.toggle('active');
+            });
+        });
+
+        // --- 10. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ ---
         const contactForm = document.getElementById('main-contact-form');
         if(contactForm) {
             const submitBtn = contactForm.querySelector('button[type="submit"]');
