@@ -86,16 +86,11 @@
         .btn.sending { opacity: 0.8; pointer-events: none; }
         .btn.success { background: #25D366 !important; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important; color: white !important; pointer-events: none; }
 
-        /* --- BACK TO TOP & CHAT BUTTONS --- */
+        /* --- BACK TO TOP BUTTON --- */
         #back-to-top { position: fixed; bottom: 40px; right: 40px; width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4); }
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 90, 95, 0.7); }
         #back-to-top i { pointer-events: none; }
-
-        #chat-btn { position: fixed; bottom: 40px; left: 40px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; font-size: 2rem; display: flex; justify-content: center; align-items: center; z-index: 999; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); transition: transform 0.3s ease; animation: pulseChat 2s infinite; }
-        #chat-btn:hover { transform: scale(1.1); animation: none; }
-        #chat-btn i { pointer-events: none; }
-        @keyframes pulseChat { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
         /* --- ГОРЕН ХЕДЪР --- */
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
@@ -122,6 +117,7 @@
         /* --- GLASS CARDS ОБЩИ --- */
         .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.1); border-left: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); transform-style: preserve-3d; }
         .glass-card:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15), inset 0 0 20px rgba(255, 90, 95, 0.05); }
+        .glass-card > *:not(.js-tilt-glare) { transform: translateZ(30px); }
 
         /* --- HERO --- */
         #hero { height: 100vh; min-height: 750px; display: flex; align-items: center; position: relative; overflow: hidden; perspective: 1000px; }
@@ -285,7 +281,7 @@
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); }
 
         /* --- РЕСПОНСИВ --- */
-        @media (max-width: 1100px) {
+        @media (max-width: 1150px) {
             .features-grid { grid-template-columns: 1fr 1fr; } 
             .feature-card-1, .feature-card-2, .feature-card-3, .feature-card-4, .feature-card-5 { grid-column: span 1; }
             .trust-banner { flex-direction: column; text-align: center; gap: 15px;}
@@ -342,10 +338,6 @@
     <button id="back-to-top" class="interactive-element" aria-label="Върни се в началото">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-
-    <a href="https://wa.me/359889030110" target="_blank" rel="noopener noreferrer" id="chat-btn" class="interactive-element" aria-label="Пишете ни във WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
 
     <header id="main-header">
         <div class="header-wrapper">
@@ -466,15 +458,15 @@
             <div class="glass-card spotlight-card">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <h3 class="peach-text-gradient"><span class="counter" data-target="100">0</span>%</h3>
+                        <h3 class="peach-text-gradient">100%</h3>
                         <p>Доволни клиенти</p>
                     </div>
                     <div class="stat-item">
-                        <h3 class="peach-text-gradient"><span class="counter" data-target="10">0</span>+</h3>
+                        <h3 class="peach-text-gradient">10+</h3>
                         <p>Успешни проекта</p>
                     </div>
                     <div class="stat-item">
-                        <h3 class="peach-text-gradient"><span class="counter" data-target="24">0</span>/7</h3>
+                        <h3 class="peach-text-gradient">24/7</h3>
                         <p>Техническа поддръжка</p>
                     </div>
                 </div>
@@ -860,6 +852,14 @@
                 header.classList.remove('hide-header');
             }
             lastScrollY = currentScrollY;
+
+            if(currentScrollY < 800) {
+                let opacityValue = 1 - (currentScrollY / 500);
+                const heroText = document.getElementById('hero-text-content');
+                if(heroText) {
+                    heroText.style.opacity = Math.max(0, opacityValue);
+                }
+            }
 
             if(currentScrollY > 400) {
                 backToTopBtn.classList.add('show');
