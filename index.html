@@ -270,6 +270,46 @@
         .form-control:focus { outline: none; border-color: var(--peach-primary); background: rgba(0,0,0,0.5); box-shadow: 0 0 15px rgba(255, 90, 95, 0.2); }
         textarea.form-control { resize: none; height: 120px; }
 
+        /* --- POP-UP MODAL ЗА ПРОЕКТИ --- */
+        #project-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 7, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        #project-modal.open { opacity: 1; visibility: visible; }
+
+        .modal-content {
+            background: var(--bg-darker);
+            width: 90%; max-width: 500px;
+            padding: 40px;
+            position: relative;
+            transform: translateY(50px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 90, 95, 0.2);
+            border-radius: 24px;
+        }
+        #project-modal.open .modal-content { transform: translateY(0) scale(1); }
+
+        .close-modal {
+            position: absolute; top: 20px; right: 25px;
+            font-size: 1.5rem; color: var(--text-gray);
+            transition: color 0.3s ease;
+        }
+        .close-modal:hover { color: var(--peach-primary); }
+
+        .modal-content h3 { font-size: 2rem; margin-bottom: 5px; color: #fff; line-height: 1.2;}
+        .modal-content p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 25px; }
+
+        /* Фикс за падащото меню */
+        select.form-control option { background: #fff; color: #000; }
+
         /* --- ФУТЪР --- */
         footer { padding: 80px 0 30px; background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
@@ -391,7 +431,7 @@
                 </nav>
             </div>
             <div class="nav-buttons">
-                 <a href="#cta" class="btn btn-primary magnetic interactive-element">Започни проект</a>
+                 <a href="#" class="btn btn-primary magnetic interactive-element open-modal-btn">Започни проект</a>
             </div>
         </div>
     </header>
@@ -791,6 +831,38 @@
         </div>
     </footer>
 
+    <div id="project-modal">
+        <div class="modal-content glass-card spotlight-card">
+            <span class="close-modal interactive-element"><i class="fa-solid fa-xmark"></i></span>
+            <h3>Старт на проект</h3>
+            <p>Попълнете краткото запитване и ние ще ви върнем оферта.</p>
+            
+            <form id="brief-form">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control interactive-element" placeholder="Вашето Име или Фирма" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="contact" class="form-control interactive-element" placeholder="Телефон или Имейл за връзка" required>
+                </div>
+                <div class="form-group">
+                    <select name="service" class="form-control interactive-element" required style="color: #fff; appearance: auto; cursor: pointer;">
+                        <option value="" disabled selected>От какво имате нужда?</option>
+                        <option value="Фирмен уебсайт" style="color:#000">Фирмен уебсайт</option>
+                        <option value="Онлайн магазин" style="color:#000">Изработка на Онлайн магазин</option>
+                        <option value="Редизайн на стар сайт" style="color:#000">Редизайн на съществуващ сайт</option>
+                        <option value="SEO / Поддръжка" style="color:#000">SEO Оптимизация или Поддръжка</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea name="details" class="form-control interactive-element" placeholder="Опишете накратко идеята си..." style="height: 100px;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary magnetic interactive-element" style="width:100%;">
+                    Изпрати запитване <i class="fa-regular fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     
@@ -882,10 +954,8 @@
 
             // ЛОГИКА ЗА ХЕДЪРА
             if (currentScrollY > 80) {
-                // Добавяме класа за мобилни (скрива логото, вдига менюто)
                 header.classList.add('mobile-scrolled');
                 
-                // Стандартното скриване (работи само на десктоп заради CSS-а)
                 if (currentScrollY > lastScrollY) {
                     header.classList.add('hide-header');
                 } else {
@@ -988,7 +1058,85 @@
                 }, 1500);
             });
         }
+
+        // --- 11. POP-UP ФОРМА ЗА ПРОЕКТ И AJAX ИЗПРАЩАНЕ ---
+        const modal = document.getElementById('project-modal');
+        const openModalBtns = document.querySelectorAll('.open-modal-btn');
+        const closeBtn = document.querySelector('.close-modal');
+
+        // Отваряне
+        openModalBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('open');
+            });
+        });
+
+        // Затваряне от X
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('open');
+        });
+
+        // Затваряне при клик извън кутията
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('open');
+            }
+        });
+
+        // Изпращане на формата към имейла ти без презареждане (AJAX)
+        const briefForm = document.getElementById('brief-form');
+        if(briefForm) {
+            const submitBtn = briefForm.querySelector('button[type="submit"]');
+            
+            briefForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const originalText = submitBtn.innerHTML;
+                
+                // Смяна на бутона да показва зареждане
+                submitBtn.classList.add('sending');
+                submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Изпращане...';
+
+                // Взимане на данните
+                const formData = new FormData(briefForm);
+                const data = Object.fromEntries(formData.entries());
+
+                // Изпращане към FormSubmit
+                fetch("https://formsubmit.co/ajax/thilsey13542@gmail.com", {
+                    method: "POST",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "Име / Фирма": data.name,
+                        "Контакти": data.contact,
+                        "Желана Услуга": data.service,
+                        "Детайли за проекта": data.details
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    submitBtn.classList.remove('sending');
+                    submitBtn.classList.add('success');
+                    submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Успешно изпратено!';
+                    briefForm.reset();
+                    
+                    // Затваря прозореца след 3 секунди
+                    setTimeout(() => {
+                        submitBtn.classList.remove('success');
+                        submitBtn.innerHTML = originalText;
+                        modal.classList.remove('open');
+                    }, 3000);
+                })
+                .catch(error => {
+                    submitBtn.classList.remove('sending');
+                    submitBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Грешка. Опитайте пак.';
+                    setTimeout(() => { submitBtn.innerHTML = originalText; }, 3000);
+                });
+            });
+        }
     </script>
 
 </body>
-</html>
+</html> виж тук бутона в хедъра Започни Проект не работи с попап, а си скролва към контактите долу
