@@ -86,12 +86,10 @@
         .btn.sending { opacity: 0.8; pointer-events: none; }
         .btn.success { background: #25D366 !important; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important; color: white !important; pointer-events: none; }
 
-        /* --- BACK TO TOP & CHAT BUTTONS --- */
-        #back-to-top { position: fixed; bottom: 40px; right: 40px; width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4); }
+        /* --- BACK TO TOP BUTTON --- */
+        #back-to-top { position: fixed; bottom: 40px; right: 40px; width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; z-index: 10000; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4); cursor: pointer;}
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 90, 95, 0.7); }
-        #chat-btn { position: fixed; bottom: 40px; left: 40px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; font-size: 2rem; display: flex; justify-content: center; align-items: center; z-index: 999; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); transition: transform 0.3s ease; animation: pulseChat 2s infinite; }
-        @keyframes pulseChat { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
         /* --- ГОРЕН ХЕДЪР --- */
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
@@ -124,6 +122,7 @@
         .hero-blobs { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;}
         .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.3; mix-blend-mode: screen; }
         .blob-1 { top: 10%; left: 10%; width: 400px; height: 400px; background: var(--peach-primary); animation: moveBlob1 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
+        @keyframes moveBlob1 { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 100% { transform: translate(150px, 100px) scale(1.2) rotate(45deg); } }
 
         /* --- PRICING CARDS --- */
         #pricing-cards { padding-bottom: 60px; position: relative; z-index: 2; }
@@ -133,7 +132,7 @@
         .pricing-card { display: flex; flex-direction: column; padding: 40px 30px; text-align: left; position: relative; }
         .pricing-card > *:not(.js-tilt-glare) { transform: translateZ(20px); } 
         
-        /* Акцент върху средната карта (Бизнес Уебсайт) */
+        /* Акцент върху средната карта */
         .pricing-card.popular { 
             padding: 60px 40px; 
             border-color: rgba(255, 90, 95, 0.6); 
@@ -180,7 +179,7 @@
         .process-step h3 { font-size: 1.4rem; margin-bottom: 15px; position: relative; z-index: 1; color: var(--text-light);}
         .process-step p { color: var(--text-gray); font-size: 0.95rem; position: relative; z-index: 1; line-height: 1.6;}
 
-        /* --- FAQ СЕКЦИЯ ЗА ЦЕНИТЕ --- */
+        /* --- FAQ СЕКЦИЯ --- */
         #faq { padding: 60px 0 var(--section-spacing); background-color: rgba(5,5,7,0.8); }
         .faq-container { max-width: 800px; margin: 0 auto; }
         .faq-item { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; }
@@ -205,56 +204,28 @@
         textarea.form-control { resize: none; }
 
         select.form-control {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
+            appearance: none; -webkit-appearance: none; -moz-appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF5A5F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 15px;
-            padding-right: 40px;
+            background-repeat: no-repeat; background-position: right 15px center; background-size: 15px; padding-right: 40px;
         }
-        select.form-control option {
-            background-color: var(--bg-dark);
-            color: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            padding: 10px;
-        }
+        select.form-control option { background-color: var(--bg-dark); color: #ffffff; font-family: 'Poppins', sans-serif; padding: 10px; }
 
         /* --- POP-UP MODAL --- */
         #project-modal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 5, 7, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 1000000;
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0; visibility: hidden;
-            transition: all 0.4s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 7, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            z-index: 1000000; display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: all 0.4s ease;
         }
         #project-modal.open { opacity: 1; visibility: visible; }
-
         .modal-content {
-            background: var(--bg-darker);
-            width: 90%; max-width: 500px;
-            padding: 40px;
-            position: relative;
-            transform: translateY(50px) scale(0.95);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255, 90, 95, 0.2);
-            border-radius: 24px;
+            background: var(--bg-darker); width: 90%; max-width: 500px; padding: 40px; position: relative;
+            transform: translateY(50px) scale(0.95); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6); border: 1px solid rgba(255, 90, 95, 0.2); border-radius: 24px;
         }
         #project-modal.open .modal-content { transform: translateY(0) scale(1); }
-
-        .close-modal {
-            position: absolute; top: 20px; right: 25px;
-            font-size: 1.5rem; color: var(--text-gray);
-            transition: color 0.3s ease;
-        }
+        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 1.5rem; color: var(--text-gray); transition: color 0.3s ease; cursor: pointer; }
         .close-modal:hover { color: var(--peach-primary); }
-
         .modal-content h3 { font-size: 2rem; margin-bottom: 5px; color: #fff; line-height: 1.2;}
         .modal-content p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 25px; }
 
@@ -299,7 +270,10 @@
 
             .header-wrapper { flex-direction: column; gap: 12px; transition: all 0.4s ease; }
             .logo { font-size: 1.5rem; transition: all 0.4s ease; max-height: 50px; opacity: 1; margin: 0; display: block; text-align: center; }
-            .nav-menu-container { padding: 10px 15px; width: 100%; display: flex; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3);}
+            
+            /* ПОПРАВКА НА ИЗЛИЗАНЕТО ОТ ЕКРАНА */
+            .nav-menu-container { padding: 10px 15px; width: fit-content; margin: 0 auto; display: flex; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3);}
+            
             .nav-links { gap: 12px; justify-content: center; width: 100%; padding: 0; margin: 0; flex-wrap: wrap; font-size: 0.85rem;}
             .nav-buttons { display: none; }
             
@@ -310,12 +284,10 @@
             .contact-grid, .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .cta-content h2 { font-size: 2.5rem; }
             
-            /* ЦЕНТРИРАНЕ НА ФУТЪРА ЗА МОБИЛНИ */
             .footer-about p { margin: 0 auto 20px auto; max-width: 100%; }
             .footer-col ul { padding: 0; display: flex; flex-direction: column; align-items: center; }
             
             #back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px;}
-            #chat-btn { display: none; }
         }
     </style>
 </head>
@@ -333,10 +305,6 @@
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <a href="https://wa.me/359889030110" target="_blank" rel="noopener noreferrer" id="chat-btn" class="interactive-element" aria-label="Пишете ни във WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
     <header id="main-header">
         <div class="header-wrapper">
             <a href="index.html" class="logo interactive-element">Peach<span>WebLab</span>.</a>
@@ -346,7 +314,7 @@
                         <li><a href="index.html" class="interactive-element">Начало</a></li>
                         <li><a href="services.html" class="interactive-element">Услуги</a></li>
                         <li><a href="#" class="interactive-element active">Цени</a></li>
-                        <li><a href="#footer-nav" class="interactive-element">Контакти</a></li>
+                        <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
                 </nav>
             </div>
@@ -364,7 +332,7 @@
             </div>
             <div class="container reveal">
                 <div class="section-header" style="margin-bottom: 30px;">
-                    <h1 class="section-title">Прозрачни цени.<br>0 EUR първоначален риск.</h1>
+                    <h1 class="section-title">Прозрачни цени.<br>0 EUR / 0 BGN първоначален риск.</h1>
                     <p class="section-subtitle">Изберете пакет, а плащането оставете за накрая – плащате пълната сума чак когато сайтът е готов и напълно одобрен от вас!</p>
                 </div>
             </div>
@@ -383,7 +351,7 @@
                             780+ <span class="currency">EUR</span>
                         </div>
                         <div class="pricing-subprice">
-                            Еднократна такса (от ~1520 BGN)
+                            Еднократна такса (~1520+ BGN)
                             <div class="guarantee-text"><i class="fa-solid fa-shield-check"></i> Плащане при готов сайт</div>
                         </div>
                         
@@ -479,7 +447,7 @@
                             1100+ <span class="currency">EUR</span>
                         </div>
                         <div class="pricing-subprice">
-                            Еднократна такса (от ~2150 BGN)
+                            Еднократна такса (~2150+ BGN)
                             <div class="guarantee-text"><i class="fa-solid fa-shield-check"></i> Плащане при готов сайт</div>
                         </div>
                         
@@ -520,7 +488,7 @@
                 <div class="trust-banner reveal interactive-element">
                     <i class="fa-solid fa-handshake-angle"></i>
                     <div>
-                        <h4>100% Защита за клиента (0 EUR / 0 лв. Капаро)</h4>
+                        <h4>100% Защита за клиента (0 EUR / 0 BGN Капаро)</h4>
                         <p>Вие не поемате риск. Ние изграждаме всичко от нулата с чист код. Заплащате уговорената цена <strong>едва след като видите готовия сайт</strong> и сте напълно удовлетворени от резултата.</p>
                     </div>
                 </div>
@@ -574,7 +542,7 @@
                     <div class="faq-item spotlight-card interactive-element">
                         <div class="faq-question">Има ли капаро и кога се плаща? <i class="fa-solid fa-chevron-down"></i></div>
                         <div class="faq-answer">
-                            <p><strong>Работим с 0% първоначален риск за вас!</strong> Не изискваме капаро. Изработваме сайта на наш тестов сървър, за да следите процеса. Вие заплащате пълната сума по банков път <strong>едва когато сайтът е напълно готов</strong> и одобрен от вас.</p>
+                            <p><strong>Работим с 0 EUR / 0 BGN първоначален риск за вас!</strong> Не изискваме капаро. Изработваме сайта на наш тестов сървър, за да следите процеса. Вие заплащате пълната сума по банков път <strong>едва когато сайтът е напълно готов</strong> и одобрен от вас.</p>
                         </div>
                     </div>
 
@@ -836,7 +804,7 @@
             });
         });
 
-        // AJAX ФОРМИ
+        // AJAX ФОРМИ ЗА ИЗПРАЩАНЕ
         const contactForm = document.getElementById('main-contact-form');
         if(contactForm) {
             const submitBtn = contactForm.querySelector('button[type="submit"]');
