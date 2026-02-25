@@ -213,7 +213,7 @@
         .footer-col ul li i { color: var(--peach-primary); margin-right: 8px; width: 15px; text-align: center;}
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); }
 
-        /* --- РЕСПОНСИВ --- */
+        /* --- РЕСПОНСИВ (ДЕСКТОП И ТАБЛЕТ) --- */
         @media (max-width: 1150px) {
             .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; gap: 50px;}
             .pricing-card.popular { transform: scale(1); padding: 40px 30px; } 
@@ -221,13 +221,50 @@
             .process-grid { grid-template-columns: 1fr 1fr; }
             .trust-banner { flex-direction: column; text-align: center; gap: 15px;}
         }
+        
+        /* --------------------------------------------------- */
+        /* РЕСПОНСИВ ЗА ТЕЛЕФОНИ (С МЕНЮ ФИКС)                 */
+        /* --------------------------------------------------- */
         @media (max-width: 768px) {
             * { cursor: auto !important; }
             .cursor-dot, .cursor-outline { display: none !important; }
             
-            .header-wrapper { flex-direction: column; gap: 15px; }
-            .nav-menu-container { padding: 12px 20px; width: 100%; display: flex; justify-content: center;}
-            .nav-links { gap: 15px; justify-content: center; width: 100%; padding: 0; margin: 0; flex-wrap: wrap;}
+            /* --- ХЕДЪР ЛОГИКА ЗА ТЕЛЕФОН --- */
+            header { 
+                position: fixed !important; 
+                top: 15px; 
+                padding: 0 15px; 
+                transition: all 0.4s ease !important;
+            }
+            
+            /* Спираме скриването на целия хедър, за да остане менюто видимо */
+            header.hide-header { 
+                transform: none !important; 
+            }
+
+            /* Класът се добавя от JS при скрол > 80px */
+            header.mobile-scrolled {
+                top: 5px !important; /* Отива най-горе */
+            }
+            
+            /* Скриване на логото плавно */
+            header.mobile-scrolled .logo {
+                max-height: 0;
+                opacity: 0;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            
+            /* Премахване на разстоянието между скритото лого и менюто */
+            header.mobile-scrolled .header-wrapper {
+                gap: 0;
+            }
+
+            .header-wrapper { flex-direction: column; gap: 12px; transition: all 0.4s ease; }
+            .logo { font-size: 1.5rem; transition: all 0.4s ease; max-height: 50px; opacity: 1; margin: 0; display: block; text-align: center; }
+            .nav-menu-container { padding: 10px 15px; width: 100%; display: flex; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3);}
+            .nav-links { gap: 12px; justify-content: center; width: 100%; padding: 0; margin: 0; flex-wrap: wrap; font-size: 0.85rem;}
             .nav-buttons { display: none; }
             
             .section-title { font-size: 2.8rem; } 
@@ -676,29 +713,38 @@
             
             let scrollHeight = document.body.scrollHeight - window.innerHeight;
             let progress = (currentScrollY / scrollHeight) * 100;
-            scrollProgress.style.width = progress + "%";
+            if(scrollProgress) scrollProgress.style.width = progress + "%";
 
-            if (currentScrollY > 100) {
+            // --- НОВАТА ЛОГИКА ЗА ХЕДЪРА ---
+            if (currentScrollY > 80) {
+                // Добавяме класа за мобилни (скрива логото, вдига менюто)
+                header.classList.add('mobile-scrolled');
+                
+                // Стандартното скриване (работи само на десктоп заради CSS-а)
                 if (currentScrollY > lastScrollY) {
                     header.classList.add('hide-header');
                 } else {
                     header.classList.remove('hide-header');
                 }
             } else {
+                header.classList.remove('mobile-scrolled');
                 header.classList.remove('hide-header');
             }
             lastScrollY = currentScrollY;
+            // --------------------------------
 
             if(currentScrollY > 400) {
-                backToTopBtn.classList.add('show');
+                if(backToTopBtn) backToTopBtn.classList.add('show');
             } else {
-                backToTopBtn.classList.remove('show');
+                if(backToTopBtn) backToTopBtn.classList.remove('show');
             }
         });
 
-        backToTopBtn.addEventListener('click', () => {
-            lenis.scrollTo(0, { duration: 1.5 });
-        });
+        if(backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => {
+                lenis.scrollTo(0, { duration: 1.5 });
+            });
+        }
 
         // --- 6. МАГНИТНИ БУТОНИ ---
         const magneticButtons = document.querySelectorAll('.magnetic');
