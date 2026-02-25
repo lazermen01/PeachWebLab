@@ -76,13 +76,13 @@
         /* --- БУТОНИ И ИНТЕРАКЦИИ --- */
         .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 35px; border-radius: 50px; font-weight: 600; border: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: transform 0.1s linear, box-shadow 0.3s ease, background 0.3s ease; }
         .btn * { pointer-events: none; }
-        .btn-primary { background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; box-shadow: 0 10px 25px -5px rgba(255, 90, 95, 0.4); position: relative; overflow: hidden; width: 100%;}
+        .btn-primary { background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; box-shadow: 0 10px 25px -5px rgba(255, 90, 95, 0.4); position: relative; overflow: hidden; }
         .btn-primary::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: all 0.6s ease; }
         .btn-primary:hover::after { left: 100%; }
         .btn-primary:hover { box-shadow: 0 15px 35px -10px rgba(255, 90, 95, 0.7); }
-        .btn-outline { background: rgba(255, 90, 95, 0.05); border: 2px solid var(--peach-primary); color: var(--peach-primary); width: 100%;}
+        .btn-outline { background: rgba(255, 90, 95, 0.05); border: 2px solid var(--peach-primary); color: var(--peach-primary); }
         .btn-outline:hover { background-color: var(--peach-primary); color: white; box-shadow: 0 10px 25px rgba(255, 90, 95, 0.3); }
-        
+
         .btn.sending { opacity: 0.8; pointer-events: none; }
         .btn.success { background: #25D366 !important; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important; color: white !important; pointer-events: none; }
 
@@ -97,7 +97,7 @@
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
         header.hide-header { transform: translateY(-160%); }
         .header-wrapper { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1300px; }
-        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 20px rgba(255, 90, 95, 0.3); }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 20px rgba(255, 90, 95, 0.3); transition: all 0.4s ease; margin: 0;}
         .logo span { color: var(--peach-primary); }
         .nav-menu-container { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 50px; padding: 12px 30px; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
         
@@ -115,10 +115,9 @@
         .spotlight-card:hover::after { opacity: 1; }
         .spotlight-card > *:not(.js-tilt-glare):not(::after) { position: relative; z-index: 2; }
 
-        /* --- GLASS CARDS ОБЩИ --- */
+        /* --- GLASS CARDS --- */
         .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.1); border-left: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0,0,0,0.2); transform-style: preserve-3d; }
         .glass-card:hover { border-color: rgba(255, 90, 95, 0.3); box-shadow: 0 20px 50px rgba(255, 90, 95, 0.15); }
-        .glass-card > *:not(.js-tilt-glare) { transform: translateZ(30px); }
 
         /* --- SERVICES HERO --- */
         #services-hero { padding-top: 180px; padding-bottom: 60px; text-align: center; position: relative;}
@@ -145,21 +144,30 @@
         .service-detail-card.reverse { flex-direction: row-reverse; }
 
         /* --- PROCESS & BENEFITS --- */
-        #process { padding: var(--section-spacing) 0; position: relative; z-index: 2; }
-        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-        .process-step { text-align: center; padding: 40px 20px; }
-        .process-step-number { width: 60px; height: 60px; background: rgba(255, 90, 95, 0.1); color: var(--peach-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px; border: 1px solid rgba(255, 90, 95, 0.3); }
+        #process { padding: var(--section-spacing) 0; position: relative; z-index: 2; background: linear-gradient(180deg, transparent, rgba(255, 90, 95, 0.02), transparent); }
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; position: relative; }
+        .process-step { text-align: center; padding: 40px 20px; border-radius: 20px; transition: all 0.3s ease; }
+        .process-step-number { width: 60px; height: 60px; background: rgba(255, 90, 95, 0.1); color: var(--peach-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 20px; border: 1px solid rgba(255, 90, 95, 0.3); box-shadow: 0 0 20px rgba(255, 90, 95, 0.15); transition: all 0.3s ease; }
+        .process-step:hover .process-step-number { background: var(--peach-primary); color: white; box-shadow: 0 0 30px rgba(255, 90, 95, 0.5); transform: scale(1.1); }
+        .process-step h3 { font-size: 1.3rem; margin-bottom: 15px; }
+        .process-step p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
+
         #benefits { padding: var(--section-spacing) 0; position: relative; z-index: 2; }
         .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .benefit-card { padding: 40px 30px; text-align: center; }
-        .benefit-card i { font-size: 3.5rem; color: var(--peach-primary); margin-bottom: 20px; }
+        .benefit-card { padding: 40px 30px; text-align: center; display: flex; flex-direction: column; align-items: center;}
+        .benefit-card > *:not(.js-tilt-glare) { transform: translateZ(20px); }
+        .benefit-card i { font-size: 3.5rem; color: var(--peach-primary); margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(255, 90, 95, 0.3)); }
+        .benefit-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
+        .benefit-card p { color: var(--text-gray); font-size: 1rem; line-height: 1.6; }
 
         /* --- TECH STACK --- */
         #tech-stack { padding: 60px 0 100px; position: relative; z-index: 2; text-align: center; }
         .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 20px; margin-top: 40px;}
-        .tech-item { padding: 30px 15px; text-align: center; transition: all 0.4s ease; border-radius: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
-        .tech-item:hover { transform: translateY(-10px); border-color: var(--peach-primary); }
-        .tech-item i { font-size: 3rem; margin-bottom: 10px; color: var(--text-gray); }
+        .tech-item { padding: 30px 15px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; transition: all 0.4s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; }
+        .tech-item:hover { transform: translateY(-10px); border-color: var(--peach-primary); background: rgba(255, 90, 95, 0.05); box-shadow: 0 10px 25px rgba(255, 90, 95, 0.15); }
+        .tech-item i { font-size: 3rem; color: var(--text-gray); transition: color 0.4s ease, filter 0.4s ease; }
+        .tech-item:hover i { color: var(--peach-primary); filter: drop-shadow(0 0 10px rgba(255, 90, 95, 0.5)); }
+        .tech-item span { font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; color: var(--text-light); }
 
         /* --- FAQ --- */
         #faq { padding: 60px 0 var(--section-spacing); background: transparent; position: relative; z-index: 2; }
@@ -173,7 +181,7 @@
         .faq-answer { padding: 0 30px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-gray); }
         .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; line-height: 1.6;}
 
-        /* --- ФОРМА ЗА КОНТАКТИ --- */
+        /* --- CONTACT FORM --- */
         #cta { padding: 100px 0; position: relative; background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02)); border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15); overflow: hidden; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
         .cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 90, 95, 0.3); letter-spacing: -1px; }
@@ -183,7 +191,7 @@
         .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-gray); }
         .form-control { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s ease; cursor: none; }
         .form-control:focus { outline: none; border-color: var(--peach-primary); background: rgba(0,0,0,0.5); box-shadow: 0 0 15px rgba(255, 90, 95, 0.2); }
-        textarea.form-control { resize: none; height: 120px; }
+        textarea.form-control { resize: none; }
 
         /* --- СТИЛИЗИРАНЕ НА DROP-DOWN МЕНЮТО В ПОП-ЪПА И КОНТАКТИТЕ --- */
         select.form-control {
@@ -251,6 +259,10 @@
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); }
 
         /* --- РЕСПОНСИВ (ДЕСКТОП И ТАБЛЕТ) --- */
+        @media (max-width: 1150px) {
+            .features-grid { grid-template-columns: 1fr 1fr; } 
+            .feature-card-1, .feature-card-2, .feature-card-3, .feature-card-4, .feature-card-5 { grid-column: span 1; }
+        }
         @media (max-width: 968px) { 
             .service-detail-card, .service-detail-card.reverse { flex-direction: column; padding: 40px 25px; gap: 30px; text-align: center;}
             .service-visual { width: 100%; height: 200px; }
@@ -268,7 +280,7 @@
             * { cursor: auto !important; }
             .cursor-dot, .cursor-outline { display: none !important; }
             
-            /* --- ФИКС ЗА СКАЧАЩИ ИКОНКИ --- */
+            /* --- ФИКС ЗА СКАЧАЩИ ИКОНКИ И КУТИИ --- */
             @keyframes floatObjMobile {
                 0%, 100% { transform: translateY(0px); }
                 50% { transform: translateY(-8px); }
@@ -289,25 +301,20 @@
             }
             .tech-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; } 
             
-            /* --- ХЕДЪР ЛОГИКА ЗА ТЕЛЕФОН --- */
-            header { 
-                position: fixed !important; 
-                top: 15px; 
-                padding: 0 15px; 
-                transition: all 0.4s ease !important;
-            }
-            
+            /* --- ХЕДЪР ЛОГИКА ЗА ТЕЛЕФОН (НЕПОКЪТНАТ) --- */
+            header { position: fixed !important; top: 15px; padding: 0 15px; transition: all 0.4s ease !important; }
             header.hide-header { transform: none !important; } 
             header.mobile-scrolled { top: 5px !important; }
             header.mobile-scrolled .logo { max-height: 0; opacity: 0; margin: 0; padding: 0; overflow: hidden; }
             header.mobile-scrolled .header-wrapper { gap: 0; }
 
-            .header-wrapper { flex-direction: column; gap: 12px; transition: all 0.4s ease; }
+            .header-wrapper { flex-direction: column; gap: 12px; transition: all 0.4s ease; align-items: center; width: 100%; }
             .logo { font-size: 1.5rem; transition: all 0.4s ease; max-height: 50px; opacity: 1; margin: 0; display: block; text-align: center; }
-            .nav-menu-container { padding: 10px 15px; width: 100%; display: flex; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3);}
-            .nav-links { gap: 12px; justify-content: center; width: 100%; padding: 0; margin: 0; flex-wrap: wrap; font-size: 0.85rem;}
+            .nav-menu-container { padding: 10px 15px; width: 100%; max-width: 360px; display: flex; justify-content: center; box-sizing: border-box; box-shadow: 0 5px 20px rgba(0,0,0,0.3);}
+            .nav-links { display: flex; gap: 12px; justify-content: space-between; width: 100%; padding: 0 5px; margin: 0; flex-wrap: wrap; font-size: 0.85rem;}
             .nav-buttons { display: none; }
-            
+            /* ------------------------------- */
+
             .section-title { font-size: 2.6rem; } 
             #services-hero { padding-top: 140px; padding-bottom: 40px;}
             .service-content h3 { font-size: 2rem; }
@@ -380,7 +387,7 @@
             <div class="container">
                 <div class="services-list">
                     
-                    <div id="service-1" class="service-detail-card glass-card spotlight-card reveal interactive-element" data-tilt data-tilt-max="2">
+                    <div id="service-1" class="service-detail-card glass-card spotlight-card reveal interactive-element" data-tilt data-tilt-max="2" data-tilt-glare="true" data-tilt-max-glare="0.1">
                         <div class="service-visual">
                             <i class="fa-solid fa-pen-nib"></i>
                         </div>
@@ -398,7 +405,7 @@
                         </div>
                     </div>
 
-                    <div id="service-2" class="service-detail-card glass-card spotlight-card reverse reveal interactive-element" data-tilt data-tilt-max="2">
+                    <div id="service-2" class="service-detail-card glass-card spotlight-card reverse reveal interactive-element" data-tilt data-tilt-max="2" data-tilt-glare="true" data-tilt-max-glare="0.1">
                         <div class="service-visual">
                             <i class="fa-solid fa-code"></i>
                         </div>
@@ -416,7 +423,7 @@
                         </div>
                     </div>
 
-                    <div id="service-3" class="service-detail-card glass-card spotlight-card reveal interactive-element" data-tilt data-tilt-max="2">
+                    <div id="service-3" class="service-detail-card glass-card spotlight-card reveal interactive-element" data-tilt data-tilt-max="2" data-tilt-glare="true" data-tilt-max-glare="0.1">
                         <div class="service-visual">
                             <i class="fa-solid fa-store"></i>
                         </div>
@@ -434,7 +441,7 @@
                         </div>
                     </div>
 
-                    <div id="service-4" class="service-detail-card glass-card spotlight-card reverse reveal interactive-element" data-tilt data-tilt-max="2">
+                    <div id="service-4" class="service-detail-card glass-card spotlight-card reverse reveal interactive-element" data-tilt data-tilt-max="2" data-tilt-glare="true" data-tilt-max-glare="0.1">
                         <div class="service-visual">
                             <i class="fa-solid fa-rocket"></i>
                         </div>
@@ -452,7 +459,7 @@
                         </div>
                     </div>
 
-                    <div id="service-5" class="service-detail-card glass-card spotlight-card reveal interactive-element" data-tilt data-tilt-max="2">
+                    <div id="service-5" class="service-detail-card glass-card spotlight-card reveal interactive-element" data-tilt data-tilt-max="2" data-tilt-glare="true" data-tilt-max-glare="0.1">
                         <div class="service-visual">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
@@ -643,9 +650,10 @@
                 </div>
             </div>
         </section>
+
     </main>
 
-    <footer>
+    <footer id="footer-nav">
         <div class="container reveal">
             <div class="footer-grid">
                 <div class="footer-col footer-about">
@@ -655,10 +663,10 @@
                 <div class="footer-col">
                     <h4>Навигация</h4>
                     <ul>
-                        <li><a href="index.html" class="interactive-element">Начало</a></li>
-                        <li><a href="#" class="interactive-element">Услуги</a></li>
-                        <li><a href="prices.html" class="interactive-element">Цени</a></li>
-                        <li><a href="#cta" class="interactive-element">Контакти</a></li>
+                        <li><a href="index.html" class="interactive-element"><i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i> Начало</a></li>
+                        <li><a href="#" class="interactive-element"><i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i> Услуги</a></li>
+                        <li><a href="prices.html" class="interactive-element"><i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i> Цени</a></li>
+                        <li><a href="#cta" class="interactive-element"><i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i> Контакти</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -841,7 +849,17 @@
             });
         });
 
-        // --- 7. REVEAL АНИМАЦИИ ---
+        // --- 7. ПАРАЛАКС НА ФОНА ---
+        const parallaxBg = document.getElementById('parallax-bg');
+        if(parallaxBg) {
+            document.addEventListener('mousemove', function(e) {
+                const x = (window.innerWidth - e.clientX * 2) / 90;
+                const y = (window.innerHeight - e.clientY * 2) / 90;
+                parallaxBg.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        }
+
+        // --- 8. REVEAL АНИМАЦИИ ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -852,7 +870,7 @@
         }
         window.addEventListener("scroll", reveal);
 
-        // --- 8. FAQ АКОРДЕОН ---
+        // --- 9. FAQ АКОРДЕОН ---
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
@@ -864,7 +882,7 @@
             });
         });
 
-        // --- 9. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ (ДОЛНА СЕКЦИЯ) ---
+        // --- 10. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ (ДОЛНА СЕКЦИЯ) ---
         const contactForm = document.getElementById('main-contact-form');
         if(contactForm) {
             const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -876,6 +894,7 @@
                 submitBtn.classList.add('sending');
                 submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Изпращане...';
 
+                // Взимане на данните
                 const formData = new FormData(contactForm);
                 const data = Object.fromEntries(formData.entries());
 
@@ -914,7 +933,7 @@
             });
         }
 
-        // --- 10. POP-UP ФОРМА ЗА ПРОЕКТ И AJAX ИЗПРАЩАНЕ ---
+        // --- 11. POP-UP ФОРМА ЗА ПРОЕКТ И AJAX ИЗПРАЩАНЕ ---
         const modal = document.getElementById('project-modal');
         const openModalBtns = document.querySelectorAll('.open-modal-btn');
         const closeBtn = document.querySelector('.close-modal');
@@ -951,9 +970,11 @@
                 e.preventDefault();
                 const originalText = submitBtn.innerHTML;
                 
+                // Смяна на бутона да показва зареждане
                 submitBtn.classList.add('sending');
                 submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Изпращане...';
 
+                // Взимане на данните
                 const formData = new FormData(briefForm);
                 const data = Object.fromEntries(formData.entries());
 
@@ -979,6 +1000,7 @@
                     submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Успешно изпратено!';
                     briefForm.reset();
                     
+                    // Затваря прозореца след 3 секунди
                     setTimeout(() => {
                         submitBtn.classList.remove('success');
                         submitBtn.innerHTML = originalText;
