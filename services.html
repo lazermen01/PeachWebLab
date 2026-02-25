@@ -250,8 +250,11 @@
             header { 
                 position: fixed !important; 
                 top: 15px; 
+                left: 0;
+                width: 100%;
                 padding: 0 15px; 
-                transition: all 0.4s ease !important;
+                transition: top 0.4s ease !important;
+                box-sizing: border-box;
             }
             
             /* Спираме скриването на целия хедър, за да остане менюто видимо */
@@ -264,24 +267,54 @@
                 top: 5px !important; /* Отива най-горе */
             }
             
-            /* Скриване на логото плавно */
+            /* Скриване на логото плавно само по вертикала, за да не се чупи центрирането */
             header.mobile-scrolled .logo {
-                max-height: 0;
+                height: 0;
                 opacity: 0;
                 margin: 0;
-                padding: 0;
-                overflow: hidden;
+                pointer-events: none;
             }
             
-            /* Премахване на разстоянието между скритото лого и менюто */
             header.mobile-scrolled .header-wrapper {
                 gap: 0;
             }
 
-            .header-wrapper { flex-direction: column; gap: 12px; transition: all 0.4s ease; }
-            .logo { font-size: 1.5rem; transition: all 0.4s ease; max-height: 50px; opacity: 1; margin: 0; display: block; text-align: center; }
-            .nav-menu-container { padding: 10px 15px; width: 100%; display: flex; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3);}
-            .nav-links { gap: 12px; justify-content: center; width: 100%; padding: 0; margin: 0; flex-wrap: wrap; font-size: 0.85rem;}
+            .header-wrapper { flex-direction: column; gap: 8px; transition: all 0.4s ease; width: 100%; align-items: center; }
+            
+            .logo { 
+                font-size: 1.5rem; 
+                transition: all 0.4s ease; 
+                height: 35px; /* Фиксирана височина за мазна анимация */
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                width: 100%;
+                opacity: 1; 
+                margin: 0; 
+                overflow: hidden;
+            }
+
+            .nav-menu-container { 
+                padding: 12px 15px; 
+                width: 100%; 
+                max-width: 400px;
+                margin: 0 auto;
+                display: flex; 
+                justify-content: center; 
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+                box-sizing: border-box;
+            }
+            
+            /* Разпределяме бутоните равномерно, за да не мърдат */
+            .nav-links { 
+                gap: 5px; 
+                justify-content: space-between; 
+                width: 100%; 
+                padding: 0 5px; 
+                margin: 0; 
+                flex-wrap: nowrap; 
+                font-size: 0.85rem;
+            }
             .nav-buttons { display: none; }
             
             .section-title { font-size: 2.8rem; } 
@@ -542,10 +575,6 @@
                         <i class="fa-solid fa-cloud"></i>
                         <span>CloudCart</span>
                     </div>
-                    <div class="tech-item interactive-element" data-tilt data-tilt-max="10">
-                        <i class="fa-brands fa-figma"></i>
-                        <span>Figma</span>
-                    </div>
                 </div>
             </div>
         </section>
@@ -781,7 +810,17 @@
             });
         });
 
-        // --- 7. REVEAL АНИМАЦИИ ---
+        // --- 7. ПАРАЛАКС НА ФОНА ---
+        const parallaxBg = document.getElementById('parallax-bg');
+        if(parallaxBg) {
+            document.addEventListener('mousemove', function(e) {
+                const x = (window.innerWidth - e.clientX * 2) / 90;
+                const y = (window.innerHeight - e.clientY * 2) / 90;
+                parallaxBg.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        }
+
+        // --- 8. REVEAL АНИМАЦИИ ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -792,7 +831,7 @@
         }
         window.addEventListener("scroll", reveal);
 
-        // --- 8. FAQ АКОРДЕОН ---
+        // --- 9. FAQ АКОРДЕОН ---
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
@@ -804,7 +843,7 @@
             });
         });
 
-        // --- 9. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ ---
+        // --- 10. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ ---
         const contactForm = document.getElementById('main-contact-form');
         if(contactForm) {
             const submitBtn = contactForm.querySelector('button[type="submit"]');
