@@ -39,9 +39,9 @@
             overflow-x: hidden;
         }
 
-        /* --- FLUID КУРСОР --- */
-        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background-color: var(--peach-primary); border-radius: 50%; pointer-events: none; z-index: 100001; transform: translate(-50%, -50%); }
-        .cursor-outline { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 2px solid var(--peach-primary); border-radius: 50%; pointer-events: none; z-index: 100000; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
+        /* --- FLUID КУРСОР --- (Увеличен Z-INDEX за да се вижда над POP-UP) */
+        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background-color: var(--peach-primary); border-radius: 50%; pointer-events: none; z-index: 9999999; transform: translate(-50%, -50%); }
+        .cursor-outline { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 2px solid var(--peach-primary); border-radius: 50%; pointer-events: none; z-index: 9999998; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
         .cursor-outline.hovering { width: 70px; height: 70px; background-color: rgba(255, 90, 95, 0.1); border-color: rgba(255, 90, 95, 0.5); }
 
         /* --- PRELOADER --- */
@@ -270,6 +270,24 @@
         .form-control:focus { outline: none; border-color: var(--peach-primary); background: rgba(0,0,0,0.5); box-shadow: 0 0 15px rgba(255, 90, 95, 0.2); }
         textarea.form-control { resize: none; height: 120px; }
 
+        /* --- СТИЛИЗИРАНЕ НА DROP-DOWN МЕНЮТО В ПОП-ЪПА --- */
+        select.form-control {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF5A5F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+            padding-right: 40px;
+        }
+        select.form-control option {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            padding: 10px;
+        }
+
         /* --- POP-UP MODAL ЗА ПРОЕКТИ --- */
         #project-modal {
             position: fixed;
@@ -306,9 +324,6 @@
 
         .modal-content h3 { font-size: 2rem; margin-bottom: 5px; color: #fff; line-height: 1.2;}
         .modal-content p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 25px; }
-
-        /* Фикс за падащото меню */
-        select.form-control option { background: #fff; color: #000; }
 
         /* --- ФУТЪР --- */
         footer { padding: 80px 0 30px; background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); }
@@ -842,15 +857,18 @@
                     <input type="text" name="name" class="form-control interactive-element" placeholder="Вашето Име или Фирма" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="contact" class="form-control interactive-element" placeholder="Телефон или Имейл за връзка" required>
+                    <input type="email" name="email" class="form-control interactive-element" placeholder="Вашият Имейл" required>
                 </div>
                 <div class="form-group">
-                    <select name="service" class="form-control interactive-element" required style="color: #fff; appearance: auto; cursor: pointer;">
+                    <input type="tel" name="phone" class="form-control interactive-element" placeholder="Вашият Телефон" required>
+                </div>
+                <div class="form-group">
+                    <select name="service" class="form-control interactive-element" required>
                         <option value="" disabled selected>От какво имате нужда?</option>
-                        <option value="Фирмен уебсайт" style="color:#000">Фирмен уебсайт</option>
-                        <option value="Онлайн магазин" style="color:#000">Изработка на Онлайн магазин</option>
-                        <option value="Редизайн на стар сайт" style="color:#000">Редизайн на съществуващ сайт</option>
-                        <option value="SEO / Поддръжка" style="color:#000">SEO Оптимизация или Поддръжка</option>
+                        <option value="Фирмен уебсайт">Фирмен уебсайт</option>
+                        <option value="Онлайн магазин">Изработка на Онлайн магазин</option>
+                        <option value="Редизайн на стар сайт">Редизайн на съществуващ сайт</option>
+                        <option value="SEO / Поддръжка">SEO Оптимизация или Поддръжка</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -898,7 +916,7 @@
         // --- 3. FLUID CURSOR ---
         const dot = document.getElementById('cursor-dot');
         const outline = document.getElementById('cursor-outline');
-        const interactiveEls = document.querySelectorAll('a, .btn, .interactive-element, input, textarea, button');
+        const interactiveEls = document.querySelectorAll('a, .btn, .interactive-element, input, textarea, button, select');
 
         let mouseX = 0, mouseY = 0;
         let outlineX = 0, outlineY = 0;
@@ -1110,7 +1128,8 @@
                     },
                     body: JSON.stringify({
                         "Име / Фирма": data.name,
-                        "Контакти": data.contact,
+                        "Имейл": data.email,
+                        "Телефон": data.phone,
                         "Желана Услуга": data.service,
                         "Детайли за проекта": data.details
                     })
@@ -1139,4 +1158,4 @@
     </script>
 
 </body>
-</html> виж тук бутона в хедъра Започни Проект не работи с попап, а си скролва към контактите долу
+</html>
