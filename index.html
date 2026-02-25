@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="PeachWebLab - Лаборатория за иновативен уеб дизайн и разработка. Създаваме бързи, красиви и функционални уебсайтове и онлайн магазини с 0 лв. първоначално капаро.">
+    <meta name="description" content="PeachWebLab - Лаборатория за иновативен уеб дизайн и разработка. Създаваме бързи, красиви и функционални уебсайтове и онлайн магазини с 0 лв. / 0 € първоначално капаро.">
     <meta name="keywords" content="изработка на сайтове, уеб дизайн, онлайн магазини, SEO оптимизация, уеб разработка, дигитална агенция, без капаро, PeachWebLab">
     <meta name="author" content="PeachWebLab">
     
@@ -39,7 +39,7 @@
             overflow-x: hidden;
         }
 
-        /* --- FLUID КУРСОР --- (Увеличен Z-INDEX за да се вижда над POP-UP) */
+        /* --- FLUID КУРСОР --- */
         .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background-color: var(--peach-primary); border-radius: 50%; pointer-events: none; z-index: 9999999; transform: translate(-50%, -50%); }
         .cursor-outline { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 2px solid var(--peach-primary); border-radius: 50%; pointer-events: none; z-index: 9999998; transform: translate(-50%, -50%); transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
         .cursor-outline.hovering { width: 70px; height: 70px; background-color: rgba(255, 90, 95, 0.1); border-color: rgba(255, 90, 95, 0.5); }
@@ -85,6 +85,11 @@
         
         .btn.sending { opacity: 0.8; pointer-events: none; }
         .btn.success { background: #25D366 !important; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important; color: white !important; pointer-events: none; }
+
+        .service-link-btn { display: inline-block; margin-top: auto; padding-top: 20px; color: var(--peach-primary); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; text-decoration: none; transition: gap 0.3s ease, text-shadow 0.3s ease; }
+        .service-link-btn i { font-size: 0.85rem; margin-left: 5px; transition: margin-left 0.3s ease;}
+        .service-link-btn:hover { text-shadow: 0 0 10px rgba(255, 90, 95, 0.5); }
+        .service-link-btn:hover i { margin-left: 10px; }
 
         /* --- BACK TO TOP BUTTON --- */
         #back-to-top { position: fixed; bottom: 40px; right: 40px; width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4); }
@@ -235,18 +240,7 @@
         .trust-banner h4 { font-size: 1.4rem; margin-bottom: 5px; color: #fff;}
         .trust-banner p { color: var(--text-gray); font-size: 1rem; margin: 0; line-height: 1.6;}
 
-        /* --- ОТЗИВИ И FAQ --- */
-        #testimonials { padding: var(--section-spacing) 0; position: relative; overflow: hidden; }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        #testimonials .glass-card { padding: 40px; }
-        .testimonial-card { position: relative; }
-        .quote-icon { position: absolute; top: 20px; right: 30px; font-size: 4rem; color: rgba(255, 90, 95, 0.1); z-index: -1; }
-        .testimonial-text { font-size: 1.1rem; font-style: italic; color: var(--text-light); margin-bottom: 25px; line-height: 1.8; }
-        .client-info { display: flex; align-items: center; gap: 15px; }
-        .client-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(45deg, var(--peach-primary), var(--peach-secondary)); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
-        .client-details h4 { font-size: 1.1rem; margin-bottom: 2px; }
-        .client-details p { font-size: 0.9rem; color: var(--peach-primary); }
-
+        /* --- FAQ --- */
         #faq { padding: 60px 0 var(--section-spacing); background-color: rgba(5,5,7,0.8); }
         .faq-container { max-width: 800px; margin: 0 auto; }
         .faq-item { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; }
@@ -258,19 +252,7 @@
         .faq-answer { padding: 0 30px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-gray); }
         .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; line-height: 1.6;}
 
-        /* --- ФОРМА ЗА КОНТАКТИ --- */
-        #cta { padding: 100px 0; position: relative; background: linear-gradient(135deg, rgba(255, 90, 95, 0.08), rgba(255, 138, 91, 0.02)); border-top: 1px solid rgba(255, 90, 95, 0.15); border-bottom: 1px solid rgba(255, 90, 95, 0.15); overflow: hidden; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
-        .cta-content h2 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 90, 95, 0.3); letter-spacing: -1px; }
-        .cta-content p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px; }
-        .contact-form { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-gray); }
-        .form-control { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s ease; cursor: none; }
-        .form-control:focus { outline: none; border-color: var(--peach-primary); background: rgba(0,0,0,0.5); box-shadow: 0 0 15px rgba(255, 90, 95, 0.2); }
-        textarea.form-control { resize: none; height: 120px; }
-
-        /* --- СТИЛИЗИРАНЕ НА DROP-DOWN МЕНЮТО В ПОП-ЪПА И КОНТАКТИТЕ --- */
+        /* --- СТИЛИЗИРАНЕ НА DROP-DOWN МЕНЮТО В ПОП-ЪПА --- */
         select.form-control {
             appearance: none;
             -webkit-appearance: none;
@@ -324,8 +306,13 @@
 
         .modal-content h3 { font-size: 2rem; margin-bottom: 5px; color: #fff; line-height: 1.2;}
         .modal-content p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 25px; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-control { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s ease; cursor: none; }
+        .form-control:focus { outline: none; border-color: var(--peach-primary); background: rgba(0,0,0,0.5); box-shadow: 0 0 15px rgba(255, 90, 95, 0.2); }
+        textarea.form-control { resize: none; }
 
-        /* --- ФУТЪР --- */
+        /* --- FOOTER --- */
         footer { padding: 80px 0 30px; background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
         .footer-about p { color: var(--text-gray); margin-top: 20px; max-width: 300px; line-height: 1.6;}
@@ -369,31 +356,11 @@
                 transition: all 0.4s ease !important;
             }
             
-            /* Спираме скриването на целия хедър, за да остане менюто видимо */
-            header.hide-header { 
-                transform: none !important; 
-            }
-
-            /* Класът се добавя от JS при скрол > 50px */
-            header.mobile-scrolled {
-                top: 5px !important; /* Отива най-горе */
-            }
+            header.hide-header { transform: none !important; }
+            header.mobile-scrolled { top: 5px !important; }
+            header.mobile-scrolled .logo { max-height: 0; opacity: 0; margin: 0; padding: 0; overflow: hidden; }
+            header.mobile-scrolled .header-wrapper { gap: 0; }
             
-            /* Скриване на логото плавно */
-            header.mobile-scrolled .logo {
-                max-height: 0;
-                opacity: 0;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-            }
-            
-            /* Премахване на разстоянието между скритото лого и менюто */
-            header.mobile-scrolled .header-wrapper {
-                gap: 0;
-            }
-            /* ------------------------------- */
-
             .header-wrapper { flex-direction: column; gap: 12px; transition: all 0.4s ease; }
             .logo { font-size: 1.5rem; transition: all 0.4s ease; max-height: 50px; opacity: 1; margin: 0; display: block; text-align: center; }
             .nav-menu-container { padding: 10px 15px; width: 100%; display: flex; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3);}
@@ -404,14 +371,27 @@
             .hero-title { font-size: 2.6rem; }
             .section-title { font-size: 2.5rem; } 
             
+            /* БУТОН ЗА ПОП-ЪП НА МОБИЛЕН (СМЕНЯ "Разгледай проектите") */
+            .hero-buttons .btn-primary { display: none; }
+            .hero-buttons::after {
+                content: 'Започни проект \f061';
+                font-family: 'Poppins', 'Font Awesome 6 Free';
+                font-weight: 600;
+                display: inline-flex; justify-content: center; align-items: center; gap: 10px;
+                padding: 14px 35px; border-radius: 50px; border: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
+                background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary));
+                color: white; box-shadow: 0 10px 25px -5px rgba(255, 90, 95, 0.4);
+                width: 100%;
+            }
+            .hero-buttons { cursor: pointer; } /* Правим контейнера кликаем */
+
             .features-grid { grid-template-columns: 1fr; } 
             .stats-grid { flex-direction: column; gap: 40px; }
-            .contact-grid, .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
             
             .footer-about p { margin: 0 auto 20px auto; max-width: 100%; }
             .footer-col ul { padding: 0; }
             
-            .cta-content h2 { font-size: 2.2rem; }
             .marquee-section { font-size: 1rem; }
             #back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px;}
             #chat-btn { display: none; }
@@ -439,9 +419,9 @@
                 <nav>
                     <ul class="nav-links">
                         <li><a href="#" class="interactive-element active">Начало</a></li>
-                        <li><a href="#features" class="interactive-element">Услуги</a></li>
+                        <li><a href="services.html" class="interactive-element">Услуги</a></li>
                         <li><a href="prices.html" class="interactive-element">Цени</a></li>
-                        <li><a href="#cta" class="interactive-element">Контакти</a></li>
+                        <li><a href="#footer-nav" class="interactive-element">Контакти</a></li>
                     </ul>
                 </nav>
             </div>
@@ -465,7 +445,7 @@
                 <div class="hero-content">
                     
                     <div class="hero-trust-badge fade-in-up delay-1">
-                        <i class="fa-solid fa-shield-halved"></i> 100% без риск: 0 лв. капаро. Плащате при готов сайт!
+                        <i class="fa-solid fa-shield-halved"></i> 100% без риск: 0 лв. / 0 € капаро. Плащате при готов сайт!
                     </div>
 
                     <h1 class="hero-title fade-in-up">
@@ -475,11 +455,10 @@
                     <p class="hero-subtitle fade-in-up delay-1">
                         PeachWebLab е дигитално студио за изработка на бързи, сигурни и SEO оптимизирани сайтове, които превръщат посетителите в реални клиенти.
                     </p>
-                    <div class="hero-buttons fade-in-up delay-2">
-                        <a href="#projects" class="btn btn-primary magnetic interactive-element">
+                    <div class="hero-buttons fade-in-up delay-2 open-modal-btn"> <a href="#projects" class="btn btn-primary magnetic interactive-element" onclick="event.stopPropagation();">
                             Разгледай проектите <i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <a href="#features" class="btn btn-outline magnetic hide-mobile interactive-element">
+                        <a href="#features" class="btn btn-outline magnetic hide-mobile interactive-element" onclick="event.stopPropagation();">
                             Какво предлагаме
                         </a>
                     </div>
@@ -578,30 +557,35 @@
                         <div class="feature-icon"><i class="fa-solid fa-pen-nib"></i></div>
                         <h3>UI/UX & Брандинг</h3>
                         <p>Изграждаме запомняща се идентичност и интерфейси, които водят плавно към целта.</p>
+                        <a href="services.html" class="service-link-btn interactive-element">Прочети повече <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     
                     <div class="glass-card spotlight-card feature-card-2 reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.1s;">
                         <div class="feature-icon"><i class="fa-solid fa-code"></i></div>
                         <h3>Custom Разработка</h3>
                         <p>Пишем чист и бърз код без тежки платформи, издържащ на голям трафик.</p>
+                        <a href="services.html" class="service-link-btn interactive-element">Прочети повече <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <div class="glass-card spotlight-card feature-card-3 reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.2s;">
                         <div class="feature-icon"><i class="fa-solid fa-store"></i></div>
                         <h3>E-commerce</h3>
                         <p>Мощни онлайн магазини, оптимизирани за високи продажби и лесен чекаут.</p>
+                        <a href="services.html" class="service-link-btn interactive-element">Прочети повече <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     
                     <div class="glass-card spotlight-card feature-card-4 reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.3s;">
                         <div class="feature-icon"><i class="fa-solid fa-rocket"></i></div>
                         <h3>SEO & Маркетинг</h3>
                         <p>Структурираме проектите така, че Google да ги обикне и да ви носят клиенти.</p>
+                        <a href="services.html" class="service-link-btn interactive-element">Прочети повече <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <div class="glass-card spotlight-card feature-card-5 reveal interactive-element" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2" style="transition-delay: 0.4s;">
                         <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
                         <h3>Поддръжка</h3>
                         <p>Грижим се сайтът ви да бъде защитен, актуален и работещ 24/7 без прекъсване.</p>
+                        <a href="services.html" class="service-link-btn interactive-element">Прочети повече <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                 </div>
@@ -649,7 +633,7 @@
                         </div>
                         <div class="project-info">
                             <h3>Garom</h3>
-                            <p>Елегантен онлайн магазин, изграден за максимално лесно и бързо пазаруване. Проектът се фокусира върху красивата продуктова презентация, интуитивния чекаут процес и адаптивността за мобилни устройства.</p>
+                            <p>Елегантен информативен уебсайт, изграден за лесно откриване на услуги и директна връзка с бизнеса. Проектът се фокусира върху красивата презентация и адаптивността за мобилни устройства.</p>
                             <a href="https://garom.myseliton.com/" target="_blank" rel="noopener noreferrer" class="project-link interactive-element">
                                 Разгледай сайта <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -661,7 +645,7 @@
                 <div class="trust-banner reveal interactive-element">
                     <i class="fa-solid fa-handshake-angle"></i>
                     <div>
-                        <h4>100% Защита за клиента (0 лв. Капаро)</h4>
+                        <h4>100% Защита за клиента (0 лв. / 0 € Капаро)</h4>
                         <p>Вие не поемате риск. Ние изграждаме всичко от нулата с чист код. Заплащате уговорената цена <strong>едва след като видите готовия сайт</strong> и сте напълно удовлетворени от резултата.</p>
                     </div>
                 </div>
@@ -710,42 +694,6 @@
             </div>
         </div>
 
-        <section id="testimonials">
-            <div class="hero-blobs">
-                <div class="blob blob-2" style="width: 400px; height: 400px; top: 10%; right: -10%;"></div>
-            </div>
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">Отзиви от клиенти</h2>
-                    <p class="section-subtitle">Доверието на нашите партньори е най-важно</p>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="glass-card spotlight-card testimonial-card reveal interactive-element" data-tilt data-tilt-max="5">
-                        <i class="fa-solid fa-quote-right quote-icon"></i>
-                        <p class="testimonial-text">"PeachWebLab преобразиха изцяло онлайн присъствието ни. Сайтът е невероятно бърз, а продажбите ни скочиха драстично още първия месец!"</p>
-                        <div class="client-info">
-                            <div class="client-avatar">И</div>
-                            <div class="client-details">
-                                <h4>Иван Иванов</h4>
-                                <p>Собственик, FashionBrand</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="glass-card spotlight-card testimonial-card reveal interactive-element" data-tilt data-tilt-max="5" style="transition-delay: 0.2s;">
-                        <i class="fa-solid fa-quote-right quote-icon"></i>
-                        <p class="testimonial-text">"Изключителен професионализъм и внимание към детайла. 3D ефектите, които интегрираха, ни отличиха напълно от конкуренцията."</p>
-                        <div class="client-info">
-                            <div class="client-avatar">Е</div>
-                            <div class="client-details">
-                                <h4>Елена Петрова</h4>
-                                <p>Маркетинг Директор, TechStartup</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="faq">
             <div class="container">
                 <div class="section-header reveal">
@@ -755,7 +703,7 @@
                 <div class="faq-container reveal">
                     
                     <div class="faq-item spotlight-card interactive-element">
-                        <div class="faq-question" style="color: var(--peach-primary);">Има ли капаро и кога се плаща? <i class="fa-solid fa-chevron-down"></i></div>
+                        <div class="faq-question">Има ли капаро и кога се плаща? <i class="fa-solid fa-chevron-down"></i></div>
                         <div class="faq-answer">
                             <p><strong>Работим с 0% първоначален риск за вас!</strong> Не изискваме капаро. Изработваме сайта на наш тестов сървър, за да следите процеса. Вие заплащате пълната сума по банков път <strong>едва когато сайтът е напълно готов</strong> и одобрен от вас.</p>
                         </div>
@@ -768,61 +716,10 @@
                         </div>
                     </div>
                     <div class="faq-item spotlight-card interactive-element">
-                        <div class="faq-question">Ще мога ли сам да редактирам съдържанието си? <i class="fa-solid fa-chevron-down"></i></div>
+                        <div class="faq-question">Предлагате ли поддръжка след изработката? <i class="fa-solid fa-chevron-down"></i></div>
                         <div class="faq-answer">
-                            <p>Абсолютно! Ние интегрираме лесен за използване административен панел, чрез който ще можете да променяте текстове, снимки и услуги без никакви технически познания.</p>
+                            <p>Да, изцяло поемаме грижата за вашия сайт след старта му. Осигуряваме техническа поддръжка, качване на нови продукти, статии или промяна по дизайна, за да може вие да се фокусирате върху бизнеса си.</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="cta">
-            <div class="hero-blobs">
-                <div class="blob blob-1" style="width: 400px; height: 400px; top: -20%; left: -10%;"></div>
-            </div>
-            <div class="container reveal">
-                <div class="contact-grid">
-                    <div class="cta-content">
-                        <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">Готови ли сте?</h2>
-                        <p>Нека обсъдим вашата идея и да я превърнем в следващия успешен дигитален продукт. Изпратете ни съобщение и ще се свържем с вас до 24 часа.</p>
-                        <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px;">
-                            <a href="mailto:thilsey13542@gmail.com" class="interactive-element" style="display: flex; align-items: center; gap: 10px; color: var(--text-light);"><i class="fa-solid fa-envelope" style="color: var(--peach-primary);"></i> thilsey13542@gmail.com</a>
-                            <a href="tel:0889030110" class="interactive-element" style="display: flex; align-items: center; gap: 10px; color: var(--text-light);"><i class="fa-solid fa-phone" style="color: var(--peach-primary);"></i> 0889 030 110</a>
-                        </div>
-                    </div>
-                    <div class="contact-form spotlight-card">
-                        <form id="main-contact-form">
-                            <div class="form-group">
-                                <label for="name_bottom">Вашето Име</label>
-                                <input type="text" name="name" id="name_bottom" class="form-control interactive-element" placeholder="Иван Иванов" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email_bottom">Имейл Адрес</label>
-                                <input type="email" name="email" id="email_bottom" class="form-control interactive-element" placeholder="ivan@example.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone_bottom">Телефон</label>
-                                <input type="tel" name="phone" id="phone_bottom" class="form-control interactive-element" placeholder="0888..." required>
-                            </div>
-                            <div class="form-group">
-                                <label for="service_bottom">Услуга</label>
-                                <select name="service" id="service_bottom" class="form-control interactive-element" required>
-                                    <option value="" disabled selected>От какво имате нужда?</option>
-                                    <option value="Фирмен уебсайт">Фирмен уебсайт</option>
-                                    <option value="Онлайн магазин">Изработка на Онлайн магазин</option>
-                                    <option value="Редизайн на стар сайт">Редизайн на съществуващ сайт</option>
-                                    <option value="SEO / Поддръжка">SEO Оптимизация или Поддръжка</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="message_bottom">Съобщение</label>
-                                <textarea name="details" id="message_bottom" class="form-control interactive-element" placeholder="Разкажете ни за вашия проект..." style="height: 120px;" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary magnetic interactive-element" style="width: 100%;">
-                                Изпрати Запитване <i class="fa-regular fa-paper-plane"></i>
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -830,7 +727,7 @@
 
     </main>
 
-    <footer>
+    <footer id="footer-nav">
         <div class="container reveal">
             <div class="footer-grid">
                 <div class="footer-col footer-about">
@@ -841,9 +738,8 @@
                     <h4>Навигация</h4>
                     <ul>
                         <li><a href="index.html" class="interactive-element">Начало</a></li>
-                        <li><a href="index.html#features" class="interactive-element">Услуги</a></li>
+                        <li><a href="services.html" class="interactive-element">Услуги</a></li>
                         <li><a href="prices.html" class="interactive-element">Цени</a></li>
-                        <li><a href="#cta" class="interactive-element">Контакти</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1065,58 +961,7 @@
             });
         });
 
-        // --- 10. ИНТЕРАКТИВНА ФОРМА ЗА КОНТАКТИ (ДОЛНА СЕКЦИЯ) ---
-        const contactForm = document.getElementById('main-contact-form');
-        if(contactForm) {
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault(); 
-                const originalText = submitBtn.innerHTML;
-                
-                submitBtn.classList.add('sending');
-                submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Изпращане...';
-
-                // Взимане на данните
-                const formData = new FormData(contactForm);
-                const data = Object.fromEntries(formData.entries());
-
-                // Изпращане към FormSubmit чрез AJAX
-                fetch("https://formsubmit.co/ajax/thilsey13542@gmail.com", {
-                    method: "POST",
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        "Име / Фирма": data.name,
-                        "Имейл": data.email,
-                        "Телефон": data.phone,
-                        "Желана Услуга": data.service,
-                        "Детайли за проекта": data.details
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    submitBtn.classList.remove('sending');
-                    submitBtn.classList.add('success');
-                    submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Успешно изпратено!';
-                    contactForm.reset(); 
-                    
-                    setTimeout(() => {
-                        submitBtn.classList.remove('success');
-                        submitBtn.innerHTML = originalText;
-                    }, 4000);
-                })
-                .catch(error => {
-                    submitBtn.classList.remove('sending');
-                    submitBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Грешка. Опитайте пак.';
-                    setTimeout(() => { submitBtn.innerHTML = originalText; }, 3000);
-                });
-            });
-        }
-
-        // --- 11. POP-UP ФОРМА ЗА ПРОЕКТ И AJAX ИЗПРАЩАНЕ ---
+        // --- 10. POP-UP ФОРМА ЗА ПРОЕКТ И AJAX ИЗПРАЩАНЕ ---
         const modal = document.getElementById('project-modal');
         const openModalBtns = document.querySelectorAll('.open-modal-btn');
         const closeBtn = document.querySelector('.close-modal');
@@ -1125,6 +970,9 @@
         openModalBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
+                // Ако кликът идва от бутона в hero секцията, спираме пропагирането, 
+                // за да не скролва към секцията с контакти
+                e.stopPropagation(); 
                 modal.classList.add('open');
             });
         });
