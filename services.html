@@ -163,26 +163,58 @@
         .footer-bottom { text-align: center; padding-top: 30px; margin-top: 60px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); }
 
         /* --------------------------------------------------- */
-        /* РЕСПОНСИВ ЗА ТЕЛЕФОНИ (ФИКСИРАН)                   */
+        /* РЕСПОНСИВ ЗА ТЕЛЕФОНИ (ФИКСИРАН)                    */
         /* --------------------------------------------------- */
         @media (max-width: 768px) {
             * { cursor: auto !important; }
             .cursor-dot, .cursor-outline { display: none !important; }
             
+            /* --- ФИКС ЗА СКАЧАЩИ ИКОНКИ --- */
+            .service-visual { height: 160px; overflow: hidden; border-radius: 15px;}
+            .service-visual i { 
+                font-size: 4rem; 
+                animation: floatObjMobile 4s ease-in-out infinite; 
+            }
+            
             /* --- ХЕДЪР ЛОГИКА ЗА ТЕЛЕФОН --- */
-            header { position: fixed !important; top: 15px; padding: 0 15px; transition: all 0.4s ease !important; }
-            header.hide-header { transform: none !important; } /* Спираме изчезването на хедъра на мобилни */
-            header.mobile-scrolled { top: 5px !important; }
-            header.mobile-scrolled .logo { max-height: 0; opacity: 0; margin: 0; overflow: hidden; }
-            header.mobile-scrolled .header-wrapper { gap: 0; }
+            header { 
+                position: fixed !important; 
+                top: 15px; 
+                padding: 0 15px; 
+                transition: all 0.4s ease !important;
+            }
+            
+            header.hide-header { 
+                transform: none !important; 
+            }
 
-            .header-wrapper { flex-direction: column; gap: 12px; }
-            .logo { font-size: 1.5rem; text-align: center; display: block; max-height: 50px; opacity: 1; }
-            .nav-menu-container { padding: 10px 15px; width: 100%; display: flex; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3);}
-            .nav-links { gap: 12px; justify-content: center; width: 100%; font-size: 0.85rem; flex-wrap: wrap;}
-            .nav-buttons { display: none; }
+            header.mobile-scrolled {
+                top: 5px !important; 
+            }
+            
+            header.mobile-scrolled .logo {
+                max-height: 0;
+                opacity: 0;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            
+            header.mobile-scrolled .header-wrapper {
+                gap: 0;
+            }
             /* ------------------------------- */
 
+            .header-wrapper { flex-direction: column; gap: 12px; transition: all 0.4s ease; }
+            .logo { font-size: 1.5rem; transition: all 0.4s ease; max-height: 50px; opacity: 1; margin: 0; display: block; text-align: center; }
+            .nav-menu-container { padding: 10px 15px; width: 100%; display: flex; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3);}
+            
+            /* ТУК БЕШЕ ГРЕШКАТА - ОПРАВЕНО: */
+            .nav-links { gap: 12px; justify-content: center; width: 100%; padding: 0; margin: 0; flex-wrap: wrap; font-size: 0.85rem;}
+            
+            .nav-buttons { display: none; }
+            
+            /* останалите стилове надолу... */
             .section-title { font-size: 2.6rem; } 
             #services-hero { padding-top: 140px; }
             .service-detail-card, .service-detail-card.reverse { flex-direction: column; padding: 30px 20px; text-align: center; }
