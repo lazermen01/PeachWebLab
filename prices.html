@@ -51,7 +51,7 @@
         @keyframes pulseLoader { 0% { opacity: 0.3; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
 
         /* --- PROGRESS BAR --- */
-        #scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary)); z-index: 2147483647; box-shadow: 0 0 15px var(--peach-primary); }
+        #scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(to right, var(--peach-primary), var(--peach-secondary)); z-index: 100002; box-shadow: 0 0 15px var(--peach-primary); }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-darker); }
         ::-webkit-scrollbar-thumb { background: linear-gradient(var(--peach-primary), var(--peach-secondary)); border-radius: 10px; }
@@ -87,15 +87,15 @@
         .btn.success { background: #25D366 !important; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4) !important; color: white !important; pointer-events: none; }
 
         /* --- BACK TO TOP BUTTON --- */
-        #back-to-top { position: fixed; bottom: 40px; right: 40px; width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; z-index: 999999; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4); cursor: pointer; }
+        #back-to-top { position: fixed; bottom: 40px; right: 40px; width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, var(--peach-primary), var(--peach-secondary)); color: white; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 90, 95, 0.4); pointer-events: auto; }
         #back-to-top.show { opacity: 1; visibility: visible; }
         #back-to-top:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 90, 95, 0.7); }
 
-        /* --- ГОРЕН ХЕДЪР (ТОЧНО 1:1 С УСЛУГИ) --- */
+        /* --- ГОРЕН ХЕДЪР --- */
         header { position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; transition: transform 0.4s ease; }
         header.hide-header { transform: translateY(-160%); }
         .header-wrapper { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1300px; }
-        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 20px rgba(255, 90, 95, 0.3); transition: all 0.4s ease; margin: 0;}
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 20px rgba(255, 90, 95, 0.3); }
         .logo span { color: var(--peach-primary); }
         .nav-menu-container { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 50px; padding: 12px 30px; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
         
@@ -127,9 +127,9 @@
         /* --- PRICING CARDS --- */
         #pricing-cards { padding-bottom: 60px; position: relative; z-index: 2; }
         
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: center; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: stretch; }
         
-        .pricing-card { display: flex; flex-direction: column; padding: 40px 30px; text-align: left; position: relative; }
+        .pricing-card { display: flex; flex-direction: column; padding: 40px 30px; text-align: left; position: relative; height: 100%; }
         .pricing-card > *:not(.js-tilt-glare) { transform: translateZ(20px); } 
         
         /* Акцент върху средната карта */
@@ -256,11 +256,18 @@
             .cursor-dot, .cursor-outline { display: none !important; }
             
             /* --- ХЕДЪР ЛОГИКА ЗА ТЕЛЕФОН --- */
-            header { position: fixed !important; top: 15px; padding: 0 15px; transition: all 0.4s ease !important; }
+            header { 
+                position: fixed !important; 
+                top: 15px; 
+                padding: 0 15px; 
+                transition: all 0.4s ease !important;
+            }
+            
             header.hide-header { transform: none !important; } 
             header.mobile-scrolled { top: 5px !important; }
             header.mobile-scrolled .logo { max-height: 0; opacity: 0; margin: 0; padding: 0; overflow: hidden; }
             header.mobile-scrolled .header-wrapper { gap: 0; }
+
             .header-wrapper { flex-direction: column; gap: 12px; transition: all 0.4s ease; }
             .logo { font-size: 1.5rem; transition: all 0.4s ease; max-height: 50px; opacity: 1; margin: 0; display: block; text-align: center; }
             .nav-menu-container { padding: 10px 15px; width: 100%; display: flex; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3);}
